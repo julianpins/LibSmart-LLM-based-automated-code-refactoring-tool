@@ -1,0 +1,1882 @@
+[
+  {
+    "input": "unique_elements = np.unique1d([1, 2, 1, 3, 2])",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `unique1d` is deprecated since NumPy 1.4.0. Use `unique` instead.",
+    "functionality": "Find the unique elements of an array.",
+    "output": "unique_elements = np.unique([1, 2, 1, 3, 2])"
+  },
+  {
+    "input": "data = np.array([5, 8, 5, 9, 1, 9, 5])\n# Find the unique values for analysis\nresult = np.unique1d(data)\nprint(result.sum())",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `unique1d` is deprecated since NumPy 1.4.0. Use `unique` instead.",
+    "functionality": "Find the unique elements of an array.",
+    "output": "data = np.array([5, 8, 5, 9, 1, 9, 5])\n# Find the unique values for analysis\nresult = np.unique(data)\nprint(result.sum())"
+  },
+  {
+    "input": "list_of_lists = [[1,1,2], [3,4,4], [5,6,5]]\nunique_counts = [len(np.unique1d(sublist)) for sublist in list_of_lists]\nprint(unique_counts)",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `unique1d` is deprecated since NumPy 1.4.0. Use `unique` instead.",
+    "functionality": "Find the unique elements of an array.",
+    "output": "list_of_lists = [[1,1,2], [3,4,4], [5,6,5]]\nunique_counts = [len(np.unique(sublist)) for sublist in list_of_lists]\nprint(unique_counts)"
+  },
+  {
+    "input": "def process_and_get_uniques(raw_data):\n    processed = raw_data[raw_data > 0]\n    final_set = tuple(np.unique1d(processed.astype(int)))\n    return final_set\n\ndata = np.array([-1, 2.0, 3.1, 2.0, -5, 3.1])\nprocess_and_get_uniques(data)",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `unique1d` is deprecated since NumPy 1.4.0. Use `unique` instead.",
+    "functionality": "Find the unique elements of an array.",
+    "output": "def process_and_get_uniques(raw_data):\n    processed = raw_data[raw_data > 0]\n    final_set = tuple(np.unique(processed.astype(int)))\n    return final_set\n\ndata = np.array([-1, 2.0, 3.1, 2.0, -5, 3.1])\nprocess_and_get_uniques(data)"
+  },
+  {
+    "input": "intersection = np.Intersect1d_nu([1, 2, 3], [2, 3, 4])",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Intersect1d_nu` is deprecated since NumPy 1.4.0. Use `intersect1d` instead.",
+    "functionality": "Find the intersection of two arrays.",
+    "output": "intersection = np.intersect1d([1, 2, 3], [2, 3, 4])"
+  },
+  {
+    "input": "array1 = np.array([10, 20, 30, 40])\narray2 = np.array([30, 40, 50, 60])\ncommon_elements = np.Intersect1d_nu(array1, array2)\nprint(common_elements)",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Intersect1d_nu` is deprecated since NumPy 1.4.0. Use `intersect1d` instead.",
+    "functionality": "Find the intersection of two arrays.",
+    "output": "array1 = np.array([10, 20, 30, 40])\narray2 = np.array([30, 40, 50, 60])\ncommon_elements = np.intersect1d(array1, array2)\nprint(common_elements)"
+  },
+  {
+    "input": "def get_common_ids(group_a, group_b):\n    # This function finds common numerical IDs\n    return list(np.Intersect1d_nu(group_a, group_b))\n\nids1 = [101, 102, 103]\nids2 = [103, 104, 105]\nprint(get_common_ids(ids1, ids2))",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Intersect1d_nu` is deprecated since NumPy 1.4.0. Use `intersect1d` instead.",
+    "functionality": "Find the intersection of two arrays.",
+    "output": "def get_common_ids(group_a, group_b):\n    # This function finds common numerical IDs\n    return list(np.intersect1d(group_a, group_b))\n\nids1 = [101, 102, 103]\nids2 = [103, 104, 105]\nprint(get_common_ids(ids1, ids2))"
+  },
+  {
+    "input": "matrix_a = np.random.randint(0, 10, (5,5))\nmatrix_b = np.random.randint(0, 10, (5,5))\n# Find intersection of flattened matrices\ncommon_values_count = len(np.Intersect1d_nu(matrix_a.flatten(), matrix_b.flatten()))\nprint(f'Found {common_values_count} common values')",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Intersect1d_nu` is deprecated since NumPy 1.4.0. Use `intersect1d` instead.",
+    "functionality": "Find the intersection of two arrays.",
+    "output": "matrix_a = np.random.randint(0, 10, (5,5))\nmatrix_b = np.random.randint(0, 10, (5,5))\n# Find intersection of flattened matrices\ncommon_values_count = len(np.intersect1d(matrix_a.flatten(), matrix_b.flatten()))\nprint(f'Found {common_values_count} common values')"
+  },
+  {
+    "input": "is_member = np.Setmember1d([1, 5], [1, 2, 3, 4])",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "is_member = np.in1d([1, 5], [1, 2, 3, 4])"
+  },
+  {
+    "input": "elements = np.array([10, 20, 30, 40])\ntest_elements = np.array([20, 50])\nmask = np.Setmember1d(test_elements, elements)\nprint(elements[mask])",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "elements = np.array([10, 20, 30, 40])\ntest_elements = np.array([20, 50])\nmask = np.in1d(test_elements, elements)\nprint(elements[mask])"
+  },
+  {
+    "input": "def check_existence(main_array, values_to_check):\n    print('Checking for existence of values...')\n    return np.Setmember1d(values_to_check, main_array).any()\n\nmain = [1, 2, 3]\ncheck = [4, 5, 1]\ncheck_existence(main, check)",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "def check_existence(main_array, values_to_check):\n    print('Checking for existence of values...')\n    return np.in1d(values_to_check, main_array).any()\n\nmain = [1, 2, 3]\ncheck = [4, 5, 1]\ncheck_existence(main, check)"
+  },
+  {
+    "input": "a = np.arange(10)\nb = np.array([2, 8, 12])\nindices = np.nonzero(np.Setmember1d(b, a))[0]\nprint(f'Elements {b[indices]} are present.')",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "a = np.arange(10)\nb = np.array([2, 8, 12])\nindices = np.nonzero(np.in1d(b, a))[0]\nprint(f'Elements {b[indices]} are present.')"
+  },
+  {
+    "input": "hist, bins = np.histogram(data, normed=True)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The 'normed' keyword in numpy.histogram is deprecated since NumPy 1.6.0. Use 'density' instead.",
+    "functionality": "Compute the histogram of a set of data.",
+    "output": "hist, bins = np.histogram(data, density=True)"
+  },
+  {
+    "input": "sample_data = np.random.randn(200)\nprobabilities, _ = np.histogram(sample_data, bins=15, normed=True)\nprint(probabilities.mean())",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The 'normed' keyword in numpy.histogram is deprecated since NumPy 1.6.0. Use 'density' instead.",
+    "functionality": "Compute the histogram of a set of data.",
+    "output": "sample_data = np.random.randn(200)\nprobabilities, _ = np.histogram(sample_data, bins=15, density=True)\nprint(probabilities.mean())"
+  },
+  {
+    "input": "def plot_normalized_histogram(data_vector):\n    density_values = np.histogram(data_vector, bins='auto', normed=True)[0]\n    return density_values\n\nplot_normalized_histogram(np.random.rand(50))",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The 'normed' keyword in numpy.histogram is deprecated since NumPy 1.6.0. Use 'density' instead.",
+    "functionality": "Compute the histogram of a set of data.",
+    "output": "def plot_normalized_histogram(data_vector):\n    density_values = np.histogram(data_vector, bins='auto', density=True)[0]\n    return density_values\n\nplot_normalized_histogram(np.random.rand(50))"
+  },
+  {
+    "input": "weights = np.random.rand(100)\ndata = np.random.randint(0, 10, 100)\nhist_norm, bin_edges = np.histogram(data, bins=10, weights=weights, normed=True)\nassert np.isclose(hist_norm.sum(), 1.0)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The 'normed' keyword in numpy.histogram is deprecated since NumPy 1.6.0. Use 'density' instead.",
+    "functionality": "Compute the histogram of a set of data.",
+    "output": "weights = np.random.rand(100)\ndata = np.random.randint(0, 10, 100)\nhist_norm, bin_edges = np.histogram(data, bins=10, weights=weights, density=True)\nassert np.isclose(hist_norm.sum(), 1.0)"
+  },
+  {
+    "input": "fft_res = np.fft.refft([1, 2, 3, 4])",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `refft` in numpy.fft is deprecated since NumPy 1.6.0. Use `rfft` instead.",
+    "functionality": "Compute the one-dimensional discrete Fourier Transform for real input.",
+    "output": "fft_res = np.fft.rfft([1, 2, 3, 4])"
+  },
+  {
+    "input": "signal = np.sin(np.linspace(0, 2*np.pi, 128))\nfreq_spectrum = np.fft.refft(signal)\nprint(freq_spectrum.shape)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `refft` in numpy.fft is deprecated since NumPy 1.6.0. Use `rfft` instead.",
+    "functionality": "Compute the one-dimensional discrete Fourier Transform for real input.",
+    "output": "signal = np.sin(np.linspace(0, 2*np.pi, 128))\nfreq_spectrum = np.fft.rfft(signal)\nprint(freq_spectrum.shape)"
+  },
+  {
+    "input": "def get_dominant_frequency(audio_chunk):\n    transformed = np.abs(np.fft.refft(audio_chunk))\n    dominant_freq_index = np.argmax(transformed)\n    return dominant_freq_index\n\naudio = np.random.randn(1024)\nget_dominant_frequency(audio)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `refft` in numpy.fft is deprecated since NumPy 1.6.0. Use `rfft` instead.",
+    "functionality": "Compute the one-dimensional discrete Fourier Transform for real input.",
+    "output": "def get_dominant_frequency(audio_chunk):\n    transformed = np.abs(np.fft.rfft(audio_chunk))\n    dominant_freq_index = np.argmax(transformed)\n    return dominant_freq_index\n\naudio = np.random.randn(1024)\nget_dominant_frequency(audio)"
+  },
+  {
+    "input": "image_row = np.arange(256)\ninverse_fft_row = np.fft.irefft(np.fft.refft(image_row))\nnp.testing.assert_allclose(image_row, inverse_fft_row)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The functions `refft` and `irefft` in numpy.fft are deprecated since NumPy 1.6.0. Use `rfft` and `irfft` instead.",
+    "functionality": "Compute the one/N-dimensional discrete Fourier Transform for real input and its inverse.",
+    "output": "image_row = np.arange(256)\ninverse_fft_row = np.fft.irfft(np.fft.rfft(image_row))\nnp.testing.assert_allclose(image_row, inverse_fft_row)"
+  },
+  {
+    "input": "memmap_array = np.memmap('test.mmap', dtype='float32', mode='w+', shape=(10,))\nmemmap_array[:] = 42.0\nmemmap_array.sync()",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The method `sync()` for numpy.memmap is deprecated since NumPy 1.6.0. Use `flush()` instead.",
+    "functionality": "Write any changes in the array to the file on disk.",
+    "output": "memmap_array = np.memmap('test.mmap', dtype='float32', mode='w+', shape=(10,))\nmemmap_array[:] = 42.0\nmemmap_array.flush()"
+  },
+  {
+    "input": "fp = np.memmap('data.dat', mode='w+', shape=5)\nfor i in range(5):\n    fp[i] = i\n    fp.sync()\ndel fp",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The method `sync()` for numpy.memmap is deprecated since NumPy 1.6.0. Use `flush()` instead.",
+    "functionality": "Write any changes in the array to the file on disk.",
+    "output": "fp = np.memmap('data.dat', mode='w+', shape=5)\nfor i in range(5):\n    fp[i] = i\n    fp.flush()\ndel fp"
+  },
+  {
+    "input": "def update_memmap_file(filename, data):\n    mmap = np.memmap(filename, dtype=data.dtype, mode='r+', shape=data.shape)\n    mmap[:] = data\n    mmap.sync()\n    print('Data synchronized')",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The method `sync()` for numpy.memmap is deprecated since NumPy 1.6.0. Use `flush()` instead.",
+    "functionality": "Write any changes in the array to the file on disk.",
+    "output": "def update_memmap_file(filename, data):\n    mmap = np.memmap(filename, dtype=data.dtype, mode='r+', shape=data.shape)\n    mmap[:] = data\n    mmap.flush()\n    print('Data synchronized')"
+  },
+  {
+    "input": "class DataManager:\n    def __init__(self, file):\n        self.mmap = np.memmap(file, dtype='int', mode='w+', shape=100)\n    def write(self, index, value):\n        self.mmap[index] = value\n        self.mmap.sync()\n    def close(self):\n        del self.mmap",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The method `sync()` for numpy.memmap is deprecated since NumPy 1.6.0. Use `flush()` instead.",
+    "functionality": "Write any changes in the array to the file on disk.",
+    "output": "class DataManager:\n    def __init__(self, file):\n        self.mmap = np.memmap(file, dtype='int', mode='w+', shape=100)\n    def write(self, index, value):\n        self.mmap[index] = value\n        self.mmap.flush()\n    def close(self):\n        del self.mmap"
+  },
+  {
+    "input": "include_path = numpy.get_numpy_include()",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `numpy.get_numpy_include` is deprecated since NumPy 1.6.0. Use `numpy.get_include` instead.",
+    "functionality": "Get the directory containing NumPy C header files.",
+    "output": "include_path = numpy.get_include()"
+  },
+  {
+    "input": "import numpy.distutils\npath = numpy.distutils.misc_util.get_numpy_include()",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `get_numpy_include` is deprecated since NumPy 1.6.0. Use `get_include` instead.",
+    "functionality": "Get the directory containing NumPy C header files.",
+    "output": "import numpy.distutils\npath = numpy.distutils.misc_util.get_include()"
+  },
+  {
+    "input": "def setup_extension():\n    from distutils.core import setup\n    from distutils.extension import Extension\n    return Extension('my_module', sources=['my_module.c'], include_dirs=[numpy.get_numpy_include()])",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `numpy.get_numpy_include` is deprecated since NumPy 1.6.0. Use `numpy.get_include` instead.",
+    "functionality": "Get the directory containing NumPy C header files.",
+    "output": "def setup_extension():\n    from distutils.core import setup\n    from distutils.extension import Extension\n    return Extension('my_module', sources=['my_module.c'], include_dirs=[numpy.get_include()])"
+  },
+  {
+    "input": "import os\ndef get_cpath():\n    return os.pathsep.join([os.environ.get('CPATH', ''), numpy.get_numpy_include()])",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "The function `numpy.get_numpy_include` is deprecated since NumPy 1.6.0. Use `numpy.get_include` instead.",
+    "functionality": "Get the directory containing NumPy C header files.",
+    "output": "import os\ndef get_cpath():\n    return os.pathsep.join([os.environ.get('CPATH', ''), numpy.get_include()])"
+  },
+  {
+    "input": "arr = np.arange(5.0)\narr._format = '%.2f'",
+    "package": "numpy",
+    "version": "1.7.0",
+    "context": "Setting the `_format` attribute of an array is deprecated since NumPy 1.7.0. Use the `formatter` keyword in `numpy.set_printoptions` or `numpy.array2string` instead.",
+    "functionality": "Define a custom format for printing array elements.",
+    "output": "arr = np.arange(5.0)\nnp.set_printoptions(formatter={'float_kind': lambda x: '%.2f' % x})"
+  },
+  {
+    "input": "my_array = np.random.rand(3)\nmy_array._format = 'Value: %s'\nprint(my_array)",
+    "package": "numpy",
+    "version": "1.7.0",
+    "context": "Setting the `_format` attribute of an array is deprecated since NumPy 1.7.0. Use the `formatter` keyword in `numpy.set_printoptions` or `numpy.array2string` instead.",
+    "functionality": "Define a custom format for printing array elements.",
+    "output": "my_array = np.random.rand(3)\nprint(np.array2string(my_array, formatter={'float_kind': lambda x: 'Value: %s' % x}))"
+  },
+  {
+    "input": "class MyArray(np.ndarray):\n    def __str__(self):\n        self._format = '%05d'\n        return super().__str__()",
+    "package": "numpy",
+    "version": "1.7.0",
+    "context": "Setting the `_format` attribute of an array is deprecated since NumPy 1.7.0. Use the `formatter` keyword in `numpy.set_printoptions` or `numpy.array2string` instead.",
+    "functionality": "Define a custom format for printing array elements.",
+    "output": "class MyArray(np.ndarray):\n    def __str__(self):\n        return np.array2string(self, formatter={'int_kind': lambda x: '%05d' % x})"
+  },
+  {
+    "input": "a = np.array([1, 2, 3], dtype=object)\ndef custom_format(arr):\n    arr._format = lambda x: f'Obj({x})'\n    return str(arr)\nprint(custom_format(a))",
+    "package": "numpy",
+    "version": "1.7.0",
+    "context": "Setting the `_format` attribute of an array is deprecated since NumPy 1.7.0. Use the `formatter` keyword in `numpy.set_printoptions` or `numpy.array2string` instead.",
+    "functionality": "Define a custom format for printing array elements.",
+    "output": "a = np.array([1, 2, 3], dtype=object)\ndef custom_format(arr):\n    return np.array2string(arr, formatter={'object_kind': lambda x: f'Obj({x})'})\nprint(custom_format(a))"
+  },
+  {
+    "input": "a = np.arange(10)\nresult = a[1.0]",
+    "package": "numpy",
+    "version": "1.8.0",
+    "context": "Using a non-integer (e.g., float) for array indexing is deprecated since NumPy 1.8.0. Use an integer instead.",
+    "functionality": "Access an element of an array using an index.",
+    "output": "a = np.arange(10)\nresult = a[1]"
+  },
+  {
+    "input": "data = np.array([10, 20, 30, 40])\nindex = 2.0\nvalue = data[index]\nprint(value)",
+    "package": "numpy",
+    "version": "1.8.0",
+    "context": "Using a non-integer (e.g., float) for array indexing is deprecated since NumPy 1.8.0. Use an integer instead.",
+    "functionality": "Access an element of an array using an index.",
+    "output": "data = np.array([10, 20, 30, 40])\nindex = 2.0\nvalue = data[int(index)]\nprint(value)"
+  },
+  {
+    "input": "def get_element(arr, float_idx):\n    return arr[float_idx]\n\nmy_arr = np.linspace(0, 1, 11)\nget_element(my_arr, 5.0)",
+    "package": "numpy",
+    "version": "1.8.0",
+    "context": "Using a non-integer (e.g., float) for array indexing is deprecated since NumPy 1.8.0. Use an integer instead.",
+    "functionality": "Access an element of an array using an index.",
+    "output": "def get_element(arr, float_idx):\n    return arr[int(float_idx)]\n\nmy_arr = np.linspace(0, 1, 11)\nget_element(my_arr, 5.0)"
+  },
+  {
+    "input": "matrix = np.zeros((5, 5))\nindices = (np.float64(2), np.float64(3))\nmatrix[indices] = 1\nprint(matrix)",
+    "package": "numpy",
+    "version": "1.8.0",
+    "context": "Using non-integer scalars for indexing is deprecated since NumPy 1.8.0. Use integers instead.",
+    "functionality": "Access an element of an array using indices.",
+    "output": "matrix = np.zeros((5, 5))\nindices = (2, 3)\nmatrix[indices] = 1\nprint(matrix)"
+  },
+  {
+    "input": "repeated_list = np.float_(3) * [1, 2]",
+    "package": "numpy",
+    "version": "1.9.0",
+    "context": "Using a non-integer scalar for sequence repetition is deprecated since NumPy 1.9.0. Use a standard Python int.",
+    "functionality": "Repeat a sequence.",
+    "output": "repeated_list = 3 * [1, 2]"
+  },
+  {
+    "input": "multiplier = np.float64(4)\nbase_sequence = ('a', 'b')\nresult = multiplier * base_sequence",
+    "package": "numpy",
+    "version": "1.9.0",
+    "context": "Using a non-integer scalar for sequence repetition is deprecated since NumPy 1.9.0. Use a standard Python int.",
+    "functionality": "Repeat a sequence.",
+    "output": "multiplier = 4\nbase_sequence = ('a', 'b')\nresult = multiplier * base_sequence"
+  },
+  {
+    "input": "def repeat_pattern(pattern, times):\n    num_repeats = np.float32(times)\n    return pattern * num_repeats\n\nrepeat_pattern([0], 5.0)",
+    "package": "numpy",
+    "version": "1.9.0",
+    "context": "Using a non-integer scalar for sequence repetition is deprecated since NumPy 1.9.0. Use a standard Python int.",
+    "functionality": "Repeat a sequence.",
+    "output": "def repeat_pattern(pattern, times):\n    num_repeats = int(times)\n    return pattern * num_repeats\n\nrepeat_pattern([0], 5.0)"
+  },
+  {
+    "input": "n = np.float_(2)\nzeros_list = [0] * n * 3",
+    "package": "numpy",
+    "version": "1.9.0",
+    "context": "Using a non-integer scalar for sequence repetition is deprecated since NumPy 1.9.0. Use a standard Python int.",
+    "functionality": "Repeat a sequence.",
+    "output": "n = 2\nzeros_list = [0] * n * 3"
+  },
+  {
+    "input": "rank = np.rank(np.zeros((4,4)))",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "The function `np.rank` is deprecated since NumPy 1.10.0. Use `np.ndim` instead.",
+    "functionality": "Return the number of array dimensions.",
+    "output": "rank = np.ndim(np.zeros((4,4)))"
+  },
+  {
+    "input": "tensor = np.random.rand(2, 3, 4)\ntensor_rank = np.rank(tensor)\nprint(f'The rank is {tensor_rank}')",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "The function `np.rank` is deprecated since NumPy 1.10.0. Use `np.ndim` instead.",
+    "functionality": "Return the number of array dimensions.",
+    "output": "tensor = np.random.rand(2, 3, 4)\ntensor_rank = np.ndim(tensor)\nprint(f'The rank is {tensor_rank}')"
+  },
+  {
+    "input": "def check_tensor_rank(t):\n    required_rank = 3\n    if np.rank(t) != required_rank:\n        raise ValueError('Invalid tensor rank')\n    return True\n\ncheck_tensor_rank(np.ones((5,5,5)))",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "The function `np.rank` is deprecated since NumPy 1.10.0. Use `np.ndim` instead.",
+    "functionality": "Return the number of array dimensions.",
+    "output": "def check_tensor_rank(t):\n    required_rank = 3\n    if np.ndim(t) != required_rank:\n        raise ValueError('Invalid tensor rank')\n    return True\n\ncheck_tensor_rank(np.ones((5,5,5)))"
+  },
+  {
+    "input": "matrices = [np.eye(2), np.zeros((3,3)), np.ones((4,4))]\nfor m in matrices:\n    print(f'Matrix rank: {np.rank(m)}')",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "The function `np.rank` is deprecated since NumPy 1.10.0. Use `np.ndim` instead.",
+    "functionality": "Return the number of array dimensions.",
+    "output": "matrices = [np.eye(2), np.zeros((3,3)), np.ones((4,4))]\nfor m in matrices:\n    print(f'Matrix ndim: {np.ndim(m)}')"
+  },
+  {
+    "input": "from numpy import testing\nrand_arr = testing.rand(4, 2)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `numpy.testing.rand` is deprecated since NumPy 1.11.0. Use `numpy.random.rand` instead.",
+    "functionality": "Create an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).",
+    "output": "from numpy import random\nrand_arr = random.rand(4, 2)"
+  },
+  {
+    "input": "from numpy import testing\ndef create_test_data():\n    return testing.rand(10)\n\ntest_data = create_test_data()",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `numpy.testing.rand` is deprecated since NumPy 1.11.0. Use `numpy.random.rand` instead.",
+    "functionality": "Create an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).",
+    "output": "from numpy import random\ndef create_test_data():\n    return random.rand(10)\n\ntest_data = create_test_data()"
+  },
+  {
+    "input": "from numpy.testing import rand\nmatrix = rand(3, 3)\nprint(matrix)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `numpy.testing.rand` is deprecated since NumPy 1.11.0. Use `numpy.random.rand` instead.",
+    "functionality": "Create an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).",
+    "output": "from numpy.random import rand\nmatrix = rand(3, 3)\nprint(matrix)"
+  },
+  {
+    "input": "from numpy import testing\ndef generate_random_tensor(d1, d2, d3):\n    return testing.rand(d1, d2, d3)\n\ntensor = generate_random_tensor(2, 3, 4)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `numpy.testing.rand` is deprecated since NumPy 1.11.0. Use `numpy.random.rand` instead.",
+    "functionality": "Create an array of the given shape and populate it with random samples from a uniform distribution over [0, 1).",
+    "output": "from numpy import random\ndef generate_random_tensor(d1, d2, d3):\n    return random.rand(d1, d2, d3)\n\ntensor = generate_random_tensor(2, 3, 4)"
+  },
+  {
+    "input": "random_ints = np.random.random_integers(1, 10, 5)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `np.random.random_integers` is deprecated since NumPy 1.11.0. Use `np.random.randint` with the half-open interval `[low, high)`.",
+    "functionality": "Return random integers from the “discrete uniform” distribution in the closed interval [low, high].",
+    "output": "random_ints = np.random.randint(1, 11, 5)"
+  },
+  {
+    "input": "dice_rolls = np.random.random_integers(low=1, high=6, size=10)\nprint(dice_rolls)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `np.random.random_integers` is deprecated since NumPy 1.11.0. Use `np.random.randint` with the half-open interval `[low, high)`.",
+    "functionality": "Return random integers from the “discrete uniform” distribution in the closed interval [low, high].",
+    "output": "dice_rolls = np.random.randint(low=1, high=7, size=10)\nprint(dice_rolls)"
+  },
+  {
+    "input": "def get_random_indices(max_index, count):\n    return np.random.random_integers(0, max_index, count)\n\nindices = get_random_indices(9, 3)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `np.random.random_integers` is deprecated since NumPy 1.11.0. Use `np.random.randint` with the half-open interval `[low, high)`.",
+    "functionality": "Return random integers from the “discrete uniform” distribution in the closed interval [low, high].",
+    "output": "def get_random_indices(max_index, count):\n    return np.random.randint(0, max_index + 1, count)\n\nindices = get_random_indices(9, 3)"
+  },
+  {
+    "input": "matrix_shape = (4, 4)\nrandom_matrix = np.random.random_integers(0, 1, matrix_shape)\nprint(random_matrix)",
+    "package": "numpy",
+    "version": "1.11.0",
+    "context": "The function `np.random.random_integers` is deprecated since NumPy 1.11.0. Use `np.random.randint` with the half-open interval `[low, high)`.",
+    "functionality": "Return random integers from the “discrete uniform” distribution in the closed interval [low, high].",
+    "output": "matrix_shape = (4, 4)\nrandom_matrix = np.random.randint(0, 2, matrix_shape)\nprint(random_matrix)"
+  },
+  {
+    "input": "a = np.array([1, 2])\nb = np.array([3, 4])\na.data = b.data",
+    "package": "numpy",
+    "version": "1.12.0",
+    "context": "Assigning to the `data` attribute of an ndarray is deprecated since NumPy 1.12.0. This functionality was unreliable.",
+    "functionality": "Directly set the memory buffer of an array.",
+    "output": "a = np.array([1, 2])\nb = np.array([3, 4])\na[:] = b"
+  },
+  {
+    "input": "arr1 = np.zeros(5)\narr2 = np.ones(5)\narr1.data = arr2.data",
+    "package": "numpy",
+    "version": "1.12.0",
+    "context": "Assigning to the `data` attribute of an ndarray is deprecated since NumPy 1.12.0. This functionality was unreliable.",
+    "functionality": "Directly set the memory buffer of an array.",
+    "output": "arr1 = np.zeros(5)\narr2 = np.ones(5)\narr1[:] = arr2"
+  },
+  {
+    "input": "def swap_data_pointers(array_a, array_b):\n    array_a.data = array_b.data\n    return array_a\n\nswap_data_pointers(np.arange(3), np.arange(10, 13))",
+    "package": "numpy",
+    "version": "1.12.0",
+    "context": "Assigning to the `data` attribute of an ndarray is deprecated since NumPy 1.12.0. This functionality was unreliable.",
+    "functionality": "Directly set the memory buffer of an array.",
+    "output": "def swap_data_pointers(array_a, array_b):\n    array_a[:] = array_b\n    return array_a\n\nswap_data_pointers(np.arange(3), np.arange(10, 13))"
+  },
+  {
+    "input": "base = np.arange(10)\nview = base[::2]\nother_data = np.array([100, 200, 300, 400, 500])\nview.data = other_data.data",
+    "package": "numpy",
+    "version": "1.12.0",
+    "context": "Assigning to the `data` attribute of an ndarray is deprecated since NumPy 1.12.0. This functionality was unreliable.",
+    "functionality": "Directly set the memory buffer of an array.",
+    "output": "base = np.arange(10)\nview = base[::2]\nother_data = np.array([100, 200, 300, 400, 500])\nview[:] = other_data"
+  },
+  {
+    "input": "y = np.empty_like(x)\nnp.fix(x, y)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Passing the output array as a positional argument is deprecated since NumPy 1.13.0. Use the keyword argument `out` instead, e.g., `f(x, out=out)`.",
+    "functionality": "Round to nearest integer towards zero.",
+    "output": "y = np.empty_like(x)\nnp.fix(x, out=y)"
+  },
+  {
+    "input": "input_arr = np.array([-2.1, -0.8, 0.3, 1.8, 2.9])\noutput_arr = np.zeros_like(input_arr)\nnp.isposinf(input_arr, output_arr)\nprint(output_arr)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Passing the output array as a positional argument is deprecated since NumPy 1.13.0. Use the keyword argument `out` instead, e.g., `f(x, out=out)`.",
+    "functionality": "Test element-wise for positive infinity, and return the result in an output array.",
+    "output": "input_arr = np.array([-2.1, -0.8, 0.3, 1.8, 2.9])\noutput_arr = np.zeros_like(input_arr)\nnp.isposinf(input_arr, out=output_arr)\nprint(output_arr)"
+  },
+  {
+    "input": "def check_for_neg_inf(data, result_buffer):\n    np.isneginf(data, result_buffer)\n    return result_buffer.any()\n\ndata = np.array([1, 2, -np.inf])\nres = np.empty_like(data, dtype=bool)\ncheck_for_neg_inf(data, res)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Passing the output array as a positional argument is deprecated since NumPy 1.13.0. Use the keyword argument `out` instead, e.g., `f(x, out=out)`.",
+    "functionality": "Test element-wise for negative infinity, and return the result in an output array.",
+    "output": "def check_for_neg_inf(data, result_buffer):\n    np.isneginf(data, out=result_buffer)\n    return result_buffer.any()\n\ndata = np.array([1, 2, -np.inf])\nres = np.empty_like(data, dtype=bool)\ncheck_for_neg_inf(data, res)"
+  },
+  {
+    "input": "x = np.array([1.1, 2.9, -1.1, -2.9])\ny = np.zeros_like(x)\nz = np.zeros_like(x)\nnp.fix(x, y)\nnp.abs(y, z)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Passing the output array as a positional argument is deprecated since NumPy 1.13.0. Use the keyword argument `out` instead, e.g., `f(x, out=out)`.",
+    "functionality": "Perform an operation and store the result in a pre-allocated array.",
+    "output": "x = np.array([1.1, 2.9, -1.1, -2.9])\ny = np.zeros_like(x)\nz = np.zeros_like(x)\nnp.fix(x, out=y)\nnp.abs(y, out=z)"
+  },
+  {
+    "input": "a = np.ma.array([3, 1, 2], mask=[0, 1, 0])\nsorted_indices = a.argsort()",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.argsort` without an `axis` argument is deprecated since NumPy 1.13.0. The default will change to `axis=0`. To keep the old behavior, use `axis=None`.",
+    "functionality": "Return the indices that would sort an array.",
+    "output": "a = np.ma.array([3, 1, 2], mask=[0, 1, 0])\nsorted_indices = a.argsort(axis=None)"
+  },
+  {
+    "input": "data = np.ma.array([[3, 2], [1, 4]], mask=[[0, 1], [0, 0]])\nmin_val = np.ma.minimum.reduce(data)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.minimum.reduce` without an `axis` argument is deprecated since NumPy 1.13.0. The default will change to `axis=0`. To keep the old behavior, use `axis=None`.",
+    "functionality": "Return the minimum of a masked array or minimum along an axis.",
+    "output": "data = np.ma.array([[3, 2], [1, 4]], mask=[[0, 1], [0, 0]])\nmin_val = np.ma.minimum.reduce(data, axis=None)"
+  },
+  {
+    "input": "def get_overall_max(masked_arr):\n    return np.ma.maximum.reduce(masked_arr)\n\nm_arr = np.ma.arange(6).reshape(2, 3)\nm_arr[1, 1] = np.ma.masked\nget_overall_max(m_arr)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.maximum.reduce` without an `axis` argument is deprecated since NumPy 1.13.0. The default will change to `axis=0`. To keep the old behavior, use `axis=None`.",
+    "functionality": "Return the maximum of a masked array or maximum along an axis.",
+    "output": "def get_overall_max(masked_arr):\n    return np.ma.maximum.reduce(masked_arr, axis=None)\n\nm_arr = np.ma.arange(6).reshape(2, 3)\nm_arr[1, 1] = np.ma.masked\nget_overall_max(m_arr)"
+  },
+  {
+    "input": "x = np.ma.array([[1,2,3], [4,5,6]], mask=[[0,1,0],[0,0,1]])\nmin_flat = x.mini()\nindices_flat = x.argsort()",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The method `mini` and calling `argsort` without an axis are deprecated since NumPy 1.13.0. Use `minimum.reduce(axis=None)` and `argsort(axis=None)` respectively.",
+    "functionality": "Find the minimum and sorting indices of a flattened masked array.",
+    "output": "x = np.ma.array([[1,2,3], [4,5,6]], mask=[[0,1,0],[0,0,1]])\nmin_flat = x.minimum.reduce(axis=None)\nindices_flat = x.argsort(axis=None)"
+  },
+  {
+    "input": "if np.array([]):\n    print('This should not be printed')",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Truth testing of an empty array is deprecated since NumPy 1.14.0. To check if an array is not empty, use `array.size > 0`.",
+    "functionality": "Check if an array has elements.",
+    "output": "if np.array([]).size > 0:\n    print('This should not be printed')"
+  },
+  {
+    "input": "def process_data(arr):\n    if arr:\n        return arr.mean()\n    return 0\n\nprocess_data(np.array([]))",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Truth testing of an empty array is deprecated since NumPy 1.14.0. To check if an array is not empty, use `array.size > 0`.",
+    "functionality": "Check if an array has elements.",
+    "output": "def process_data(arr):\n    if arr.size > 0:\n        return arr.mean()\n    return 0\n\nprocess_data(np.array([]))"
+  },
+  {
+    "input": "arr = np.array([1, 2, 3])\nif not np.array([]):\n    print('Array is empty')",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Truth testing of an empty array is deprecated since NumPy 1.14.0. The behavior of `not empty_array` will change. To check for emptiness, use `array.size == 0`.",
+    "functionality": "Check if an array is empty.",
+    "output": "arr = np.array([1, 2, 3])\nif np.array([]).size == 0:\n    print('Array is empty')"
+  },
+  {
+    "input": "def has_elements(a, b):\n    return a and b\n\nhas_elements(np.array([1]), np.array([]))",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Truth testing of an empty array is deprecated since NumPy 1.14.0. Use `array.size > 0` for checks.",
+    "functionality": "Check if arrays have elements.",
+    "output": "def has_elements(a, b):\n    return a.size > 0 and b.size > 0\n\nhas_elements(np.array([1]), np.array([]))"
+  },
+  {
+    "input": "counts = np.bincount(np.array([0, 1, 1, 2]), minlength=None)",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Passing `minlength=None` to `np.bincount` is deprecated since NumPy 1.14.0. The default behavior will change. To keep the old behavior, use `minlength=0`.",
+    "functionality": "Count number of occurrences of each value in an array of non-negative ints.",
+    "output": "counts = np.bincount(np.array([0, 1, 1, 2]), minlength=0)"
+  },
+  {
+    "input": "data = np.array([2, 2, 3])\nresult = np.bincount(data, minlength=None)\nprint(result)",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Passing `minlength=None` to `np.bincount` is deprecated since NumPy 1.14.0. The default behavior will change. To keep the old behavior, use `minlength=0`.",
+    "functionality": "Count number of occurrences of each value in an array of non-negative ints.",
+    "output": "data = np.array([2, 2, 3])\nresult = np.bincount(data, minlength=0)\nprint(result)"
+  },
+  {
+    "input": "def count_labels(labels, min_len=None):\n    return np.bincount(labels, minlength=min_len)\n\ncount_labels(np.array([0, 0, 1]), min_len=None)",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Passing `minlength=None` to `np.bincount` is deprecated since NumPy 1.14.0. The default behavior will change. To keep the old behavior, use `minlength=0`.",
+    "functionality": "Count number of occurrences of each value in an array of non-negative ints.",
+    "output": "def count_labels(labels, min_len=None):\n    if min_len is None:\n        min_len = 0\n    return np.bincount(labels, minlength=min_len)\n\ncount_labels(np.array([0, 0, 1]), min_len=None)"
+  },
+  {
+    "input": "weights = [0.5, 0.8]\narr = [0, 1]\nbincounts = np.bincount(arr, weights=weights, minlength=None)\nprint(bincounts)",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "Passing `minlength=None` to `np.bincount` is deprecated since NumPy 1.14.0. The default behavior will change. To keep the old behavior, use `minlength=0`.",
+    "functionality": "Count number of occurrences of each value in an array of non-negative ints.",
+    "output": "weights = [0.5, 0.8]\narr = [0, 1]\nbincounts = np.bincount(arr, weights=weights, minlength=0)\nprint(bincounts)"
+  },
+  {
+    "input": "ind = [slice(None), 0]\narr = np.arange(4).reshape(2, 2)\ncolumn = arr[ind]",
+    "package": "numpy",
+    "version": "1.15.0",
+    "context": "Indexing an array with a list of separate index objects is deprecated since NumPy 1.15.0. Use a tuple `arr[tuple(ind)]` instead.",
+    "functionality": "Index an array using a dynamically created set of indices.",
+    "output": "ind = [slice(None), 0]\narr = np.arange(4).reshape(2, 2)\ncolumn = arr[tuple(ind)]"
+  },
+  {
+    "input": "indices = [0, slice(0, 2)]\nmatrix = np.arange(9).reshape(3, 3)\nsubset = matrix[indices]\nprint(subset)",
+    "package": "numpy",
+    "version": "1.15.0",
+    "context": "Indexing an array with a list of separate index objects is deprecated since NumPy 1.15.0. Use a tuple `arr[tuple(ind)]` instead.",
+    "functionality": "Index an array using a dynamically created set of indices.",
+    "output": "indices = [0, slice(0, 2)]\nmatrix = np.arange(9).reshape(3, 3)\nsubset = matrix[tuple(indices)]\nprint(subset)"
+  },
+  {
+    "input": "def get_slice(array, index_list):\n    return array[index_list]\n\ndata = np.ones((5, 5))\nidx = [slice(1, 3), slice(1, 3)]\nget_slice(data, idx)",
+    "package": "numpy",
+    "version": "1.15.0",
+    "context": "Indexing an array with a list of separate index objects is deprecated since NumPy 1.15.0. Use a tuple `arr[tuple(ind)]` instead.",
+    "functionality": "Index an array using a dynamically created set of indices.",
+    "output": "def get_slice(array, index_list):\n    return array[tuple(index_list)]\n\ndata = np.ones((5, 5))\nidx = [slice(1, 3), slice(1, 3)]\nget_slice(data, idx)"
+  },
+  {
+    "input": "idx1 = slice(None)\nidx2 = 0\nmy_indices = [idx1, idx2]\narr3d = np.arange(27).reshape((3, 3, 3))\nresult = arr3d[my_indices]\nresult[0] = 99",
+    "package": "numpy",
+    "version": "1.15.0",
+    "context": "Indexing an array with a list of separate index objects is deprecated since NumPy 1.15.0. Use a tuple `arr[tuple(ind)]` instead.",
+    "functionality": "Index an array using a dynamically created set of indices.",
+    "output": "idx1 = slice(None)\nidx2 = 0\nmy_indices = (idx1, idx2)\narr3d = np.arange(27).reshape((3, 3, 3))\nresult = arr3d[my_indices]\nresult[0] = 99"
+  },
+  {
+    "input": "scalar_val = np.asscalar(np.array([42]))",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The function `numpy.asscalar` is deprecated since NumPy 1.16.0. Use `numpy.ndarray.item` instead.",
+    "functionality": "Convert an array of size 1 to its corresponding Python scalar.",
+    "output": "scalar_val = np.array([42]).item()"
+  },
+  {
+    "input": "arr = np.array([99.9])\nvalue = np.asscalar(arr)\nprint(type(value))",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The function `numpy.asscalar` is deprecated since NumPy 1.16.0. Use `numpy.ndarray.item` instead.",
+    "functionality": "Convert an array of size 1 to its corresponding Python scalar.",
+    "output": "arr = np.array([99.9])\nvalue = arr.item()\nprint(type(value))"
+  },
+  {
+    "input": "def get_scalar_from_array(one_element_array):\n    return np.asscalar(one_element_array)\n\nresult = get_scalar_from_array(np.array(['hello']))",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The function `numpy.asscalar` is deprecated since NumPy 1.16.0. Use `numpy.ndarray.item` instead.",
+    "functionality": "Convert an array of size 1 to its corresponding Python scalar.",
+    "output": "def get_scalar_from_array(one_element_array):\n    return one_element_array.item()\n\nresult = get_scalar_from_array(np.array(['hello']))"
+  },
+  {
+    "input": "matrix = np.array([[5]])\nscalar_result = float(np.asscalar(matrix) + 10)\nprint(scalar_result)",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The function `numpy.asscalar` is deprecated since NumPy 1.16.0. Use `numpy.ndarray.item` instead.",
+    "functionality": "Convert an array of size 1 to its corresponding Python scalar.",
+    "output": "matrix = np.array([[5]])\nscalar_result = float(matrix.item() + 10)\nprint(scalar_result)"
+  },
+  {
+    "input": "coords = np.unravel_index([2, 5], dims=(3, 3))",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The `dims` keyword in `numpy.unravel_index` is deprecated since NumPy 1.16.0. Use `shape` instead.",
+    "functionality": "Converts a flat index or array of flat indices into a tuple of coordinate arrays.",
+    "output": "coords = np.unravel_index([2, 5], shape=(3, 3))"
+  },
+  {
+    "input": "flat_indices = [21, 15]\narray_dimensions = (5, 6)\nmulti_dim_indices = np.unravel_index(flat_indices, dims=array_dimensions)\nprint(multi_dim_indices)",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The `dims` keyword in `numpy.unravel_index` is deprecated since NumPy 1.16.0. Use `shape` instead.",
+    "functionality": "Converts a flat index or array of flat indices into a tuple of coordinate arrays.",
+    "output": "flat_indices = [21, 15]\narray_dimensions = (5, 6)\nmulti_dim_indices = np.unravel_index(flat_indices, shape=array_dimensions)\nprint(multi_dim_indices)"
+  },
+  {
+    "input": "def get_coords(flat_idx, array_dims):\n    return np.unravel_index(flat_idx, dims=array_dims)\n\nix = np.argmax(np.random.rand(10, 10))\ncoords = get_coords(ix, (10, 10))",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The `dims` keyword in `numpy.unravel_index` is deprecated since NumPy 1.16.0. Use `shape` instead.",
+    "functionality": "Converts a flat index or array of flat indices into a tuple of coordinate arrays.",
+    "output": "def get_coords(flat_idx, array_shape):\n    return np.unravel_index(flat_idx, shape=array_shape)\n\nix = np.argmax(np.random.rand(10, 10))\ncoords = get_coords(ix, (10, 10))"
+  },
+  {
+    "input": "arr = np.arange(27).reshape(3, 3, 3)\nmax_flat_index = np.argmax(arr)\nmax_coords = np.unravel_index(max_flat_index, dims=arr.shape)\nprint(max_coords)",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The `dims` keyword in `numpy.unravel_index` is deprecated since NumPy 1.16.0. Use `shape` instead.",
+    "functionality": "Converts a flat index or array of flat indices into a tuple of coordinate arrays.",
+    "output": "arr = np.arange(27).reshape(3, 3, 3)\nmax_flat_index = np.argmax(arr)\nmax_coords = np.unravel_index(max_flat_index, shape=arr.shape)\nprint(max_coords)"
+  },
+  {
+    "input": "from numpy.distutils import exec_command\nexec_command.exec_command(['echo', 'hello'])",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `numpy.distutils.exec_command` is deprecated since NumPy 1.17.0. Use `subprocess.Popen` instead.",
+    "functionality": "Execute a command in a subshell.",
+    "output": "import subprocess\nsubprocess.Popen(['echo', 'hello'])"
+  },
+  {
+    "input": "from numpy.distutils.exec_command import exec_command\nstatus, output = exec_command(['ls', '-l'], execute_in='.')\nprint(output)",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `numpy.distutils.exec_command` is deprecated since NumPy 1.17.0. Use `subprocess.run` or `subprocess.Popen` instead.",
+    "functionality": "Execute a command in a subshell.",
+    "output": "import subprocess\nresult = subprocess.run(['ls', '-l'], capture_output=True, text=True, cwd='.')\nprint(result.stdout)"
+  },
+  {
+    "input": "from numpy.distutils.exec_command import exec_command\ndef run_git_version():\n    s, o = exec_command(['git', 'rev-parse', '--short', 'HEAD'])\n    if s == 0:\n        return o.strip()",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `numpy.distutils.exec_command` is deprecated since NumPy 1.17.0. Use `subprocess.run` instead.",
+    "functionality": "Execute a command in a subshell and capture its output.",
+    "output": "import subprocess\ndef run_git_version():\n    try:\n        res = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'], capture_output=True, text=True, check=True)\n        return res.stdout.strip()\n    except (subprocess.CalledProcessError, FileNotFoundError):\n        return None"
+  },
+  {
+    "input": "from numpy.distutils.exec_command import exec_command, find_executable\ncompiler = find_executable('gcc')\nif compiler:\n    exec_command([compiler, '--version'])",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `numpy.distutils.exec_command` is deprecated since NumPy 1.17.0. Use `subprocess.run` instead.",
+    "functionality": "Execute a command in a subshell.",
+    "output": "from shutil import which\nimport subprocess\ncompiler = which('gcc')\nif compiler:\n    subprocess.run([compiler, '--version'])"
+  },
+  {
+    "input": "from numpy.distutils.compat import temp_file_name\ntmp_file = temp_file_name()",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `temp_file_name` from `numpy.distutils.compat` is deprecated since NumPy 1.17.0. Use `tempfile.mkstemp` instead.",
+    "functionality": "Create a temporary file and return its name.",
+    "output": "import tempfile\nfd, tmp_file = tempfile.mkstemp()"
+  },
+  {
+    "input": "from numpy.distutils.compat import temp_file_name\noutput_filename = temp_file_name()\nwith open(output_filename, 'w') as f:\n    f.write('temporary data')",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `temp_file_name` from `numpy.distutils.compat` is deprecated since NumPy 1.17.0. Use `tempfile.mkstemp` instead.",
+    "functionality": "Create a temporary file and return its name.",
+    "output": "import tempfile\nfd, output_filename = tempfile.mkstemp()\nwith open(fd, 'w') as f:\n    f.write('temporary data')"
+  },
+  {
+    "input": "from numpy.distutils.compat import temp_file_name\ndef create_temp_config():\n    cfg_name = temp_file_name()\n    return cfg_name",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `temp_file_name` from `numpy.distutils.compat` is deprecated since NumPy 1.17.0. Use `tempfile.mkstemp` for a secure way to create temporary files.",
+    "functionality": "Create a temporary file and return its name.",
+    "output": "import tempfile\ndef create_temp_config():\n    fd, cfg_name = tempfile.mkstemp()\n    return cfg_name"
+  },
+  {
+    "input": "from numpy.distutils.compat import temp_file_name\nimport os\ntf = temp_file_name()\nf = open(tf, 'w')\nf.close()\nos.remove(tf)",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "The function `temp_file_name` from `numpy.distutils.compat` is deprecated since NumPy 1.17.0. Use `tempfile.mkstemp` or `tempfile.NamedTemporaryFile`.",
+    "functionality": "Create a temporary file and return its name.",
+    "output": "import tempfile\nimport os\nwith tempfile.NamedTemporaryFile(delete=True) as f:\n    pass"
+  },
+  {
+    "input": "length = np.alen(np.array([1, 2, 3, 4]))",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.alen` is deprecated since NumPy 1.18.0. Use the built-in `len()` instead.",
+    "functionality": "Return the length of the first dimension of an array.",
+    "output": "length = len(np.array([1, 2, 3, 4]))"
+  },
+  {
+    "input": "my_array = np.arange(10)\narray_len = np.alen(my_array)\nprint(array_len)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.alen` is deprecated since NumPy 1.18.0. Use the built-in `len()` instead.",
+    "functionality": "Return the length of the first dimension of an array.",
+    "output": "my_array = np.arange(10)\narray_len = len(my_array)\nprint(array_len)"
+  },
+  {
+    "input": "def get_num_rows(matrix):\n    return np.alen(matrix)\n\nget_num_rows(np.zeros((5, 10)))",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.alen` is deprecated since NumPy 1.18.0. Use the built-in `len()` instead.",
+    "functionality": "Return the length of the first dimension of an array.",
+    "output": "def get_num_rows(matrix):\n    return len(matrix)\n\nget_num_rows(np.zeros((5, 10)))"
+  },
+  {
+    "input": "data = {'col1': [1,2], 'col2': [3,4]}\nif np.alen(data['col1']) > 1:\n    print('More than one item')",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.alen` is deprecated since NumPy 1.18.0. Use the built-in `len()` instead.",
+    "functionality": "Return the length of the first dimension of an array.",
+    "output": "data = {'col1': [1,2], 'col2': [3,4]}\nif len(data['col1']) > 1:\n    print('More than one item')"
+  },
+  {
+    "input": "my_arr = np.array([1,2,3])\nbyte_string = my_arr.tostring()",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "The method `numpy.ndarray.tostring` is deprecated since NumPy 1.19.0. Use `numpy.ndarray.tobytes` instead.",
+    "functionality": "Return a raw bytes representation of the array.",
+    "output": "my_arr = np.array([1,2,3])\nbyte_string = my_arr.tobytes()"
+  },
+  {
+    "input": "data = np.array([[1, 2], [3, 4]], dtype=np.uint8)\nraw_bytes = data.tostring()\nprint(raw_bytes)",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "The method `numpy.ndarray.tostring` is deprecated since NumPy 1.19.0. Use `numpy.ndarray.tobytes` instead.",
+    "functionality": "Return a raw bytes representation of the array.",
+    "output": "data = np.array([[1, 2], [3, 4]], dtype=np.uint8)\nraw_bytes = data.tobytes()\nprint(raw_bytes)"
+  },
+  {
+    "input": "def serialize_array(arr):\n    return arr.tostring()\n\nserialize_array(np.arange(5, dtype=np.float32))",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "The method `numpy.ndarray.tostring` is deprecated since NumPy 1.19.0. Use `numpy.ndarray.tobytes` instead.",
+    "functionality": "Return a raw bytes representation of the array.",
+    "output": "def serialize_array(arr):\n    return arr.tobytes()\n\nserialize_array(np.arange(5, dtype=np.float32))"
+  },
+  {
+    "input": "arr_c_order = np.array([[1, 2], [3, 4]], order='C')\narr_f_order = np.array([[1, 2], [3, 4]], order='F')\nbytes_c = arr_c_order.tostring()\nbytes_f = arr_f_order.tostring('F')",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "The method `numpy.ndarray.tostring` is deprecated since NumPy 1.19.0. Use `numpy.ndarray.tobytes` instead.",
+    "functionality": "Return a raw bytes representation of the array.",
+    "output": "arr_c_order = np.array([[1, 2], [3, 4]], order='C')\narr_f_order = np.array([[1, 2], [3, 4]], order='F')\nbytes_c = arr_c_order.tobytes()\nbytes_f = arr_f_order.tobytes('F')"
+  },
+  {
+    "input": "is_true = np.bool(1)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.bool` is deprecated since NumPy 1.20.0. Use the built-in `bool` or `np.bool_` instead.",
+    "functionality": "Create a boolean value.",
+    "output": "is_true = bool(1)"
+  },
+  {
+    "input": "my_int = np.int(123.45)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.int` is deprecated since NumPy 1.20.0. Use the built-in `int` or `np.int_` instead.",
+    "functionality": "Create an integer value.",
+    "output": "my_int = int(123.45)"
+  },
+  {
+    "input": "value = np.float('3.14')",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.float` is deprecated since NumPy 1.20.0. Use the built-in `float` or `np.float64` instead.",
+    "functionality": "Create a float value.",
+    "output": "value = float('3.14')"
+  },
+  {
+    "input": "c = np.complex(1, 2)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.complex` is deprecated since NumPy 1.20.0. Use the built-in `complex` or `np.complex128` instead.",
+    "functionality": "Create a complex number.",
+    "output": "c = complex(1, 2)"
+  },
+  {
+    "input": "it = np.nditer([np.arange(3)])\nit.ndincr()",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The method `it.ndincr()` of `np.nditer` is deprecated since NumPy 1.20.0. Use `next(it)` instead.",
+    "functionality": "Advance an iterator to the next element.",
+    "output": "it = np.nditer([np.arange(3)])\nnext(it)"
+  },
+  {
+    "input": "def process_iterator(it):\n    while not it.finished:\n        it.ndincr()",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The method `it.ndincr()` of `np.nditer` is deprecated since NumPy 1.20.0. Use a `for` loop or `next(it)` instead.",
+    "functionality": "Iterate over an array.",
+    "output": "def process_iterator(it):\n    for x in it:\n        pass"
+  },
+  {
+    "input": "it = np.nditer(np.arange(5), flags=['c_index'])\nwhile not it.finished:\n    print(it.index)\n    it.ndincr()",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The method `it.ndincr()` and the `it.finished` check are deprecated since NumPy 1.20.0. Looping directly over the iterator is preferred.",
+    "functionality": "Iterate over an array with an index.",
+    "output": "it = np.nditer(np.arange(5), flags=['c_index'])\nfor x in it:\n    print(it.index)"
+  },
+  {
+    "input": "a = np.arange(2)\nit = np.nditer(a)\nnext(it)\nit.ndincr()",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The method `it.ndincr()` of `np.nditer` is deprecated since NumPy 1.20.0. Use `next(it)` instead.",
+    "functionality": "Advance an iterator to the next element.",
+    "output": "a = np.arange(2)\nit = np.nditer(a)\nnext(it)\nnext(it)"
+  },
+  {
+    "input": "a = np.arange(2*3*4).reshape((2,3,4))\nnp.sum(a, axis=32)",
+    "package": "numpy",
+    "version": "1.23.0",
+    "context": "Using `axis=32` (the old default sentinel) is deprecated since NumPy 1.23.0. Use `axis=None` to sum over all axes.",
+    "functionality": "Sum of array elements over a given axis.",
+    "output": "a = np.arange(2*3*4).reshape((2,3,4))\nnp.sum(a, axis=None)"
+  },
+  {
+    "input": "data = np.array([[1, 2], [3, 4]])\nmean_val = data.mean(axis=32)\nprint(mean_val)",
+    "package": "numpy",
+    "version": "1.23.0",
+    "context": "Using `axis=32` (the old default sentinel) is deprecated since NumPy 1.23.0. Use `axis=None` to perform the operation over all axes.",
+    "functionality": "Compute the arithmetic mean along the specified axis.",
+    "output": "data = np.array([[1, 2], [3, 4]])\nmean_val = data.mean(axis=None)\nprint(mean_val)"
+  },
+  {
+    "input": "def get_std_dev(arr):\n    return arr.std(axis=32)\n\nget_std_dev(np.random.rand(5,5))",
+    "package": "numpy",
+    "version": "1.23.0",
+    "context": "Using `axis=32` (the old default sentinel) is deprecated since NumPy 1.23.0. Use `axis=None` to perform the operation over all axes.",
+    "functionality": "Compute the standard deviation along the specified axis.",
+    "output": "def get_std_dev(arr):\n    return arr.std(axis=None)\n\nget_std_dev(np.random.rand(5,5))"
+  },
+  {
+    "input": "x = np.array([1, 2, 3])\nmax_value = np.max(x, axis=32)\nprint(max_value)",
+    "package": "numpy",
+    "version": "1.23.0",
+    "context": "Using `axis=32` (the old default sentinel) is deprecated since NumPy 1.23.0. Use `axis=None` to perform the operation over all axes.",
+    "functionality": "Return the maximum of an array or maximum along an axis.",
+    "output": "x = np.array([1, 2, 3])\nmax_value = np.max(x, axis=None)\nprint(max_value)"
+  },
+  {
+    "input": "arr = np.array([[1,2],[3,4]])\ntransposed_copy = np.fastCopyAndTranspose(arr)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `numpy.fastCopyAndTranspose` is deprecated since NumPy 1.24.0. Use `arr.T.copy()` instead.",
+    "functionality": "Return a transposed copy of an array.",
+    "output": "arr = np.array([[1,2],[3,4]])\ntransposed_copy = arr.T.copy()"
+  },
+  {
+    "input": "c_arr = np.arange(6).reshape(2, 3)\nf_arr = np.fastCopyAndTranspose(c_arr)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `numpy.fastCopyAndTranspose` is deprecated since NumPy 1.24.0. Use `arr.T.copy()` instead.",
+    "functionality": "Return a transposed copy of an array.",
+    "output": "c_arr = np.arange(6).reshape(2, 3)\nf_arr = c_arr.T.copy()"
+  },
+  {
+    "input": "def get_transposed_copy(input_matrix):\n    return np.fastCopyAndTranspose(input_matrix)\n\nmat = np.random.rand(10, 5)\nmat_t = get_transposed_copy(mat)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `numpy.fastCopyAndTranspose` is deprecated since NumPy 1.24.0. Use `arr.T.copy()` instead.",
+    "functionality": "Return a transposed copy of an array.",
+    "output": "def get_transposed_copy(input_matrix):\n    return input_matrix.T.copy()\n\nmat = np.random.rand(10, 5)\nmat_t = get_transposed_copy(mat)"
+  },
+  {
+    "input": "matrix = np.array([[1,2],[3,4]])\nif matrix.flags.c_contiguous:\n    f_matrix = np.fastCopyAndTranspose(matrix)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `numpy.fastCopyAndTranspose` is deprecated since NumPy 1.24.0. Use `arr.T.copy()` instead.",
+    "functionality": "Return a transposed copy of an array.",
+    "output": "matrix = np.array([[1,2],[3,4]])\nif matrix.flags.c_contiguous:\n    f_matrix = matrix.T.copy()"
+  },
+  {
+    "input": "sorted_arr = np.msort(np.array([3, 1, 2]))",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `np.msort` is deprecated since NumPy 1.24.0. Use `np.sort(a, axis=0)` instead.",
+    "functionality": "Return a copy of an array sorted along the first axis.",
+    "output": "sorted_arr = np.sort(np.array([3, 1, 2]), axis=0)"
+  },
+  {
+    "input": "matrix = np.array([[3, 2], [1, 4]])\nsorted_matrix = np.msort(matrix)\nprint(sorted_matrix)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `np.msort` is deprecated since NumPy 1.24.0. Use `np.sort(a, axis=0)` instead.",
+    "functionality": "Return a copy of an array sorted along the first axis.",
+    "output": "matrix = np.array([[3, 2], [1, 4]])\nsorted_matrix = np.sort(matrix, axis=0)\nprint(sorted_matrix)"
+  },
+  {
+    "input": "def sort_by_first_axis(arr):\n    return np.msort(arr)\n\ndata = np.random.rand(5, 3)\nsorted_data = sort_by_first_axis(data)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `np.msort` is deprecated since NumPy 1.24.0. Use `np.sort(a, axis=0)` instead.",
+    "functionality": "Return a copy of an array sorted along the first axis.",
+    "output": "def sort_by_first_axis(arr):\n    return np.sort(arr, axis=0)\n\ndata = np.random.rand(5, 3)\nsorted_data = sort_by_first_axis(data)"
+  },
+  {
+    "input": "a = np.array([[2, 1, 3], [5, 4, 6]])\nsorted_a = np.msort(a)\nprint(sorted_a)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "The function `np.msort` is deprecated since NumPy 1.24.0. Use `np.sort(a, axis=0)` instead.",
+    "functionality": "Return a copy of an array sorted along the first axis.",
+    "output": "a = np.array([[2, 1, 3], [5, 4, 6]])\nsorted_a = np.sort(a, axis=0)\nprint(sorted_a)"
+  },
+  {
+    "input": "rounded = np.round_(1.5)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.round_` is deprecated since NumPy 1.25.0. Use `np.round` instead.",
+    "functionality": "Round an array to the given number of decimals.",
+    "output": "rounded = np.round(1.5)"
+  },
+  {
+    "input": "arr = np.array([1.234, 5.678])\nrounded_arr = np.round_(arr, decimals=2)\nprint(rounded_arr)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.round_` is deprecated since NumPy 1.25.0. Use `np.round` instead.",
+    "functionality": "Round an array to the given number of decimals.",
+    "output": "arr = np.array([1.234, 5.678])\nrounded_arr = np.round(arr, decimals=2)\nprint(rounded_arr)"
+  },
+  {
+    "input": "def round_data(data, precision):\n    return np.round_(data, decimals=precision)\n\nround_data(np.pi, 4)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.round_` is deprecated since NumPy 1.25.0. Use `np.round` instead.",
+    "functionality": "Round an array to the given number of decimals.",
+    "output": "def round_data(data, precision):\n    return np.round(data, decimals=precision)\n\nround_data(np.pi, 4)"
+  },
+  {
+    "input": "out_arr = np.empty(1)\nnp.round_([3.14159], decimals=3, out=out_arr)\nprint(out_arr)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.round_` is deprecated since NumPy 1.25.0. Use `np.round` instead.",
+    "functionality": "Round an array to the given number of decimals.",
+    "output": "out_arr = np.empty(1)\nnp.round([3.14159], decimals=3, out=out_arr)\nprint(out_arr)"
+  },
+  {
+    "input": "p = np.product([1, 2, 3])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.product` is deprecated since NumPy 1.25.0. Use `np.prod` instead.",
+    "functionality": "Return the product of array elements over a given axis.",
+    "output": "p = np.prod([1, 2, 3])"
+  },
+  {
+    "input": "matrix = np.array([[1, 2], [3, 4]])\ntotal_product = np.product(matrix)\nprint(total_product)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.product` is deprecated since NumPy 1.25.0. Use `np.prod` instead.",
+    "functionality": "Return the product of array elements over a given axis.",
+    "output": "matrix = np.array([[1, 2], [3, 4]])\ntotal_product = np.prod(matrix)\nprint(total_product)"
+  },
+  {
+    "input": "def calculate_factorial(n):\n    return np.product(np.arange(1, n + 1))\n\ncalculate_factorial(5)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.product` is deprecated since NumPy 1.25.0. Use `np.prod` instead.",
+    "functionality": "Return the product of array elements over a given axis.",
+    "output": "def calculate_factorial(n):\n    return np.prod(np.arange(1, n + 1))\n\ncalculate_factorial(5)"
+  },
+  {
+    "input": "a = np.array([[1, 2], [3, 4]])\np = np.empty(2, dtype=int)\nnp.product(a, axis=0, out=p)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.product` is deprecated since NumPy 1.25.0. Use `np.prod` instead.",
+    "functionality": "Return the product of array elements over a given axis.",
+    "output": "a = np.array([[1, 2], [3, 4]])\np = np.empty(2, dtype=int)\nnp.prod(a, axis=0, out=p)"
+  },
+  {
+    "input": "result = np.sometrue([True, False, False])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.sometrue` is deprecated since NumPy 1.25.0. Use `np.any` instead.",
+    "functionality": "Test whether any array element along a given axis evaluates to True.",
+    "output": "result = np.any([True, False, False])"
+  },
+  {
+    "input": "matrix = np.array([[False, False], [True, False]])\nhas_true = np.sometrue(matrix)\nprint(has_true)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.sometrue` is deprecated since NumPy 1.25.0. Use `np.any` instead.",
+    "functionality": "Test whether any array element along a given axis evaluates to True.",
+    "output": "matrix = np.array([[False, False], [True, False]])\nhas_true = np.any(matrix)\nprint(has_true)"
+  },
+  {
+    "input": "def check_for_positives(arr):\n    return np.sometrue(arr > 0)\n\ncheck_for_positives(np.array([-1, 0, 1]))",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.sometrue` is deprecated since NumPy 1.25.0. Use `np.any` instead.",
+    "functionality": "Test whether any array element along a given axis evaluates to True.",
+    "output": "def check_for_positives(arr):\n    return np.any(arr > 0)\n\ncheck_for_positives(np.array([-1, 0, 1]))"
+  },
+  {
+    "input": "data = np.array([[0,0,0],[0,1,0]])\nresult_per_row = np.sometrue(data, axis=1)\nprint(result_per_row)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.sometrue` is deprecated since NumPy 1.25.0. Use `np.any` instead.",
+    "functionality": "Test whether any array element along a given axis evaluates to True.",
+    "output": "data = np.array([[0,0,0],[0,1,0]])\nresult_per_row = np.any(data, axis=1)\nprint(result_per_row)"
+  },
+  {
+    "input": "result = np.alltrue([True, True, True])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.alltrue` is deprecated since NumPy 1.25.0. Use `np.all` instead.",
+    "functionality": "Test whether all array elements along a given axis evaluate to True.",
+    "output": "result = np.all([True, True, True])"
+  },
+  {
+    "input": "matrix = np.array([[True, True], [True, False]])\nis_all_true = np.alltrue(matrix)\nprint(is_all_true)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.alltrue` is deprecated since NumPy 1.25.0. Use `np.all` instead.",
+    "functionality": "Test whether all array elements along a given axis evaluate to True.",
+    "output": "matrix = np.array([[True, True], [True, False]])\nis_all_true = np.all(matrix)\nprint(is_all_true)"
+  },
+  {
+    "input": "def validate_data(arr):\n    return np.alltrue(arr > 0)\n\nvalidate_data(np.array([1, 2, 3]))",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.alltrue` is deprecated since NumPy 1.25.0. Use `np.all` instead.",
+    "functionality": "Test whether all array elements along a given axis evaluate to True.",
+    "output": "def validate_data(arr):\n    return np.all(arr > 0)\n\nvalidate_data(np.array([1, 2, 3]))"
+  },
+  {
+    "input": "data = np.array([[1,1,1],[1,0,1]])\nresult_per_row = np.alltrue(data, axis=1)\nprint(result_per_row)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.alltrue` is deprecated since NumPy 1.25.0. Use `np.all` instead.",
+    "functionality": "Test whether all array elements along a given axis evaluate to True.",
+    "output": "data = np.array([[1,1,1],[1,0,1]])\nresult_per_row = np.all(data, axis=1)\nprint(result_per_row)"
+  },
+  {
+    "input": "result = np.find_common_type([np.int16, np.int32], [])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The function `np.find_common_type` is deprecated since NumPy 1.25.0. Use `np.result_type` or `np.promote_types` instead.",
+    "functionality": "Determine a common type for a set of arrays and scalars.",
+    "output": "result = np.result_type(np.int16, np.int32)"
+  },
+  {
+    "input": "array_types = [np.float32, np.int64]\nscalar_types = [float]\ncommon_type = np.find_common_type(array_types, scalar_types)\nprint(common_type)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The function `np.find_common_type` is deprecated since NumPy 1.25.0. Use `np.result_type` instead.",
+    "functionality": "Determine a common type for a set of arrays and scalars.",
+    "output": "array_types = [np.float32, np.int64]\nscalar_types = [float]\ncommon_type = np.result_type(np.float32, np.int64, float)\nprint(common_type)"
+  },
+  {
+    "input": "def get_resulting_dtype(*arrays):\n    return np.find_common_type([a.dtype for a in arrays], [])\n\na1 = np.array([1], dtype='i4')\na2 = np.array([1], dtype='f8')\nget_resulting_dtype(a1, a2)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The function `np.find_common_type` is deprecated since NumPy 1.25.0. Use `np.result_type` instead.",
+    "functionality": "Determine a common type for a set of arrays and scalars.",
+    "output": "def get_resulting_dtype(*arrays):\n    return np.result_type(*arrays)\n\na1 = np.array([1], dtype='i4')\na2 = np.array([1], dtype='f8')\nget_resulting_dtype(a1, a2)"
+  },
+  {
+    "input": "type1 = 'i4'\ntype2 = 'f4'\nresult_type = np.find_common_type([], [type1, type2])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The function `np.find_common_type` is deprecated since NumPy 1.25.0. Use `np.promote_types` instead for promoting two specific types.",
+    "functionality": "Determine a common type for a set of arrays and scalars.",
+    "output": "type1 = 'i4'\ntype2 = 'f4'\nresult_type = np.promote_types(type1, type2)"
+  },
+  {
+    "input": "import ast\nresult = np.safe_eval('1 + 2')",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.safe_eval` is deprecated since NumPy 2.0.0. Use `ast.literal_eval` instead.",
+    "functionality": "Safely evaluate a string containing a Python literal or container display.",
+    "output": "import ast\nresult = ast.literal_eval('1 + 2')"
+  },
+  {
+    "input": "string_repr = \"{'a': 1, 'b': [2, 3]}\"\nparsed_object = np.safe_eval(string_repr)\nprint(parsed_object['b'])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.safe_eval` is deprecated since NumPy 2.0.0. Use `ast.literal_eval` instead.",
+    "functionality": "Safely evaluate a string containing a Python literal or container display.",
+    "output": "import ast\nstring_repr = \"{'a': 1, 'b': [2, 3]}\"\nparsed_object = ast.literal_eval(string_repr)\nprint(parsed_object['b'])"
+  },
+  {
+    "input": "import ast\ndef string_to_object(s):\n    try:\n        return np.safe_eval(s)\n    except: \n        return None\n\nstring_to_object('[1, (2, 3)]')",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.safe_eval` is deprecated since NumPy 2.0.0. Use `ast.literal_eval` instead.",
+    "functionality": "Safely evaluate a string containing a Python literal or container display.",
+    "output": "import ast\ndef string_to_object(s):\n    try:\n        return ast.literal_eval(s)\n    except (ValueError, SyntaxError):\n        return None\n\nstring_to_object('[1, (2, 3)]')"
+  },
+  {
+    "input": "config_str = 'None'\nvalue = np.safe_eval(config_str)\nassert value is None",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.safe_eval` is deprecated since NumPy 2.0.0. Use `ast.literal_eval` instead.",
+    "functionality": "Safely evaluate a string containing a Python literal or container display.",
+    "output": "import ast\nconfig_str = 'None'\nvalue = ast.literal_eval(config_str)\nassert value is None"
+  },
+  {
+    "input": "integral = np.trapz([1, 2, 3])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.trapz` is deprecated since NumPy 2.0.0. Use `np.trapezoid` instead.",
+    "functionality": "Integrate along the given axis using the composite trapezoidal rule.",
+    "output": "integral = np.trapezoid([1, 2, 3])"
+  },
+  {
+    "input": "y = np.array([1, 4, 9, 16])\nx = np.array([1, 2, 3, 4])\narea = np.trapz(y, x)\nprint(area)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.trapz` is deprecated since NumPy 2.0.0. Use `np.trapezoid` or `scipy.integrate.trapezoid` instead.",
+    "functionality": "Integrate along the given axis using the composite trapezoidal rule.",
+    "output": "y = np.array([1, 4, 9, 16])\nx = np.array([1, 2, 3, 4])\narea = np.trapezoid(y, x)\nprint(area)"
+  },
+  {
+    "input": "def compute_integral(samples, dx=1):\n    return np.trapz(samples, dx=dx)\n\ncompute_integral(np.sin(np.linspace(0, np.pi, 100)))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.trapz` is deprecated since NumPy 2.0.0. Use `np.trapezoid` instead.",
+    "functionality": "Integrate along the given axis using the composite trapezoidal rule.",
+    "output": "def compute_integral(samples, dx=1):\n    return np.trapezoid(samples, dx=dx)\n\ncompute_integral(np.sin(np.linspace(0, np.pi, 100)))"
+  },
+  {
+    "input": "matrix = np.arange(6).reshape(2, 3)\nintegral_ax0 = np.trapz(matrix, axis=0)\nintegral_ax1 = np.trapz(matrix, axis=1)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.trapz` is deprecated since NumPy 2.0.0. Use `np.trapezoid` instead.",
+    "functionality": "Integrate along the given axis using the composite trapezoidal rule.",
+    "output": "matrix = np.arange(6).reshape(2, 3)\nintegral_ax0 = np.trapezoid(matrix, axis=0)\nintegral_ax1 = np.trapezoid(matrix, axis=1)"
+  },
+  {
+    "input": "mask = np.in1d([1, 2, 5], [1, 2, 3, 4])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.in1d` is deprecated since NumPy 2.0.0. Use `np.isin` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "mask = np.isin([1, 2, 5], [1, 2, 3, 4])"
+  },
+  {
+    "input": "ar1 = np.array([1, 2, 3, 4])\nar2 = np.array([2, 4, 6, 8])\nresult = np.in1d(ar1, ar2)\nprint(ar1[result])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.in1d` is deprecated since NumPy 2.0.0. Use `np.isin` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "ar1 = np.array([1, 2, 3, 4])\nar2 = np.array([2, 4, 6, 8])\nresult = np.isin(ar1, ar2)\nprint(ar1[result])"
+  },
+  {
+    "input": "def find_members(elements, test_elements):\n    return ~np.in1d(elements, test_elements)\n\nfind_members([1,2,3,4], [3,4,5,6])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.in1d` is deprecated since NumPy 2.0.0. Use `np.isin` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "def find_members(elements, test_elements):\n    return ~np.isin(elements, test_elements)\n\nfind_members([1,2,3,4], [3,4,5,6])"
+  },
+  {
+    "input": "a = np.array([0, 1, 2, 3])\nb = [0, 2]\nmask = np.in1d(a, b, invert=True)\nprint(a[mask])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.in1d` is deprecated since NumPy 2.0.0. Use `np.isin` instead.",
+    "functionality": "Test whether each element of a 1D array is also present in a second array.",
+    "output": "a = np.array([0, 1, 2, 3])\nb = [0, 2]\nmask = np.isin(a, b, invert=True)\nprint(a[mask])"
+  },
+  {
+    "input": "stacked = np.row_stack(([1,2], [3,4]))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.row_stack` is deprecated since NumPy 2.0.0. Use `np.vstack` instead.",
+    "functionality": "Stack arrays in sequence vertically (row wise).",
+    "output": "stacked = np.vstack(([1,2], [3,4]))"
+  },
+  {
+    "input": "a = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nc = np.row_stack((a, b))\nprint(c)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.row_stack` is deprecated since NumPy 2.0.0. Use `np.vstack` instead.",
+    "functionality": "Stack arrays in sequence vertically (row wise).",
+    "output": "a = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nc = np.vstack((a, b))\nprint(c)"
+  },
+  {
+    "input": "def combine_rows(rows_tuple):\n    return np.row_stack(rows_tuple)\n\nrow1 = [1,1,1]\nrow2 = [2,2,2]\ncombine_rows((row1, row2))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.row_stack` is deprecated since NumPy 2.0.0. Use `np.vstack` instead.",
+    "functionality": "Stack arrays in sequence vertically (row wise).",
+    "output": "def combine_rows(rows_tuple):\n    return np.vstack(rows_tuple)\n\nrow1 = [1,1,1]\nrow2 = [2,2,2]\ncombine_rows((row1, row2))"
+  },
+  {
+    "input": "x = np.array([[1], [2]])\ny = np.array([[3], [4]])\nz = np.array([[5], [6]])\nall_stacked = np.row_stack((x, y, z))\nprint(all_stacked.shape)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "The function `np.row_stack` is deprecated since NumPy 2.0.0. Use `np.vstack` instead.",
+    "functionality": "Stack arrays in sequence vertically (row wise).",
+    "output": "x = np.array([[1], [2]])\ny = np.array([[3], [4]])\nz = np.array([[5], [6]])\nall_stacked = np.vstack((x, y, z))\nprint(all_stacked.shape)"
+  },
+  {
+    "input": "string_dtype = np.dtype('a5')",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "Using 'a' to signify a string dtype is deprecated since NumPy 2.0.0. Use 'S' instead.",
+    "functionality": "Create a data type object.",
+    "output": "string_dtype = np.dtype('S5')"
+  },
+  {
+    "input": "arr = np.array(['abc', 'def'], dtype='a3')\nprint(arr.dtype)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "Using 'a' to signify a string dtype is deprecated since NumPy 2.0.0. Use 'S' instead.",
+    "functionality": "Create an array with a specific string data type.",
+    "output": "arr = np.array(['abc', 'def'], dtype='S3')\nprint(arr.dtype)"
+  },
+  {
+    "input": "def create_string_array(items):\n    return np.array(items, dtype='a10')\n\ncreate_string_array(['hello', 'world'])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "Using 'a' to signify a string dtype is deprecated since NumPy 2.0.0. Use 'S' instead.",
+    "functionality": "Create an array with a specific string data type.",
+    "output": "def create_string_array(items):\n    return np.array(items, dtype='S10')\n\ncreate_string_array(['hello', 'world'])"
+  },
+  {
+    "input": "structured = np.zeros(1, dtype=[('id', 'i4'), ('name', 'a20')])\nprint(structured.dtype)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "Using 'a' to signify a string dtype is deprecated since NumPy 2.0.0. Use 'S' instead.",
+    "functionality": "Create a structured array data type.",
+    "output": "structured = np.zeros(1, dtype=[('id', 'i4'), ('name', 'S20')])\nprint(structured.dtype)"
+  },
+  {
+    "input": "rate = np.irr([-100, 20, 20, 20, 20, 20])",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.irr` is deprecated since NumPy 1.18.0. It was moved to the `numpy-financial` library. Use `numpy_financial.irr` instead.",
+    "functionality": "Calculate the Internal Rate of Return.",
+    "output": "import numpy_financial as npf\nrate = npf.irr([-100, 20, 20, 20, 20, 20])"
+  },
+  {
+    "input": "cash_flows = [-1000, 300, 300, 300, 300]\ninternal_rate = np.irr(cash_flows)\nprint(f'{internal_rate:.2%}')",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.irr` is deprecated since NumPy 1.18.0. It was moved to the `numpy-financial` library. Use `numpy_financial.irr` instead.",
+    "functionality": "Calculate the Internal Rate of Return.",
+    "output": "import numpy_financial as npf\ncash_flows = [-1000, 300, 300, 300, 300]\ninternal_rate = npf.irr(cash_flows)\nprint(f'{internal_rate:.2%}')"
+  },
+  {
+    "input": "def calculate_project_irr(values):\n    return np.irr(values)\n\ncalculate_project_irr([-500, 100, 150, 200, 250, 300])",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.irr` is deprecated since NumPy 1.18.0. It was moved to the `numpy-financial` library. Use `numpy_financial.irr` instead.",
+    "functionality": "Calculate the Internal Rate of Return.",
+    "output": "import numpy_financial as npf\ndef calculate_project_irr(values):\n    return npf.irr(values)\n\ncalculate_project_irr([-500, 100, 150, 200, 250, 300])"
+  },
+  {
+    "input": "present_value = np.pv(rate=0.05, nper=10, pmt=-10)\nfuture_value = np.fv(rate=0.05, nper=10, pmt=-10, pv=present_value)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The functions `np.pv` and `np.fv` are deprecated since NumPy 1.18.0. They were moved to the `numpy-financial` library. Use `numpy_financial.pv` and `numpy_financial.fv` instead.",
+    "functionality": "Calculate present and future value.",
+    "output": "import numpy_financial as npf\npresent_value = npf.pv(rate=0.05, nper=10, pmt=-10)\nfuture_value = npf.fv(rate=0.05, nper=10, pmt=-10, pv=present_value)"
+  },
+  {
+    "input": "import pickle\narr = np.ma.array([1, 2], mask=[0, 1])\nnp.ma.dump(arr, 'arr.pkl')",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The function `np.ma.dump` is deprecated since NumPy 1.18.0. Use `pickle.dump` instead.",
+    "functionality": "Dump a masked array to a file using pickle.",
+    "output": "import pickle\narr = np.ma.array([1, 2], mask=[0, 1])\nwith open('arr.pkl', 'wb') as f:\n    pickle.dump(arr, f)"
+  },
+  {
+    "input": "import pickle\nma = np.ma.array([1,2,3], mask=[0,1,0])\npickled_string = np.ma.dumps(ma)\nreloaded_ma = np.ma.loads(pickled_string)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "`np.ma.dumps` and `np.ma.loads` are deprecated since NumPy 1.18.0. Use `pickle.dumps` and `pickle.loads` instead.",
+    "functionality": "Pickle and unpickle a masked array to a string.",
+    "output": "import pickle\nma = np.ma.array([1,2,3], mask=[0,1,0])\npickled_string = pickle.dumps(ma)\nreloaded_ma = pickle.loads(pickled_string)"
+  },
+  {
+    "input": "import numpy.ma\nimport pickle\ndef save_masked(arr, filename):\n    numpy.ma.dump(arr, filename)\n\ndef load_masked(filename):\n    return numpy.ma.load(filename)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "`np.ma.dump` and `np.ma.load` are deprecated since NumPy 1.18.0. Use `pickle.dump` and `pickle.load` instead.",
+    "functionality": "Define functions to save and load masked arrays using pickle.",
+    "output": "import numpy.ma\nimport pickle\ndef save_masked(arr, filename):\n    with open(filename, 'wb') as f:\n        pickle.dump(arr, f)\n\ndef load_masked(filename):\n    with open(filename, 'rb') as f:\n        return pickle.load(f)"
+  },
+  {
+    "input": "arr = np.array([1,2,3])\npickled = np.numeric.dumps(arr)\nloaded = np.numeric.loads(pickled)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "`np.numeric.dumps` and `np.numeric.loads` are deprecated since NumPy 1.18.0. Use `pickle.dumps` and `pickle.loads` instead.",
+    "functionality": "Pickle and unpickle a standard numpy array.",
+    "output": "import pickle\narr = np.array([1,2,3])\npickled = pickle.dumps(arr)\nloaded = pickle.loads(pickled)"
+  },
+  {
+    "input": "ragged_array = np.array([[1, 2], [3, 4, 5]])",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "Creating a ragged array without explicitly specifying `dtype=object` is deprecated since NumPy 1.19.0. This will become an error in the future.",
+    "functionality": "Create a ragged array (an array of lists).",
+    "output": "ragged_array = np.array([[1, 2], [3, 4, 5]], dtype=object)"
+  },
+  {
+    "input": "data = [[1], [2, 3]]\narr = np.array(data)\nprint(arr.dtype)",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "Creating a ragged array without explicitly specifying `dtype=object` is deprecated since NumPy 1.19.0. This will become an error in the future.",
+    "functionality": "Create a ragged array (an array of lists).",
+    "output": "data = [[1], [2, 3]]\narr = np.array(data, dtype=object)\nprint(arr.dtype)"
+  },
+  {
+    "input": "def create_ragged(list_of_lists):\n    return np.array(list_of_lists)\n\ncreate_ragged([[1,2], [3]])",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "Creating a ragged array without explicitly specifying `dtype=object` is deprecated since NumPy 1.19.0. This will become an error in the future.",
+    "functionality": "Create a ragged array (an array of lists).",
+    "output": "def create_ragged(list_of_lists):\n    return np.array(list_of_lists, dtype=object)\n\ncreate_ragged([[1,2], [3]])"
+  },
+  {
+    "input": "arr1 = np.array([1, 2, 3])\narr2 = np.array([4, 5])\nfinal_arr = np.array([arr1, arr2])",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "Creating a ragged array without explicitly specifying `dtype=object` is deprecated since NumPy 1.19.0. This will become an error in the future.",
+    "functionality": "Create a ragged array (an array of lists).",
+    "output": "arr1 = np.array([1, 2, 3])\narr2 = np.array([4, 5])\nfinal_arr = np.array([arr1, arr2], dtype=object)"
+  },
+  {
+    "input": "dt = np.dtype(np.Str0)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The capitalized dtype alias `np.Str0` is deprecated since NumPy 1.20.0. Use the lowercase version `np.str0` instead.",
+    "functionality": "Create a flexible string data-type.",
+    "output": "dt = np.dtype(np.str0)"
+  },
+  {
+    "input": "arr = np.array([b'abc'], dtype=np.Bytes0)\nprint(arr.dtype)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The capitalized dtype alias `np.Bytes0` is deprecated since NumPy 1.20.0. Use the lowercase version `np.bytes0` instead.",
+    "functionality": "Create an array with a flexible bytestring data-type.",
+    "output": "arr = np.array([b'abc'], dtype=np.bytes0)\nprint(arr.dtype)"
+  },
+  {
+    "input": "def get_uint_array(data):\n    return np.array(data, dtype=np.Uint64)\n\nget_uint_array([1, 2, 3])",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The capitalized dtype alias `np.Uint64` is deprecated since NumPy 1.20.0. Use the lowercase version `np.uint64` instead.",
+    "functionality": "Create a 64-bit unsigned integer array.",
+    "output": "def get_uint_array(data):\n    return np.array(data, dtype=np.uint64)\n\nget_uint_array([1, 2, 3])"
+  },
+  {
+    "input": "time_arr = np.array(['2025-01-01'], dtype=np.Datetime64)\nprint(time_arr.dtype)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The capitalized dtype alias `np.Datetime64` is deprecated since NumPy 1.20.0. Use the lowercase version `np.datetime64` instead.",
+    "functionality": "Create a datetime array.",
+    "output": "time_arr = np.array(['2025-01-01'], dtype=np.datetime64)\nprint(time_arr.dtype)"
+  },
+  {
+    "input": "counts = np.bincount([0.0, 1.1, 1.9, 2.5])",
+    "package": "numpy",
+    "version": "2.1.0",
+    "context": "Passing a non-integer input to the first argument of `bincount` is deprecated since NumPy 2.1.0. The input will be cast to an integer. To avoid this warning, cast the input explicitly.",
+    "functionality": "Count occurrences of values in an array.",
+    "output": "counts = np.bincount(np.array([0.0, 1.1, 1.9, 2.5]).astype(int))"
+  },
+  {
+    "input": "float_data = np.array([2.3, 5.8, 2.9])\nweights = np.array([0.5, 1.0, 0.5])\nweighted_counts = np.bincount(float_data, weights=weights)",
+    "package": "numpy",
+    "version": "2.1.0",
+    "context": "Passing a non-integer input to the first argument of `bincount` is deprecated since NumPy 2.1.0. The input will be cast to an integer. To avoid this warning, cast the input explicitly.",
+    "functionality": "Count occurrences of values in an array.",
+    "output": "float_data = np.array([2.3, 5.8, 2.9])\nweights = np.array([0.5, 1.0, 0.5])\nweighted_counts = np.bincount(float_data.astype(int), weights=weights)"
+  },
+  {
+    "input": "def get_counts_from_floats(arr):\n    return np.bincount(arr)\n\nget_counts_from_floats(np.array([0.1, 0.9, 1.1]))",
+    "package": "numpy",
+    "version": "2.1.0",
+    "context": "Passing a non-integer input to the first argument of `bincount` is deprecated since NumPy 2.1.0. The input will be cast to an integer. To avoid this warning, cast the input explicitly.",
+    "functionality": "Count occurrences of values in an array.",
+    "output": "def get_counts_from_floats(arr):\n    return np.bincount(arr.astype(int))\n\nget_counts_from_floats(np.array([0.1, 0.9, 1.1]))"
+  },
+  {
+    "input": "data = np.array([True, False, True], dtype=bool)\nresult = np.bincount(data * 1.0)",
+    "package": "numpy",
+    "version": "2.1.0",
+    "context": "Passing a non-integer input to the first argument of `bincount` is deprecated since NumPy 2.1.0. The input will be cast to an integer. To avoid this warning, cast the input explicitly.",
+    "functionality": "Count occurrences of values in an array.",
+    "output": "data = np.array([True, False, True], dtype=bool)\nresult = np.bincount(data.astype(int))"
+  },
+  {
+    "input": "cumulative_product = np.cumproduct([1, 2, 3, 4])",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.cumproduct` is deprecated since NumPy 1.25.0. Use `np.cumprod` instead.",
+    "functionality": "Return the cumulative product of elements along a given axis.",
+    "output": "cumulative_product = np.cumprod([1, 2, 3, 4])"
+  },
+  {
+    "input": "a = np.array([[1, 2, 3], [4, 5, 6]])\ncumprod_cols = np.cumproduct(a, axis=0)\nprint(cumprod_cols)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.cumproduct` is deprecated since NumPy 1.25.0. Use `np.cumprod` instead.",
+    "functionality": "Return the cumulative product of elements along a given axis.",
+    "output": "a = np.array([[1, 2, 3], [4, 5, 6]])\ncumprod_cols = np.cumprod(a, axis=0)\nprint(cumprod_cols)"
+  },
+  {
+    "input": "def get_growth_factor(returns):\n    return np.cumproduct(1 + returns)\n\nget_growth_factor(np.array([0.1, -0.05, 0.02]))",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.cumproduct` is deprecated since NumPy 1.25.0. Use `np.cumprod` instead.",
+    "functionality": "Return the cumulative product of elements along a given axis.",
+    "output": "def get_growth_factor(returns):\n    return np.cumprod(1 + returns)\n\nget_growth_factor(np.array([0.1, -0.05, 0.02]))"
+  },
+  {
+    "input": "data = np.array([1, 2, 3], dtype=np.int16)\nresult = np.cumproduct(data, dtype=np.float64)\nprint(result.dtype)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "The alias `np.cumproduct` is deprecated since NumPy 1.25.0. Use `np.cumprod` instead.",
+    "functionality": "Return the cumulative product of elements along a given axis.",
+    "output": "data = np.array([1, 2, 3], dtype=np.int16)\nresult = np.cumprod(data, dtype=np.float64)\nprint(result.dtype)"
+  },
+  {
+    "input": "arr = np.ma.array([5, 2, 8], mask=[0, 1, 0])\nmin_val = arr.mini()",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The method `np.ma.MaskedArray.mini` is deprecated since NumPy 1.13.0. Use `np.ma.minimum.reduce` instead.",
+    "functionality": "Compute the minimum of the masked array.",
+    "output": "arr = np.ma.array([5, 2, 8], mask=[0, 1, 0])\nmin_val = np.ma.minimum.reduce(arr)"
+  },
+  {
+    "input": "marr = np.ma.array([[1, 6], [2, 3]], mask=[[1, 0], [0, 0]])\nglobal_min = marr.mini()\nprint(global_min)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The method `np.ma.MaskedArray.mini` is deprecated since NumPy 1.13.0. Use `np.ma.minimum.reduce` instead.",
+    "functionality": "Compute the minimum of the masked array.",
+    "output": "marr = np.ma.array([[1, 6], [2, 3]], mask=[[1, 0], [0, 0]])\nglobal_min = np.ma.minimum.reduce(marr)\nprint(global_min)"
+  },
+  {
+    "input": "def find_masked_min(arr):\n    return arr.mini()\n\nx = np.ma.arange(10)\nx[5] = np.ma.masked\nfind_masked_min(x)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The method `np.ma.MaskedArray.mini` is deprecated since NumPy 1.13.0. Use `np.ma.minimum.reduce` instead.",
+    "functionality": "Compute the minimum of the masked array.",
+    "output": "def find_masked_min(arr):\n    return np.ma.minimum.reduce(arr)\n\nx = np.ma.arange(10)\nx[5] = np.ma.masked\nfind_masked_min(x)"
+  },
+  {
+    "input": "class MyMasked(np.ma.MaskedArray):\n    def get_min(self):\n        return self.mini()\n\na = np.ma.array([4, 1, 7], mask=[0, 0, 1]).view(MyMasked)\na.get_min()",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The method `np.ma.MaskedArray.mini` is deprecated since NumPy 1.13.0. Use `np.ma.minimum.reduce` instead.",
+    "functionality": "Compute the minimum of the masked array.",
+    "output": "class MyMasked(np.ma.MaskedArray):\n    def get_min(self):\n        return np.ma.minimum.reduce(self)\n\na = np.ma.array([4, 1, 7], mask=[0, 0, 1]).view(MyMasked)\na.get_min()"
+  },
+  {
+    "input": "x = np.ma.array([1, 2, 3], mask=[0,1,0])\nresult = np.ma.maximum(x)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.maximum(x)` without an axis is deprecated since NumPy 1.13.0. Use `np.ma.maximum.reduce(x)` instead.",
+    "functionality": "Compute the maximum of a masked array.",
+    "output": "x = np.ma.array([1, 2, 3], mask=[0,1,0])\nresult = np.ma.maximum.reduce(x)"
+  },
+  {
+    "input": "data = np.ma.array([[1, 5], [9, 3]], mask=[[0, 0], [1, 0]])\nmax_val = np.ma.maximum(data)\nprint(max_val)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.maximum(x)` without an axis is deprecated since NumPy 1.13.0. Use `np.ma.maximum.reduce(x)` instead.",
+    "functionality": "Compute the maximum of a masked array.",
+    "output": "data = np.ma.array([[1, 5], [9, 3]], mask=[[0, 0], [1, 0]])\nmax_val = np.ma.maximum.reduce(data)\nprint(max_val)"
+  },
+  {
+    "input": "def find_max_masked(arr):\n    return np.ma.maximum(arr)\n\narr = np.ma.arange(5)\narr[2] = np.ma.masked\nfind_max_masked(arr)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "Calling `np.ma.maximum(x)` without an axis is deprecated since NumPy 1.13.0. Use `np.ma.maximum.reduce(x)` instead.",
+    "functionality": "Compute the maximum of a masked array.",
+    "output": "def find_max_masked(arr):\n    return np.ma.maximum.reduce(arr)\n\narr = np.ma.arange(5)\narr[2] = np.ma.masked\nfind_max_masked(arr)"
+  },
+  {
+    "input": "a = np.ma.array([1,2,3], mask=[1,0,0])\nb = np.ma.array([4,1,5], mask=[0,0,1])\nmax_ab = np.ma.maximum(a, b)\nprint(max_ab)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "The version of `np.ma.maximum` that takes a single argument is deprecated since NumPy 1.13.0. The version that takes two arguments is not deprecated. The fix is for the single-argument case.",
+    "functionality": "Compute the element-wise maximum of two masked arrays.",
+    "output": "a = np.ma.array([1,2,3], mask=[1,0,0])\nb = np.ma.array([4,1,5], mask=[0,0,1])\nmax_ab = np.ma.maximum(a, b)\nprint(max_ab)"
+  },
+  {
+    "input": "arr = np.array([1.23, 4.56], dtype=np.core.Arrayprint.FloatFormat)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The class `np.core.Arrayprint.FloatFormat` is deprecated since NumPy 1.18.0. Use `np.core.numerictypes.FloatingFormat` instead.",
+    "functionality": "Specify a floating-point format for array printing.",
+    "output": "from numpy.core.numerictypes import FloatingFormat\narr = np.array([1.23, 4.56], dtype=FloatingFormat)"
+  },
+  {
+    "input": "from numpy.core.arrayprint import LongFloatFormat\nmy_format = LongFloatFormat(precision=10)\nprint(my_format(np.pi))",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The class `LongFloatFormat` is deprecated since NumPy 1.18.0. Use `FloatingFormat` instead.",
+    "functionality": "Specify a floating-point format for array printing.",
+    "output": "from numpy.core.numerictypes import FloatingFormat\nmy_format = FloatingFormat(precision=10)\nprint(my_format(np.pi))"
+  },
+  {
+    "input": "def get_complex_formatter():\n    from numpy.core.arrayprint import ComplexFormat\n    return ComplexFormat()\n\nformatter = get_complex_formatter()",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The class `ComplexFormat` is deprecated since NumPy 1.18.0. Use `ComplexFloatingFormat` instead.",
+    "functionality": "Specify a complex number format for array printing.",
+    "output": "def get_complex_formatter():\n    from numpy.core.numerictypes import ComplexFloatingFormat\n    return ComplexFloatingFormat()\n\nformatter = get_complex_formatter()"
+  },
+  {
+    "input": "st = np.zeros(1, dtype=[('f1', 'i4')])\nfrom numpy.core.arrayprint import StructureFormat\nf = StructureFormat(st.dtype)\nprint(f(st[0]))",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The class `StructureFormat` is deprecated since NumPy 1.18.0. Use `StructureVoidFormat` instead.",
+    "functionality": "Specify a format for structured arrays.",
+    "output": "st = np.zeros(1, dtype=[('f1', 'i4')])\nfrom numpy.core.numerictypes import StructureVoidFormat\nf = StructureVoidFormat(st.dtype)\nprint(f(st[0]))"
+  },
+  {
+    "input": "# Conceptual C-API example\n# c_array = PyArray_As1D(&arr, &c_ptr, &n, NPY_DOUBLE)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The C-API function `PyArray_As1D` is deprecated since NumPy 1.18.0. Use `PyArray_AsCArray` instead.",
+    "functionality": "Get a C-style array pointer from a NumPy array.",
+    "output": "# Conceptual C-API example\n# int dims = 1;\n# c_array = PyArray_AsCArray(&arr, &c_ptr, &dims, 1, PyArray_DescrFromType(NPY_DOUBLE))"
+  },
+  {
+    "input": "# Conceptual C-API example\n# c_array = PyArray_As2D(&arr, &c_ptr, &n, &m, NPY_INT)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "The C-API function `PyArray_As2D` is deprecated since NumPy 1.18.0. Use `PyArray_AsCArray` instead.",
+    "functionality": "Get a C-style array pointer from a NumPy array.",
+    "output": "# Conceptual C-API example\n# npy_intp dims[2];\n# c_array = PyArray_AsCArray(&arr, &c_ptr, dims, 2, PyArray_DescrFromType(NPY_INT))"
+  },
+  {
+    "input": "# Conceptual C-API example\n# if (PyArray_FLAGS(arr) & NPY_OWNDATA) { ... }",
+    "package": "numpy",
+    "version": "2.2.0",
+    "context": "The C-API flag `NPY_OWNDATA` is deprecated since NumPy 2.2.0. Use `NPY_ARRAY_OWNDATA` instead.",
+    "functionality": "Check the OWNDATA flag in the NumPy C-API.",
+    "output": "# Conceptual C-API example\n# if (PyArray_FLAGS(arr) & NPY_ARRAY_OWNDATA) { ... }"
+  },
+  {
+    "input": "# Conceptual C-API example\n# PyArray_ENABLEFLAGS(new_arr, NPY_OWNDATA);",
+    "package": "numpy",
+    "version": "2.2.0",
+    "context": "The C-API flag `NPY_OWNDATA` is deprecated since NumPy 2.2.0. Use `NPY_ARRAY_OWNDATA` instead.",
+    "functionality": "Set the OWNDATA flag in the NumPy C-API.",
+    "output": "# Conceptual C-API example\n# PyArray_ENABLEFLAGS(new_arr, NPY_ARRAY_OWNDATA);"
+  },
+  {
+    "input": "arr = np.array([[5]])\nif np.rank(arr) == 2:\n    value = np.asscalar(arr)\n    print(value)",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "`np.asscalar` is deprecated since 1.16.0 (use `.item()`), and `np.rank` is deprecated since 1.10.0 (use `np.ndim`).",
+    "functionality": "Check array dimensions and extract a scalar value.",
+    "output": "arr = np.array([[5]])\nif np.ndim(arr) == 2:\n    value = arr.item()\n    print(value)"
+  },
+  {
+    "input": "my_array = np.arange(5)\nif np.alen(my_array) > 0:\n    byte_repr = my_array.tostring()\n    print(len(byte_repr))",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "`np.alen` is deprecated since 1.18.0 (use `len()`), and `.tostring()` is deprecated since 1.19.0 (use `.tobytes()`).",
+    "functionality": "Get the length of an array and convert it to bytes.",
+    "output": "my_array = np.arange(5)\nif len(my_array) > 0:\n    byte_repr = my_array.tobytes()\n    print(len(byte_repr))"
+  },
+  {
+    "input": "def process_types(flag, value):\n    b = np.bool(flag)\n    f = np.float(value)\n    return b and (f > 0)\n\nprocess_types(True, 10.5)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "`np.bool` is deprecated since 1.20.0 (use `bool`), and `np.float` is deprecated since 1.20.0 (use `float`).",
+    "functionality": "Convert inputs to boolean and float types.",
+    "output": "def process_types(flag, value):\n    b = bool(flag)\n    f = float(value)\n    return b and (f > 0)\n\nprocess_types(True, 10.5)"
+  },
+  {
+    "input": "logic_array = np.array([True, True, False])\nany_true = np.sometrue(logic_array)\nall_true = np.alltrue(logic_array)\nprint(any_true, all_true)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "`np.sometrue` is deprecated since 1.25.0 (use `np.any`), and `np.alltrue` is deprecated since 1.25.0 (use `np.all`).",
+    "functionality": "Perform 'any' and 'all' logical checks on an array.",
+    "output": "logic_array = np.array([True, True, False])\nany_true = np.any(logic_array)\nall_true = np.all(logic_array)\nprint(any_true, all_true)"
+  },
+  {
+    "input": "y = [1, 2, 1]\nif np.in1d([1], y).any():\n    integral = np.trapz(y)\n    print(integral)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "`np.in1d` is deprecated since 2.0.0 (use `np.isin`), and `np.trapz` is deprecated since 2.0.0 (use `np.trapezoid`).",
+    "functionality": "Check for a value and then integrate.",
+    "output": "y = [1, 2, 1]\nif np.isin([1], y).any():\n    integral = np.trapezoid(y)\n    print(integral)"
+  },
+  {
+    "input": "arr = np.array([1.1, 2.2, 3.3])\nprod = np.product(arr)\nrounded_prod = np.round_(prod, 1)\nprint(rounded_prod)",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "`np.product` is deprecated since 1.25.0 (use `np.prod`), and `np.round_` is deprecated since 1.25.0 (use `np.round`).",
+    "functionality": "Calculate the product and round the result.",
+    "output": "arr = np.array([1.1, 2.2, 3.3])\nprod = np.prod(arr)\nrounded_prod = np.round(prod, 1)\nprint(rounded_prod)"
+  },
+  {
+    "input": "from numpy.distutils.compat import temp_file_name\nfrom numpy.distutils import exec_command\n\nscript_name = temp_file_name()\nwith open(script_name, 'w') as f:\n    f.write('print(\"hello\")')\nexec_command.exec_command(['python', script_name])",
+    "package": "numpy",
+    "version": "1.17.0",
+    "context": "`temp_file_name` is deprecated since 1.17.0 (use `tempfile`), and `exec_command` is deprecated since 1.17.0 (use `subprocess`).",
+    "functionality": "Create a temporary script and execute it.",
+    "output": "import tempfile\nimport subprocess\nimport os\n\nwith tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.py') as f:\n    script_name = f.name\n    f.write('print(\"hello\")')\nsubprocess.run(['python', script_name])\nos.remove(script_name)"
+  },
+  {
+    "input": "rand_arr = np.random.random_integers(1, 100, 20)\nsorted_arr = np.msort(rand_arr)\nprint(sorted_arr[0])",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "`np.random.random_integers` is deprecated since 1.11.0 (use `np.random.randint`), and `np.msort` is deprecated since 1.24.0 (use `np.sort(a, axis=0)`).",
+    "functionality": "Generate random integers and sort them.",
+    "output": "rand_arr = np.random.randint(1, 101, 20)\nsorted_arr = np.sort(rand_arr, axis=0)\nprint(sorted_arr[0])"
+  },
+  {
+    "input": "arr = np.arange(16).reshape(4, 4)\nidx_list = [slice(None), 1.0]\ncolumn = arr[idx_list]\nprint(column)",
+    "package": "numpy",
+    "version": "1.15.0",
+    "context": "Float indexing is deprecated since 1.8.0 (use `int`), and list indexing is deprecated since 1.15.0 (use a `tuple`).",
+    "functionality": "Select a column from an array using a dynamically created index.",
+    "output": "arr = np.arange(16).reshape(4, 4)\nidx_tuple = (slice(None), 1)\ncolumn = arr[idx_tuple]\nprint(column)"
+  },
+  {
+    "input": "data = [1, 2, 2, 3, 3, 3]\nunique_vals = np.unique1d(data)\nhist, _ = np.histogram(data, bins=len(unique_vals), normed=True)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "`unique1d` is deprecated since 1.4.0 (use `unique`), and `normed=True` is deprecated since 1.6.0 (use `density=True`).",
+    "functionality": "Get unique values and calculate a normalized histogram.",
+    "output": "data = [1, 2, 2, 3, 3, 3]\nunique_vals = np.unique(data)\nhist, _ = np.histogram(data, bins=len(unique_vals), density=True)"
+  },
+  {
+    "input": "a = [1, 2, 8]\nb = [2, 7, 8]\nmembers = np.Setmember1d(a, b)\nstacked = np.row_stack((a, b, members))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "`Setmember1d` is deprecated since 1.4.0 (use `in1d`, which is also deprecated for `isin`), and `row_stack` is deprecated since 2.0.0 (use `vstack`).",
+    "functionality": "Find common members and stack the results.",
+    "output": "a = [1, 2, 8]\nb = [2, 7, 8]\nmembers = np.isin(a, b)\nstacked = np.vstack((a, b, members))"
+  },
+  {
+    "input": "num_copies = np.float_(3)\nbase = [1, 2]\nresult = num_copies * base\nrank = np.rank(result)",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "`np.float_` for sequence repetition is deprecated since 1.9.0 (use `int`), and `np.rank` is deprecated since 1.10.0 (use `np.ndim`).",
+    "functionality": "Repeat a list and find the dimension of the result.",
+    "output": "num_copies = 3\nbase = [1, 2]\nresult = num_copies * base\nrank = np.ndim(result)"
+  },
+  {
+    "input": "my_val = np.long(12345)\narr = np.array([my_val])\nbyte_str = arr.tostring()",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "`np.long` is deprecated since 1.20.0 (use `int`), and `.tostring()` is deprecated since 1.19.0 (use `.tobytes()`).",
+    "functionality": "Create a long integer, put it in an array, and get the byte representation.",
+    "output": "my_val = int(12345)\narr = np.array([my_val])\nbyte_str = arr.tobytes()"
+  },
+  {
+    "input": "arr = np.arange(12).reshape(3,4)\nt_arr = np.fastCopyAndTranspose(arr)\ncoords = np.unravel_index(5, dims=t_arr.shape)",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "`fastCopyAndTranspose` is deprecated since 1.24.0 (use `.T.copy()`), and `dims` keyword is deprecated since 1.16.0 (use `shape`).",
+    "functionality": "Transpose an array and find the coordinates of a flat index.",
+    "output": "arr = np.arange(12).reshape(3,4)\nt_arr = arr.T.copy()\ncoords = np.unravel_index(5, shape=t_arr.shape)"
+  },
+  {
+    "input": "my_str_arr = np.array(['a', 'b'], dtype=np.str)\nempty_arr = np.array([])\nif not empty_arr:\n    print(my_str_arr.dtype)",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "Truth testing of an empty array is deprecated since 1.14.0 (use `.size`), and `np.str` is deprecated since 1.20.0 (use `str`).",
+    "functionality": "Check for an empty array and inspect the dtype of another.",
+    "output": "my_str_arr = np.array(['a', 'b'], dtype=str)\nempty_arr = np.array([])\nif empty_arr.size == 0:\n    print(my_str_arr.dtype)"
+  },
+  {
+    "input": "data = np.array([1, 2, 3])\nit = np.nditer(data)\nnext(it)\nit.ndincr()\nprint(np.asscalar(it[0]))",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "`it.ndincr()` is deprecated since 1.20.0 (use `next(it)`), and `np.asscalar` is deprecated since 1.16.0 (use `.item()`).",
+    "functionality": "Iterate and extract a scalar value.",
+    "output": "data = np.array([1, 2, 3])\nit = np.nditer(data)\nnext(it)\nnext(it)\nprint(it[0].item())"
+  },
+  {
+    "input": "a = np.array([1.5, 2.5])\ny = np.empty_like(a)\nnp.fix(a, y)\nprint(y.astype(np.int))",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "Positional `out` is deprecated since 1.13.0 (use `out=`), and `np.int` is deprecated since 1.20.0 (use `int`).",
+    "functionality": "Fix float values to integers and cast the type.",
+    "output": "a = np.array([1.5, 2.5])\ny = np.empty_like(a)\nnp.fix(a, out=y)\nprint(y.astype(int))"
+  },
+  {
+    "input": "ma = np.ma.array([1,5,2], mask=[0,1,0])\nmin_val = np.ma.minimum(ma)\nsorted_idxs = np.ma.argsort(ma)",
+    "package": "numpy",
+    "version": "1.13.0",
+    "context": "`np.ma.minimum(x)` and `np.ma.argsort(x)` without axis are deprecated since 1.13.0. Use `minimum.reduce(x, axis=None)` and `argsort(x, axis=None)` respectively.",
+    "functionality": "Find the minimum and sorting indices of a masked array.",
+    "output": "ma = np.ma.array([1,5,2], mask=[0,1,0])\nmin_val = np.ma.minimum.reduce(ma, axis=None)\nsorted_idxs = np.ma.argsort(ma, axis=None)"
+  },
+  {
+    "input": "arr = np.arange(5, dtype=np.Uint32)\nprint(arr.dtype)\nprint(arr.tostring())",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "Capitalized type aliases like `np.Uint32` are deprecated since 1.20.0 (use `np.uint32`), and `.tostring()` is deprecated since 1.19.0 (use `.tobytes()`).",
+    "functionality": "Create an array with a specific dtype and get its byte representation.",
+    "output": "arr = np.arange(5, dtype=np.uint32)\nprint(arr.dtype)\nprint(arr.tobytes())"
+  },
+  {
+    "input": "res = np.find_common_type([np.int, np.float], [])\nprint(np.dtype('a'))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "`np.find_common_type` is deprecated since 1.25.0 (use `np.result_type`), `np.int`/`float` are deprecated since 1.20.0, and dtype 'a' is deprecated since 2.0.0 (use 'S').",
+    "functionality": "Find a common dtype and create a string dtype.",
+    "output": "res = np.result_type(int, float)\nprint(np.dtype('S'))"
+  },
+  {
+    "input": "data = np.array([[1.0, 2.0], [3.0, 4.0]])\nnp.alen(data)\ndata.tostring()\nnp.rank(data)",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "`np.alen` (1.18.0), `.tostring()` (1.19.0), and `np.rank` (1.10.0) are all deprecated.",
+    "functionality": "Get array properties.",
+    "output": "data = np.array([[1.0, 2.0], [3.0, 4.0]])\nlen(data)\ndata.tobytes()\nnp.ndim(data)"
+  },
+  {
+    "input": "a = np.array([1, 2, 3])\nb = np.array([3, 4, 5])\ncommon = np.Intersect1d_nu(a, b)\nunique = np.unique1d(np.concatenate((a, b)))",
+    "package": "numpy",
+    "version": "1.4.0",
+    "context": "`Intersect1d_nu` is deprecated since 1.4.0 (use `intersect1d`), and `unique1d` is deprecated since 1.4.0 (use `unique`).",
+    "functionality": "Perform set operations on arrays.",
+    "output": "a = np.array([1, 2, 3])\nb = np.array([3, 4, 5])\ncommon = np.intersect1d(a, b)\nunique = np.unique(np.concatenate((a, b)))"
+  },
+  {
+    "input": "memmap = np.memmap('f.dat', mode='w+', shape=1)\nmemmap[0] = 1\nmemmap.sync()\nmemmap.close()",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "`memmap.sync()` is deprecated since 1.6.0 (use `.flush()`), and `memmap.close()` is deprecated (use `del`).",
+    "functionality": "Create, write to, and close a memory-mapped file.",
+    "output": "memmap = np.memmap('f.dat', mode='w+', shape=1)\nmemmap[0] = 1\nmemmap.flush()\ndel memmap"
+  },
+  {
+    "input": "x = np.array([1, 2, 3], dtype=np.long)\nprint(np.sometrue(x > 1))\nprint(np.alltrue(x > 0))",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "`np.long` is deprecated (1.20.0), `np.sometrue` is deprecated (1.25.0), `np.alltrue` is deprecated (1.25.0).",
+    "functionality": "Perform logical checks on an array.",
+    "output": "x = np.array([1, 2, 3], dtype=int)\nprint(np.any(x > 1))\nprint(np.all(x > 0))"
+  },
+  {
+    "input": "counts = np.bincount([1, 2, 2], minlength=None)\nif np.array([]):\n    pass\nprint(counts)",
+    "package": "numpy",
+    "version": "1.14.0",
+    "context": "`bincount(minlength=None)` is deprecated since 1.14.0 (use `minlength=0`), and truth testing of an empty array is deprecated since 1.14.0.",
+    "functionality": "Count bins and check for an empty array.",
+    "output": "counts = np.bincount([1, 2, 2], minlength=0)\nif np.array([]).size > 0:\n    pass\nprint(counts)"
+  },
+  {
+    "input": "fft_res = np.fft.refft2(np.zeros((4,4)))\ninv_res = np.fft.irefft2(fft_res)",
+    "package": "numpy",
+    "version": "1.6.0",
+    "context": "`refft2` and `irefft2` are deprecated since 1.6.0. Use `rfft2` and `irfft2` instead.",
+    "functionality": "Perform 2D real FFT and its inverse.",
+    "output": "fft_res = np.fft.rfft2(np.zeros((4,4)))\ninv_res = np.fft.irfft2(fft_res)"
+  },
+  {
+    "input": "x=np.array(['a', 'b'])\nif x == 'a':\n    print('match')",
+    "package": "numpy",
+    "version": "1.10.0",
+    "context": "Comparing an array with a string to produce a single boolean is deprecated since 1.10.0. This now performs element-wise comparison. To check if any element matches, use `np.any(arr == 'a')`.",
+    "functionality": "Compare a string array to a string.",
+    "output": "x=np.array(['a', 'b'])\nif np.any(x == 'a'):\n    print('match')"
+  },
+  {
+    "input": "result = np.array([[1, [1, 2]]])\nlength = np.alen(result)\nrank = np.rank(result)",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "Creating ragged arrays without `dtype=object` is deprecated (1.19.0). `np.alen` (1.18.0) and `np.rank` (1.10.0) are also deprecated.",
+    "functionality": "Create a ragged array and get its properties.",
+    "output": "result = np.array([[1, [1, 2]]], dtype=object)\nlength = len(result)\nrank = np.ndim(result)"
+  },
+  {
+    "input": "arr = np.array([1+2j, 3+4j], dtype=np.ComplexFormat)\nprint(arr.tostring())",
+    "package": "numpy",
+    "version": "1.19.0",
+    "context": "`np.ComplexFormat` is deprecated since 1.18.0 (use `np.ComplexFloatingFormat`), and `.tostring()` is deprecated since 1.19.0 (use `.tobytes()`).",
+    "functionality": "Create a complex array and get its bytes.",
+    "output": "from numpy.compat.py3k import ComplexFloatingFormat\narr = np.array([1+2j, 3+4j], dtype=ComplexFloatingFormat)\nprint(arr.tobytes())"
+  },
+  {
+    "input": "val = np.safe_eval('1')\nres = np.nonzero(val)",
+    "package": "numpy",
+    "version": "2.1.0",
+    "context": "`np.safe_eval` is deprecated (2.0.0), and calling `np.nonzero` on a scalar is deprecated (2.1.0).",
+    "functionality": "Evaluate a string and find non-zero elements.",
+    "output": "import ast\nval = ast.literal_eval('1')\nres = np.nonzero(np.array(val))"
+  },
+  {
+    "input": "import numpy as np\ncash_flows = [-100, 50, 50]\nrate = np.irr(cash_flows)\nprint(f'Rank: {np.rank(cash_flows)}, Len: {np.alen(cash_flows)}, Rate: {rate}')",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "`np.irr` is deprecated (1.18.0, use `numpy_financial`), `np.rank` is deprecated (1.10.0, use `np.ndim`), `np.alen` is deprecated (1.18.0, use `len`).",
+    "functionality": "Calculate IRR and get array properties.",
+    "output": "import numpy as np\nimport numpy_financial as npf\ncash_flows = [-100, 50, 50]\nrate = npf.irr(cash_flows)\nprint(f'Ndim: {np.ndim(cash_flows)}, Len: {len(cash_flows)}, Rate: {rate}')"
+  },
+  {
+    "input": "import numpy.ma as ma\narr = ma.array([5, 8], mask=[1, 0])\nmin_val = arr.mini()\nnp.ma.dump(arr, 'my.pkl')\nscalar = np.asscalar(min_val)",
+    "package": "numpy",
+    "version": "1.18.0",
+    "context": "`np.ma.dump` is deprecated (1.18.0, use `pickle`), `mini` is deprecated (1.13.0, use `minimum.reduce`), `np.asscalar` is deprecated (1.16.0, use `.item()`).",
+    "functionality": "Find min of masked array, dump it, and convert result to scalar.",
+    "output": "import numpy.ma as ma\nimport pickle\narr = ma.array([5, 8], mask=[1, 0])\nmin_val = ma.minimum.reduce(arr)\nwith open('my.pkl', 'wb') as f:\n    pickle.dump(arr, f)\nscalar = min_val.item()"
+  },
+  {
+    "input": "arr = np.arange(25).reshape(5, 5)\nindices = [1.0, slice(None)]\nsub_array = arr[indices]\nrank = np.rank(sub_array)\nfirst_val = np.asscalar(sub_array[0])",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "Float indexing (1.8.0), list indexing (1.15.0), `np.rank` (1.10.0), and `np.asscalar` (1.16.0) are all deprecated.",
+    "functionality": "Index an array and get properties of the subarray.",
+    "output": "arr = np.arange(25).reshape(5, 5)\nindices = (1, slice(None))\nsub_array = arr[indices]\nrank = np.ndim(sub_array)\nfirst_val = sub_array[0].item()"
+  },
+  {
+    "input": "data = np.random.random_integers(0, 1, (4, 4))\nt_data = np.fastCopyAndTranspose(data)\nsorted_data = np.msort(t_data)\nfinal_val = np.asscalar(sorted_data[0,0])",
+    "package": "numpy",
+    "version": "1.24.0",
+    "context": "`random_integers` (1.11.0), `fastCopyAndTranspose` (1.24.0), `msort` (1.24.0), and `asscalar` (1.16.0) are deprecated.",
+    "functionality": "Create, transform, sort, and extract a value from an array.",
+    "output": "data = np.random.randint(0, 2, (4, 4))\nt_data = data.T.copy()\nsorted_data = np.sort(t_data, axis=0)\nfinal_val = sorted_data[0,0].item()"
+  },
+  {
+    "input": "arr = np.array([1, 2, 3], dtype=np.long)\nprint(arr.tostring())\nprint(np.sometrue(arr > 5))\nprint(np.product(arr))",
+    "package": "numpy",
+    "version": "1.25.0",
+    "context": "`np.long` (1.20.0), `.tostring()` (1.19.0), `np.sometrue` (1.25.0), and `np.product` (1.25.0) are deprecated.",
+    "functionality": "Create an array and perform several deprecated operations on it.",
+    "output": "arr = np.array([1, 2, 3], dtype=int)\nprint(arr.tobytes())\nprint(np.any(arr > 5))\nprint(np.prod(arr))"
+  }
+]
