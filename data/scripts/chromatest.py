@@ -3,8 +3,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 import torch
 
 def main():
-
-    device = 'mps'
+    device = 'mps' if torch.backends.mps.is_available() else 'cpu'
 
     print("Loading BGE embedding model...")
     embeddings = HuggingFaceEmbeddings(
@@ -23,15 +22,16 @@ def main():
     all_docs = db.get()
     print(f"Total documents in collection: {len(all_docs['documents'])}")
 
-    query = "np.find_common_type"
+    query = "np.irr"
 
     print(f"Running similarity search for query: '{query}'\n")
-    results = db.similarity_search(query, k=5)
+    results = db.similarity_search_with_relevance_scores(query, k=3)
 
-    for i, doc in enumerate(results):
+    for i, (doc, score) in enumerate(results):
         print(f"\n--- Result #{i+1} ---")
+        print(f"Score: {score:.4f}")
         print(f"Metadata: {doc.metadata}")
-        print(f"Content:\n{doc.page_content[:500]}...")
+        print(f"Content:\n{doc.page_content[:750]}...")
 
 if __name__ == "__main__":
     main()

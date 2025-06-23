@@ -1,212 +1,285 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
+from bs4.element import NavigableString
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain.schema import Document
 import time
-from typing import List, Optional, Dict
 from pathlib import Path
 import torch
+import re
+from typing import List, Dict, Set
 
-class NumpyDocsProcessor:
+
+class NumpyDocScraper:
     def __init__(self):
-        self.base_url = "https://numpy.org/devdocs/release/"
+        self.base_url = "https://numpy.org/doc/stable/release/"
         self.versions = [
-            "2.4.0", "2.3.0", "2.2.6", "2.2.5", "2.2.4", "2.2.3", "2.2.2", "2.2.1", "2.2.0",
-            "2.1.3", "2.1.2", "2.1.1", "2.1.0", "2.0.2", "2.0.1", "2.0.0",
-            "1.26.4", "1.26.3", "1.26.2", "1.26.1", "1.26.0",
-            "1.25.2", "1.25.1", "1.25.0",
-            "1.24.4", "1.24.3", "1.24.2", "1.24.1", "1.24.0",
-            "1.23.5", "1.23.4", "1.23.3", "1.23.2", "1.23.1", "1.23.0",
-            "1.22.4", "1.22.3", "1.22.2", "1.22.1", "1.22.0",
-            "1.21.6", "1.21.5", "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21.0",
-            "1.20.3", "1.20.2", "1.20.1", "1.20.0",
-            "1.19.5", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19.0"
+            "2.3.0", "2.2.0", "2.1.0", "2.0.0",
+            "1.26.0", "1.25.0", "1.24.0", "1.23.0", "1.22.0", 
+            "1.21.0", "1.20.0", "1.19.0", "1.18.0", "1.17.0", "1.16.0"
         ]
         
         device = 'mps' if torch.backends.mps.is_available() else 'cpu'
-        print(f"Using device: {device}")
-        print("Loading BGE embedding model...")
-        
         self.embeddings = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-base-en-v1.5",
-            model_kwargs={'device': device},
-            encode_kwargs={'normalize_embeddings': True}
+            model_name = "BAAI/bge-base-en-v1.5",
+            model_kwargs = {'device': device},
+            encode_kwargs = {'normalize_embeddings': True}
         )
         
         self.splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=200,
-            separators=["\n## ", "\n### ", "\n#### ", "\n\n", "\n", " ", ""]
+            chunk_size = 1200,
+            chunk_overlap = 200,
+            separators = ["\n\n", "\n", ". ", " ", ""],
+            length_function = len
         )
         
         db_path = Path("data/docs/chroma_db")
-        db_path.mkdir(parents=True, exist_ok=True)
+        db_path.mkdir(parents = True, exist_ok = True)
         
         self.chroma = Chroma(
-            collection_name="numpy_docs",
-            persist_directory=str(db_path),
-            embedding_function=self.embeddings
+            collection_name = "numpy_docs",
+            persist_directory = str(db_path),
+            embedding_function = self.embeddings
         )
-    
-    def fetch_release_notes(self, version: str) -> Optional[Dict]:
+
+    # Fetch and parse release notes
+    def fetch_notes(self, version: str) -> BeautifulSoup:
         url = f"{self.base_url}{version}-notes.html"
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        return BeautifulSoup(resp.content, "html.parser")
+
+    # Extract text preserving formatting
+    def extract_text(self, elem) -> str:
+        if isinstance(elem, NavigableString):
+            return str(elem)
         
-        try:
-            response = requests.get(url, timeout=10)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            main_content = soup.find('div', {'role': 'main'})
-            if not main_content:
-                main_content = soup.find('div', class_='document')
-            if not main_content:
-                main_content = soup.find('div', class_='body')
-            if not main_content:
-                main_content = soup.find('main')
-            if not main_content:
-                main_content = soup.find('article')
-                
-            if main_content:
-                content = self._extract_structured_content(main_content)
-                return {
-                    "version": version,
-                    "url": url,
-                    "content": content,
-                    "sections": self._extract_sections(main_content)
-                }
-            else:
-                print(f"  Warning: Could not find main content for {version}")
-                return None
-                
-        except requests.exceptions.RequestException as e:
-            print(f"  Error fetching {version}: {e}")
-            return None
-    
-    def _extract_structured_content(self, soup_element) -> str:
-        lines = []
+        if not isinstance(elem, Tag):
+            return ""
         
-        for element in soup_element.find_all(['h1', 'h2', 'h3', 'h4', 'p', 'li', 'pre', 'code']):
-            if element.name.startswith('h'):
-                level = int(element.name[1])
-                prefix = "#" * level
-                lines.append(f"\n{prefix} {element.get_text(strip=True)}\n")
-            elif element.name in ['pre', 'code']:
-                code_text = element.get_text()
-                if element.name == 'pre' or len(code_text) > 50:
-                    lines.append(f"\n```python\n{code_text}\n```\n")
+        # Special handling for code elements
+        if elem.name in ['code', 'tt', 'pre']:
+            return elem.get_text()
+        
+        # Handle line breaks
+        if elem.name == 'br':
+            return '\n'
+        
+        # Block elements need newlines
+        if elem.name in ['p', 'div', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+            content = ''.join(self.extract_text(child) for child in elem.children)
+            return f"\n{content.strip()}\n"
+        
+        # Inline elements
+        return ''.join(self.extract_text(child) for child in elem.children)
+
+    # Find and extract relevant sections
+    def extract_sections(self, soup: BeautifulSoup) -> List[Dict[str, str]]:
+        sections = []
+        main_content = soup.find('div', class_='rst-content') or soup.find('main')
+        
+        if not main_content or not isinstance(main_content, Tag):
+            return sections
+        
+        current_section = None
+        current_header = None
+        current_content = []
+        
+        for elem in main_content.find_all(True):  # Find all tags
+            if not isinstance(elem, Tag):
+                continue
+            
+            # Skip deeply nested elements
+            if elem.parent and elem.parent != main_content and elem.parent.name not in ['section', 'div']:
+                continue
+            
+            if elem.name in ['h1', 'h2', 'h3']:
+                # Save previous section
+                if current_section and current_content:
+                    text = '\n'.join(current_content).strip()
+                    if text:
+                        sections.append({
+                            'type': current_section,
+                            'header': current_header,
+                            'content': text
+                        })
+                
+                # Start new section
+                header_text = elem.get_text(strip=True)
+                header_lower = header_text.lower()
+                
+                if 'deprecat' in header_lower:
+                    current_section = 'deprecations'
+                elif 'expired' in header_lower:
+                    current_section = 'expired'
+                elif any(word in header_lower for word in ['remov', 'delet']):
+                    current_section = 'removals'
+                elif 'compatibility' in header_lower:
+                    current_section = 'compatibility'
+                elif 'change' in header_lower or 'api' in header_lower:
+                    current_section = 'changes'
                 else:
-                    lines.append(f"`{code_text}`")
-            else:
-                text = element.get_text(strip=True)
-                if text:
-                    lines.append(text)
-        
-        return "\n".join(lines)
-    
-    def _extract_sections(self, soup_element) -> Dict[str, str]:
-        sections = {}
-        
-        for header in soup_element.find_all(['h2', 'h3']):
-            header_text = header.get_text(strip=True).lower()
-            
-            if any(keyword in header_text for keyword in ['deprecat', 'expired', 'removed', 'breaking', 'compatibility']):
-                section_content = []
-                for sibling in header.find_next_siblings():
-                    if sibling.name and sibling.name.startswith('h') and sibling.name <= header.name:
-                        break
-                    section_content.append(sibling.get_text(strip=True))
+                    current_section = None
                 
-                sections[header_text] = "\n".join(section_content)
+                current_header = header_text
+                current_content = [f"### {header_text}"]
+            
+            elif current_section and elem.name in ['p', 'ul', 'ol', 'dl', 'blockquote', 'pre']:
+                text = self.extract_text(elem).strip()
+                if text and text not in current_content:
+                    current_content.append(text)
+        
+        # Don't forget last section
+        if current_section and current_content:
+            text = '\n'.join(current_content).strip()
+            if text:
+                sections.append({
+                    'type': current_section,
+                    'header': current_header,
+                    'content': text
+                })
         
         return sections
-    
-    def create_chunks(self, content: dict, version: str) -> List[Document]:
-        main_text = content['content']
-        chunks = self.splitter.split_text(main_text)
+
+    # Extract function names from text
+    def extract_functions(self, text: str) -> Set[str]:
+        patterns = [
+            r'numpy\.([a-zA-Z_]\w*)',
+            r'np\.([a-zA-Z_]\w*)',
+            r'`([a-zA-Z_]\w*)`(?:\s+is|\s+has|\s+was|\s+deprecated)',
+            r'``([a-zA-Z_]\w*)``',
+            r':func:`~?numpy\.([a-zA-Z_]\w*)`',
+            r':meth:`~?numpy\.([a-zA-Z_]\w*)`',
+            r'([a-zA-Z_]\w*)\s+(?:is|has been|was)\s+deprecated'
+        ]
         
-        documents = []
+        funcs = set()
+        for pattern in patterns:
+            matches = re.findall(pattern, text)
+            funcs.update(m for m in matches if len(m) > 2 and m not in ['the', 'been', 'was', 'has'])
         
+        return funcs
+
+    # Create focused chunks
+    def create_chunks(self, section: Dict[str, str], version: str, url: str) -> List[Document]:
+        content = section['content']
+        if not content.strip():
+            return []
+        
+        # For deprecation sections, try to split by individual deprecations
+        if section['type'] in ['deprecations', 'expired', 'removals']:
+            chunks = self.split_deprecations(content)
+        else:
+            chunks = self.splitter.split_text(content)
+        
+        docs = []
         for i, chunk in enumerate(chunks):
-            is_deprecation = any(word in chunk.lower() for word in ['deprecat', 'removed', 'expired', 'breaking'])
+            if not chunk.strip():
+                continue
             
-            doc = Document(
-                page_content=chunk,
-                metadata={
-                    "package": "numpy",
-                    "version": version,
-                    "url": content['url'],
-                    "chunk_index": i,
-                    "total_chunks": len(chunks),
-                    "has_deprecation": is_deprecation,
-                    "chunk_type": "release_notes"
-                }
-            )
-            documents.append(doc)
-        
-        for section_name, section_content in content.get('sections', {}).items():
-            if section_content.strip():
-                doc = Document(
-                    page_content=f"Section: {section_name}\n\n{section_content}",
-                    metadata={
-                        "package": "numpy",
-                        "version": version,
-                        "url": content['url'],
-                        "section_name": section_name,
-                        "has_deprecation": True,
-                        "chunk_type": "deprecation_section"
-                    }
-                )
-                documents.append(doc)
-        
-        return documents
-    
-    def process_version(self, version: str) -> int:
-        content = self.fetch_release_notes(version)
-        if content:
-            chunks = self.create_chunks(content, version)
-            if chunks:
-                self.chroma.add_documents(chunks)
-                print(f"  Added {len(chunks)} chunks to Chroma")
-                return len(chunks)
-        return 0
-    
-    def run(self):
-        print(f"\nProcessing {len(self.versions)} NumPy versions...")
-        
-        start_time = time.time()
-        total_chunks = 0
-        successful_versions = 0
-        
-        for i, version in enumerate(self.versions):
-            print(f"[{i+1}/{len(self.versions)}] Processing NumPy {version}...", flush=True)
+            funcs = self.extract_functions(chunk)
             
-            chunks_added = self.process_version(version)
-            if chunks_added > 0:
-                total_chunks += chunks_added
-                successful_versions += 1
+            # Create focused chunk with context
+            enhanced = f"NumPy {version} - {section['header']}\n\n{chunk}"
+            
+            metadata = {
+                "version": version,
+                "section_type": section['type'],
+                "section_header": section['header'],
+                "url": url,
+                "chunk_id": i,
+                "functions": ', '.join(sorted(funcs)[:10]),
+                "num_functions": len(funcs),
+                "has_deprecation": bool(re.search(r'deprecat', chunk, re.I)),
+                "has_removal": bool(re.search(r'remov|delet', chunk, re.I)),
+                "has_replacement": bool(re.search(r'use\s+\S+\s+instead|replaced?\s+by', chunk, re.I))
+            }
+            
+            docs.append(Document(page_content = enhanced, metadata = metadata))
+        
+        return docs
+
+    # Split deprecation sections
+    def split_deprecations(self, text: str) -> List[str]:
+        # Try to split by function-level deprecations
+        lines = text.split('\n')
+        chunks = []
+        current = []
+        
+        for line in lines:
+            if re.match(r'^[#\-\*]\s*`?\w+', line) or re.match(r'^\w+\s+(is|has been)\s+deprecated', line):
+                if current:
+                    chunks.append('\n'.join(current))
+                    current = [line]
+                else:
+                    current.append(line)
             else:
-                print("  No content found")
+                current.append(line)
+        
+        if current:
+            chunks.append('\n'.join(current))
+        
+        # If no good splits found, use regular splitter
+        if len(chunks) <= 1:
+            return self.splitter.split_text(text)
+        
+        # Ensure chunks aren't too long
+        final_chunks = []
+        for chunk in chunks:
+            if len(chunk) > 1500:
+                final_chunks.extend(self.splitter.split_text(chunk))
+            else:
+                final_chunks.append(chunk)
+        
+        return final_chunks
+
+    # Process single version
+    def process_version(self, version: str) -> int:
+        print(f"Processing NumPy {version}...")
+        
+        try:
+            soup = self.fetch_notes(version)
+            sections = self.extract_sections(soup)
             
+            if not sections:
+                print(f"  No sections found")
+                return 0
+            
+            all_docs = []
+            url = f"{self.base_url}{version}-notes.html"
+            
+            for section in sections:
+                docs = self.create_chunks(section, version, url)
+                all_docs.extend(docs)
+            
+            if all_docs:
+                self.chroma.add_documents(all_docs)
+                print(f"  Stored {len(all_docs)} chunks from {len(sections)} sections")
+                return len(all_docs)
+            else:
+                print(f"  No chunks created")
+                return 0
+                
+        except Exception as e:
+            print(f"  Error: {e}")
+            import traceback
+            traceback.print_exc()
+            return 0
+
+    # Main execution
+    def run(self):
+        total = 0
+        
+        for version in self.versions:
+            count = self.process_version(version)
+            total += count
             time.sleep(0.5)
         
-        elapsed_time = time.time() - start_time
-        print(f"\n{'='*50}")
-        print(f"Processing complete!")
-        print(f"{'='*50}")
-        print(f"Stats:")
-        print(f"   - Versions processed: {successful_versions}/{len(self.versions)}")
-        print(f"   - Total chunks created: {total_chunks}")
-        print(f"   - Time elapsed: {elapsed_time/60:.1f} minutes")
-        print(f"   - Database location: data/docs/chroma_db/")
-        
-        print(f"\n Verifying database...")
-        doc_count = self.chroma._collection.count()
-        print(f"   - Documents in Chroma: {doc_count}")
-        print(f"{'='*50}")
+        print(f"\nComplete. Total chunks: {total}")
+
 
 if __name__ == "__main__":
-    processor = NumpyDocsProcessor()
-    processor.run()
+    scraper = NumpyDocScraper()
+    scraper.run()
