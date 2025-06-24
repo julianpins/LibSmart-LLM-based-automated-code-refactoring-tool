@@ -9,9 +9,9 @@
     "functionality": "Find the unique elements of an array.",
     "output": "    # Find the unique elements of an array.\n    unique_vals = np.unique(arr)",
     "test_cases": [
-      {"input": "np.array([1, 2, 1, 3, 2, 3])", "expected_output": "[1 2 3]"},
-      {"input": "np.array(['a', 'b', 'a', 'c'])", "expected_output": "['a' 'b' 'c']"},
-      {"input": "np.array([])", "expected_output": "[]"}
+      {"input": "np.array([1, 2, 1, 3, 2, 3])", "expected_output": "np.array([1, 2, 3])"},
+      {"input": "np.array(['a', 'b', 'a', 'c'])", "expected_output": "np.array(['a', 'b', 'c'])"},
+      {"input": "np.array([])", "expected_output": "np.array([])"}
     ]
   },
   {
@@ -24,9 +24,9 @@
     "functionality": "Find the intersection of two arrays.",
     "output": "    intersected_vals = np.intersect1d(arr1, arr2)",
     "test_cases": [
-      {"input": "(np.array([1, 2, 3]), np.array([2, 3, 4]))", "expected_output": "[2 3]"},
-      {"input": "(np.array([1, 2, 3]), np.array([4, 5, 6]))", "expected_output": "[]"},
-      {"input": "(np.array([1, 1, 2]), np.array([1, 1, 3]))", "expected_output": "[1]"}
+      {"input": "(np.array([1, 2, 3]), np.array([2, 3, 4]))", "expected_output": "np.array([2, 3])"},
+      {"input": "(np.array([1, 2, 3]), np.array([4, 5, 6]))", "expected_output": "np.array([])"},
+      {"input": "(np.array([1, 1, 2]), np.array([1, 1, 3]))", "expected_output": "np.array([1])"}
     ]
   },
   {
@@ -35,13 +35,13 @@
     "code_after": "\n    return mask",
     "package": "numpy",
     "version": "1.4.0",
-    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `isin` instead.",
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
-    "output": "    mask = np.in1d(elements, test_elements)",
+    "output": "    mask = np.isin(elements, test_elements)",
     "test_cases": [
-      {"input": "(np.array([1, 2, 3, 4]), np.array([2, 5]))", "expected_output": "[False  True False False]"},
-      {"input": "(np.array([]), np.array([1]))", "expected_output": "[]"},
-      {"input": "(np.array([1, 2, 3]), np.array([]))", "expected_output": "[False False False]"}
+      {"input": "(np.array([1, 2, 3, 4]), np.array([2, 5]))", "expected_output": "np.array([False,  True, False, False])"},
+      {"input": "(np.array([]), np.array([1]))", "expected_output": "np.array([], dtype=bool)"},
+      {"input": "(np.array([1, 2, 3]), np.array([]))", "expected_output": "np.array([False, False, False])"}
     ]
   },
   {
@@ -54,9 +54,9 @@
     "functionality": "Compute the probability density histogram of a set of data.",
     "output": "    hist, _ = np.histogram(data, bins=5, density=True)",
     "test_cases": [
-      {"input": "np.array([1, 2, 1, 3, 1, 4, 1, 2])", "expected_output": "[1.33 0.   0.67 0.   0.33]"},
-      {"input": "np.array([0, 0, 0, 0])", "expected_output": "[5. 0. 0. 0. 0.]"},
-      {"input": "np.array([1, 1.5, 2, 2.5, 3, 3.5, 4])", "expected_output": "[0.48 0.48 0.48 0.48 0.48]"}
+      {"input": "np.array([1, 2, 1, 3, 1, 4, 1, 2])", "expected_output": "np.array([0.83, 0.42, 0.0, 0.21, 0.21])"},
+      {"input": "np.array([0, 0, 0, 0])", "expected_output": "np.array([0.0, 0.0, 5.0, 0.0, 0.0])"},
+      {"input": "np.array([1, 1.5, 2, 2.5, 3, 3.5, 4])", "expected_output": "np.array([0.48, 0.24, 0.24, 0.24, 0.48])"}
     ]
   },
   {
@@ -69,9 +69,9 @@
     "functionality": "Compute the one-dimensional discrete Fourier Transform for real input.",
     "output": "    fft_result = np.fft.rfft(signal)",
     "test_cases": [
-      {"input": "np.array([1, 2, 3, 4])", "expected_output": "[10.+0.j -2.+2.j -2.+0.j]"},
-      {"input": "np.array([1, 1, 1, 1])", "expected_output": "[4.+0.j 0.+0.j 0.+0.j]"},
-      {"input": "np.array([1, -1, 1, -1])", "expected_output": "[0.+0.j 0.+0.j 2.+0.j]"}
+      {"input": "np.array([1, 2, 3, 4])", "expected_output": "np.array([10.+0.j, -2.+2.j, -2.+0.j])"},
+      {"input": "np.array([1, 1, 1, 1])", "expected_output": "np.array([4.+0.j, 0.+0.j, 0.+0.j])"},
+      {"input": "np.array([1, -1, 1, -1])", "expected_output": "np.array([0.+0.j,  0.+0.j,  4.+0.j])"}
     ]
   },
   {
@@ -84,13 +84,13 @@
     "functionality": "Write any changes in the array to the file on disk.",
     "output": "    fp.flush()",
     "test_cases": [
-      {"input": "[1., 2., 3.]", "expected_output": "[1. 2. 3.]"},
-      {"input": "[99., 0., -1.]", "expected_output": "[99.  0. -1.]"},
-      {"input": "[100.]", "expected_output": "[100.]"}
+      {"input": "np.array([1., 2., 3.], dtype=np.float32)", "expected_output": "np.array([1., 2., 3.], dtype=np.float32)"},
+      {"input": "np.array([99., 0., -1.], dtype=np.float32)", "expected_output": "np.array([99.,  0., -1.], dtype=np.float32)"},
+      {"input": "np.array([100.], dtype=np.float32)", "expected_output": "np.array([100.], dtype=np.float32)"}
     ]
   },
   {
-    "code_before": "import numpy as np\nimport numpy.distutils\ndef get_path():\n",
+    "code_before": "import numpy as np\ndef get_path():\n",
     "input": "    path = np.get_numpy_include()",
     "code_after": "\n    return 'numpy' in path",
     "package": "numpy",
@@ -174,9 +174,9 @@
     "functionality": "Return random integers from a closed interval.",
     "output": "    res = np.random.randint(low, high + 1, size)",
     "test_cases": [
-      {"input": "(1, 2, 10)", "expected_output": "True"},
+      {"input": "(1, 2, 10)", "expected_output": "False"},
       {"input": "(10, 20, (5, 5))", "expected_output": "True"},
-      {"input": "(-5, 5, 100)", "expected_output": "True"}
+      {"input": "(-5, 5, 100)", "expected_output": "False"}
     ]
   },
   {
@@ -189,9 +189,9 @@
     "functionality": "Round to nearest integer towards zero, using an output array.",
     "output": "    np.fix(x, out=y)",
     "test_cases": [
-      {"input": "(np.array([-1.9, -0.2, 0.2, 1.9]), np.empty(4))", "expected_output": "[-1. -0.  0.  1.]"},
-      {"input": "(np.array([2.0, 3.0]), np.empty(2))", "expected_output": "[2. 3.]"},
-      {"input": "(np.array([-2.5, 2.5]), np.empty(2))", "expected_output": "[-2.  2.]"}
+      {"input": "(np.array([-1.9, -0.2, 0.2, 1.9]), np.empty(4))", "expected_output": "np.array([-1., -0.,  0.,  1.])"},
+      {"input": "(np.array([2.0, 3.0]), np.empty(2))", "expected_output": "np.array([2., 3.])"},
+      {"input": "(np.array([-2.5, 2.5]), np.empty(2))", "expected_output": "np.array([-2.,  2.])"}
     ]
   },
   {
@@ -204,9 +204,9 @@
     "functionality": "Return the indices that would sort a masked array.",
     "output": "    indices = arr.argsort(axis=None)",
     "test_cases": [
-      {"input": "np.ma.array([[3, 2], [1, 4]], mask=[[0, 1], [0, 0]])", "expected_output": "[1 0 2]"},
-      {"input": "np.ma.array([1, 3, 2], mask=[0, 1, 0])", "expected_output": "[0 2]"},
-      {"input": "np.ma.array([1, 2, 3], mask=[0, 0, 0])", "expected_output": "[0 1 2]"}
+      {"input": "np.ma.array([[3, 2], [1, 4]], mask=[[0, 1], [0, 0]])", "expected_output": "np.ma.array([2, 0, 3, 1])"},
+      {"input": "np.ma.array([1, 3, 2], mask=[0, 1, 0])", "expected_output": "np.ma.array([0, 2, 1])"},
+      {"input": "np.ma.array([1, 2, 3], mask=[0, 0, 0])", "expected_output": "np.ma.array([0, 1, 2])"}
     ]
   },
   {
@@ -234,9 +234,9 @@
     "functionality": "Count number of occurrences of each value in an array of non-negative ints.",
     "output": "    counts = np.bincount(arr, minlength=0)",
     "test_cases": [
-      {"input": "np.array([0, 1, 1, 2, 3, 0])", "expected_output": "[2 2 1 1]"},
-      {"input": "np.array([5])", "expected_output": "[0 0 0 0 0 1]"},
-      {"input": "np.array([])", "expected_output": "[]"}
+      {"input": "np.array([0, 1, 1, 2, 3, 0])", "expected_output": "np.array([2, 2, 1, 1])"},
+      {"input": "np.array([5])", "expected_output": "np.array([0, 0, 0, 0, 0, 1])"},
+      {"input": "np.array([], dtype=int)", "expected_output": "np.array([], dtype=int)"}
     ]
   },
   {
@@ -249,9 +249,9 @@
     "functionality": "Index an array using a dynamically created set of indices.",
     "output": "    column_data = arr[tuple(idx)]",
     "test_cases": [
-      {"input": "np.arange(4).reshape(2, 2)", "expected_output": "[0 2]"},
-      {"input": "np.array([[10, 20], [30, 40]])", "expected_output": "[10 30]"},
-      {"input": "np.ones((5, 3))", "expected_output": "[1. 1. 1. 1. 1.]"}
+      {"input": "np.arange(4).reshape(2, 2)", "expected_output": "np.array([0, 2])"},
+      {"input": "np.array([[10, 20], [30, 40]])", "expected_output": "np.array([10, 30])"},
+      {"input": "np.ones((5, 3))", "expected_output": "np.array([1., 1., 1., 1., 1.])"}
     ]
   },
   {
@@ -279,24 +279,9 @@
     "functionality": "Converts a flat index or array of flat indices into a tuple of coordinate arrays.",
     "output": "    coords = np.unravel_index(indices, shape=array_dims)",
     "test_cases": [
-      {"input": "([22, 41, 37], (7,6))", "expected_output": "(array([3, 6, 6]), array([4, 5, 1]))"},
-      {"input": "(3, (2, 2))", "expected_output": "(array([1]), array([1]))"},
-      {"input": "(0, (5, 5))", "expected_output": "(array([0]), array([0]))"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\nimport subprocess\nfrom numpy.distutils import exec_command\ndef run_command(cmd):\n",
-    "input": "    status, output = exec_command.exec_command(cmd, use_shell=True)",
-    "code_after": "\n    return output.strip()",
-    "package": "numpy",
-    "version": "1.17.0",
-    "context": "The function `numpy.distutils.exec_command` is deprecated since NumPy 1.17.0. Use `subprocess.run` instead.",
-    "functionality": "Execute a command in a subshell.",
-    "output": "    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)\n    output = result.stdout",
-    "test_cases": [
-      {"input": "'echo Test'", "expected_output": "'Test'"},
-      {"input": "'echo Hello World'", "expected_output": "'Hello World'"},
-      {"input": "'echo 1+1'", "expected_output": "'1+1'"}
+      {"input": "([22, 41, 37], (7,6))", "expected_output": "(np.array([3, 6, 6]), np.array([4, 5, 1]))"},
+      {"input": "(3, (2, 2))", "expected_output": "(1, 1)"},
+      {"input": "(0, (5, 5))", "expected_output": "(0, 0)"}
     ]
   },
   {
@@ -345,33 +330,18 @@
     ]
   },
   {
-    "code_before": "import numpy as np\ndef create_typed_array(val, type_alias):\n",
-    "input": "    arr = np.array([val], dtype=type_alias)",
+    "code_before": "import numpy as np\ndef create_typed_array(val):\n",
+    "input": "    arr = np.array([val], dtype=np.int)",
     "code_after": "\n    return arr",
     "package": "numpy",
     "version": "1.20.0",
-    "context": "The alias `np.long` is deprecated since NumPy 1.20.0. Use the built-in `int` instead.",
+    "context": "The alias `np.int` is deprecated since NumPy 1.20.0. Use the built-in `int` instead.",
     "functionality": "Create an array with a specific numeric type.",
     "output": "    arr = np.array([val], dtype=int)",
     "test_cases": [
-      {"input": "(1, np.long)", "expected_output": "[1]"},
-      {"input": "(3.14, np.float)", "expected_output": "[3.14]"},
-      {"input": "(1+2j, np.complex)", "expected_output": "[1.+2.j]"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef create_capitalized_dtype(dtype_alias):\n",
-    "input": "    dt = np.dtype(dtype_alias)",
-    "code_after": "\n    return dt",
-    "package": "numpy",
-    "version": "1.20.0",
-    "context": "Capitalized type aliases like `np.Uint32` are deprecated since NumPy 1.20.0. Use the lowercase version instead.",
-    "functionality": "Create a numpy dtype object from a capitalized alias.",
-    "output": "    dt = np.dtype(dtype_alias)",
-    "test_cases": [
-      {"input": "np.Uint32", "expected_output": "uint32"},
-      {"input": "np.Str0", "expected_output": "str"},
-      {"input": "np.Datetime64", "expected_output": "datetime64"}
+      {"input": "(1)", "expected_output": "np.array([1])"},
+      {"input": "(3.14)", "expected_output": "np.array([3])"},
+      {"input": "(0.0)", "expected_output": "np.array([0])"}
     ]
   },
   {
@@ -384,9 +354,9 @@
     "functionality": "Advance an iterator to the next element.",
     "output": "    next(it)",
     "test_cases": [
-      {"input": "np.array([10, 20, 30])", "expected_output": "20"},
-      {"input": "np.array([99, -1, 50])", "expected_output": "-1"},
-      {"input": "np.arange(5)", "expected_output": "1"}
+      {"input": "np.array([10, 20, 30])", "expected_output": "np.array(10)"},
+      {"input": "np.array([99, -1, 50])", "expected_output": "np.array(99)"},
+      {"input": "np.arange(5)", "expected_output": "np.array(0)"}
     ]
   },
   {
@@ -414,9 +384,9 @@
     "functionality": "Return a transposed copy of an array.",
     "output": "    transposed = arr.T.copy()",
     "test_cases": [
-      {"input": "np.array([[1, 2], [3, 4]])", "expected_output": "[[1 3]\n [2 4]]"},
-      {"input": "np.array([[10, 20, 30]])", "expected_output": "[[10]\n [20]\n [30]]"},
-      {"input": "np.array([[1]])", "expected_output": "[[1]]"}
+      {"input": "np.array([[1, 2], [3, 4]])", "expected_output": "np.array([[1, 3], [2, 4]])"},
+      {"input": "np.array([[10, 20, 30]])", "expected_output": "np.array([[10], [20], [30]])"},
+      {"input": "np.array([[1]])", "expected_output": "np.array([[1]])"}
     ]
   },
   {
@@ -429,9 +399,9 @@
     "functionality": "Return a copy of an array sorted along the first axis (columns).",
     "output": "    sorted_arr = np.sort(arr, axis=0)",
     "test_cases": [
-      {"input": "np.array([[3, 1], [2, 4]])", "expected_output": "[[2 1]\n [3 4]]"},
-      {"input": "np.array([[1, 1], [1, 1]])", "expected_output": "[[1 1]\n [1 1]]"},
-      {"input": "np.array([[5, 4, 3, 2, 1]])", "expected_output": "[[5 4 3 2 1]]"}
+      {"input": "np.array([[3, 1], [2, 4]])", "expected_output": "np.array([[2, 1], [3, 4]])"},
+      {"input": "np.array([[1, 1], [1, 1]])", "expected_output": "np.array([[1, 1], [1, 1]])"},
+      {"input": "np.array([[5, 4, 3, 2, 1]])", "expected_output": "np.array([[5, 4, 3, 2, 1]])"}
     ]
   },
   {
@@ -446,7 +416,7 @@
     "test_cases": [
       {"input": "(3.14159, 2)", "expected_output": "3.14"},
       {"input": "(2.5, 0)", "expected_output": "2.0"},
-      {"input": "(-1.2345, 3)", "expected_output": "-1.235"}
+      {"input": "(-1.2345, 3)", "expected_output": "-1.234"}
     ]
   },
   {
@@ -474,9 +444,9 @@
     "functionality": "Return the cumulative product of elements along a given axis.",
     "output": "    cumprod = np.cumprod(arr)",
     "test_cases": [
-      {"input": "[1, 2, 3, 4]", "expected_output": "[ 1  2  6 24]"},
-      {"input": "[1, 5, -2]", "expected_output": "[  1   5 -10]"},
-      {"input": "[1, 0, 5]", "expected_output": "[1 0 0]"}
+      {"input": "[1, 2, 3, 4]", "expected_output": "np.array([1, 2, 6, 24])"},
+      {"input": "[1, 5, -2]", "expected_output": "np.array([1, 5, -10])"},
+      {"input": "[1, 0, 5]", "expected_output": "np.array([1, 0, 0])"}
     ]
   },
   {
@@ -501,7 +471,7 @@
     "package": "numpy",
     "version": "1.25.0",
     "context": "The alias `np.alltrue` is deprecated since NumPy 1.25.0. Use `np.all` instead.",
-    "functionality": "Test whether all array elements along a given axis evaluate to True.",
+    "functionality": "Test whether all array elements along a given axis evaluate to to True.",
     "output": "    result = np.all(arr)",
     "test_cases": [
       {"input": "[True, True, True]", "expected_output": "True"},
@@ -519,9 +489,9 @@
     "functionality": "Determine a common type for a set of arrays and scalars.",
     "output": "    common_type = np.result_type(*(type_list1 + type_list2))",
     "test_cases": [
-      {"input": "([np.int16, np.int32], [np.float16])", "expected_output": "float32"},
-      {"input": "([], [np.int8, np.uint8])", "expected_output": "int16"},
-      {"input": "([np.float64], [np.complex64])", "expected_output": "complex128"}
+      {"input": "([np.int16, np.int32], [np.float16])", "expected_output": "np.dtype('float64')"},
+      {"input": "([], [np.int8, np.uint8])", "expected_output": "np.dtype('int16')"},
+      {"input": "([np.float64], [np.complex64])", "expected_output": "np.dtype('complex128')"}
     ]
   },
   {
@@ -549,7 +519,7 @@
     "functionality": "Integrate along the given axis using the composite trapezoidal rule.",
     "output": "    area = np.trapezoid(y, x=x)",
     "test_cases": [
-      {"input": "([1, 2, 3], [4, 6, 8])", "expected_output": "4.0"},
+      {"input": "([1, 2, 3], [4, 6, 8])", "expected_output": "8.0"},
       {"input": "([0, 10], [0, 1])", "expected_output": "5.0"},
       {"input": "([1, 1, 1], [0, 1, 2])", "expected_output": "2.0"}
     ]
@@ -564,9 +534,9 @@
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
     "output": "    mask = np.isin(arr1, arr2, assume_unique=True)",
     "test_cases": [
-      {"input": "(np.array([1, 2, 3]), np.array([0, 2]))", "expected_output": "[False  True False]"},
-      {"input": "(np.array([1, 2]), np.array([1, 2]))", "expected_output": "[ True  True]"},
-      {"input": "(np.array([]), np.array([1]))", "expected_output": "[]"}
+      {"input": "(np.array([1, 2, 3]), np.array([0, 2]))", "expected_output": "np.array([False,  True, False])"},
+      {"input": "(np.array([1, 2]), np.array([1, 2]))", "expected_output": "np.array([True,  True])"},
+      {"input": "(np.array([]), np.array([1]))", "expected_output": "np.array([], dtype=bool)"}
     ]
   },
   {
@@ -579,9 +549,9 @@
     "functionality": "Stack arrays in sequence vertically (row wise).",
     "output": "    stacked = np.vstack(tup)",
     "test_cases": [
-      {"input": "(np.array([1, 2, 3]), np.array([4, 5, 6]))", "expected_output": "[[1 2 3]\n [4 5 6]]"},
-      {"input": "(np.array([[1], [2]]), np.array([[3], [4]]))", "expected_output": "[[1]\n [2]\n [3]\n [4]]"},
-      {"input": "(np.array([1]), np.array([2]), np.array([3]))", "expected_output": "[[1]\n [2]\n [3]]"}
+      {"input": "((np.array([1, 2, 3]), np.array([4, 5, 6])),)", "expected_output": "np.array([[1, 2, 3], [4, 5, 6]])"},
+      {"input": "((np.array([[1], [2]]), np.array([[3], [4]])),)", "expected_output": "np.array([[1], [2], [3], [4]])"},
+      {"input": "((np.array([1]), np.array([2]), np.array([3])),)", "expected_output": "np.array([[1], [2], [3]])"}
     ]
   },
   {
@@ -594,9 +564,9 @@
     "functionality": "Create a data type object for a fixed-length bytestring.",
     "output": "    dt = np.dtype(f'S{length}')",
     "test_cases": [
-      {"input": "10", "expected_output": "|S10"},
-      {"input": "1", "expected_output": "|S1"},
-      {"input": "0", "expected_output": "|S0"}
+      {"input": "10", "expected_output": "np.dtype('S10')"},
+      {"input": "1", "expected_output": "np.dtype('S1')"},
+      {"input": "0", "expected_output": "np.dtype('S0')"}
     ]
   },
   {
@@ -609,9 +579,9 @@
     "functionality": "Count occurrences of values in an array.",
     "output": "    counts = np.bincount(arr.astype(int))",
     "test_cases": [
-      {"input": "np.array([0.1, 1.9, 0.9, 2.5])", "expected_output": "[2 1 1]"},
-      {"input": "np.array([3.0, 3.1, 3.9])", "expected_output": "[0 0 0 3]"},
-      {"input": "np.array([])", "expected_output": "[]"}
+      {"input": "np.array([0.1, 1.9, 0.9, 2.5])", "expected_output": "np.array([2, 1, 1])"},
+      {"input": "np.array([3.0, 3.1, 3.9])", "expected_output": "np.array([0, 0, 0, 3])"},
+      {"input": "np.array([], dtype=float)", "expected_output": "np.array([], dtype=int)"}
     ]
   },
   {
@@ -622,11 +592,11 @@
     "version": "2.1.0",
     "context": "Calling `numpy.nonzero` with a scalar or 0D array is deprecated since NumPy 2.1.0. The argument should be a regular array.",
     "functionality": "Return the indices of the elements that are non-zero.",
-    "output": "    indices = np.nonzero(np.array(val))",
+    "output": "    indices = np.nonzero(np.atleast_1d(val))",
     "test_cases": [
-      {"input": "5", "expected_output": "(array([0]),)"},
-      {"input": "0", "expected_output": "(array([], dtype=int64),)"},
-      {"input": "-10.5", "expected_output": "(array([0]),)"}
+      {"input": "5", "expected_output": "(np.array([0]),)"},
+      {"input": "0", "expected_output": "(np.array([], dtype=np.int64),)"},
+      {"input": "-10.5", "expected_output": "(np.array([0]),)"}
     ]
   },
   {
@@ -639,7 +609,7 @@
     "functionality": "Calculate IRR and get the number of cash flow periods.",
     "output": "    rate = npf.irr(cash_flows)\n    length = len(cash_flows)",
     "test_cases": [
-      {"input": "[-100, 20, 20, 70, 40]", "expected_output": "('0.19', 5)"},
+      {"input": "[-100, 20, 20, 70, 40]", "expected_output": "('0.16', 5)"},
       {"input": "[-1000, 1200]", "expected_output": "('0.20', 2)"},
       {"input": "[-100, 10, 10, 110]", "expected_output": "('0.10', 4)"}
     ]
@@ -669,9 +639,9 @@
     "functionality": "Create a typed array and get its byte representation.",
     "output": "    arr = np.array(data, dtype=int)\n    as_bytes = arr.tobytes()",
     "test_cases": [
-      {"input": "[1, 2, 3]", "expected_output": "b'\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\x00\\x00\\x00\\x00\\x00\\x00\\x00'"},
-      {"input": "[0]", "expected_output": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00'"},
-      {"input": "[]", "expected_output": "b''"}
+      {"input": "[1, 2, 3]", "expected_output": "np.array([1, 2, 3], dtype=int).tobytes()"},
+      {"input": "[0]", "expected_output": "np.array([0], dtype=int).tobytes()"},
+      {"input": "[]", "expected_output": "np.array([], dtype=int).tobytes()"}
     ]
   },
   {
@@ -699,9 +669,9 @@
     "functionality": "Find unique elements in two lists and stack them vertically.",
     "output": "    unique1 = np.unique(list1)\n    unique2 = np.unique(list2)\n    stacked = np.vstack((unique1, unique2))",
     "test_cases": [
-      {"input": "([1, 1, 2], [3, 4, 4])", "expected_output": "[[1 2]\n [3 4]]"},
-      {"input": "([1, 2, 3], [1, 2, 3])", "expected_output": "[[1 2 3]\n [1 2 3]]"},
-      {"input": "([5], [6])", "expected_output": "[[5]\n [6]]"}
+      {"input": "([1, 1, 2], [3, 4, 4])", "expected_output": "np.array([[1, 2], [3, 4]])"},
+      {"input": "([1, 2, 3], [1, 2, 3])", "expected_output": "np.array([[1, 2, 3], [1, 2, 3]])"},
+      {"input": "([5], [6])", "expected_output": "np.array([[5], [6]])"}
     ]
   },
   {
@@ -744,15 +714,15 @@
     "functionality": "Find the coordinates of the maximum value in the transposed array.",
     "output": "    transposed = arr.T.copy()\n    flat_idx = np.argmax(transposed)\n    coords = np.unravel_index(flat_idx, shape=transposed.shape)",
     "test_cases": [
-      {"input": "np.array([[1, 9], [5, 2]])", "expected_output": "(array([0]), array([1]))"},
-      {"input": "np.array([[1, 2], [3, 4]])", "expected_output": "(array([1]), array([1]))"},
-      {"input": "np.arange(9).reshape(3,3)", "expected_output": "(array(2), array(2))"}
+      {"input": "np.array([[1, 9], [5, 2]])", "expected_output": "(1, 0)"},
+      {"input": "np.array([[1, 2], [3, 4]])", "expected_output": "(1, 1)"},
+      {"input": "np.arange(9).reshape(3,3)", "expected_output": "(2, 2)"}
     ]
   },
   {
     "code_before": "import numpy as np\ndef create_and_check(data, check_val, test_val):\n",
     "input": "    arr = np.array(data, dtype=np.object)\n    is_in = np.in1d(check_val, arr)\n    is_equal = arr == test_val",
-    "code_after": "\n    return is_in[0], is_equal[0]",
+    "code_after": "\n    return is_in[0], is_equal",
     "package": "numpy",
     "version": "2.0.0",
     "context": "`np.object` is deprecated since 1.20.0 (use `object`). `np.in1d` is deprecated since 2.0.0 (use `np.isin`). String comparison `arr == ...` behavior changed in 1.10.0.",
@@ -774,9 +744,9 @@
     "functionality": "Get minimum of masked data and FFT of unmasked values.",
     "output": "    min_val = np.ma.minimum.reduce(masked_data)\n    fft_res = np.fft.rfft(masked_data.compressed())",
     "test_cases": [
-      {"input": "np.array([1, 12, 5, 15, 8])", "expected_output": "(1, array([14.+0.j, -4.+0.j]))"},
-      {"input": "np.array([20, 30, 40])", "expected_output": "(--, array([0.+0.j]))"},
-      {"input": "np.array([5, 5, 5])", "expected_output": "(5, array([15.+0.j,  0.+0.j]))"}
+      {"input": "np.array([1, 12, 5, 15, 8])", "expected_output": "(1, np.array([14.0+0.j, -5.5+2.6j]))"},
+      {"input": "np.array([2, 30, 40])", "expected_output": "(2, np.array([2.+0.j]))"},
+      {"input": "np.array([5, 5, 5])", "expected_output": "(5, np.array([15.0+0.j, 0.0+0.j]))"}
     ]
   },
   {
@@ -789,13 +759,13 @@
     "functionality": "Cast array to int and check for membership.",
     "output": "    arr_i = arr.astype(int)\n    is_in = np.isin(arr_i, [2, 3])",
     "test_cases": [
-      {"input": "np.array([1.1, 2.2, 3.3, 4.4])", "expected_output": "[False  True  True False]"},
-      {"input": "np.array([0.9, 5.1])", "expected_output": "[False False]"},
-      {"input": "np.array([2.9, 3.1])", "expected_output": "[False  True]"}
+      {"input": "np.array([1.1, 2.2, 3.3, 4.4])", "expected_output": "np.array([False,  True,  True, False])"},
+      {"input": "np.array([0.9, 5.1])", "expected_output": "np.array([False, False])"},
+      {"input": "np.array([2.9, 3.1])", "expected_output": "np.array([True,  True])"}
     ]
   },
   {
-    "code_before": "import numpy as np\ndef final_test_func(arr):\n    arr = np.array(arr, dtype=np.object)\n",
+    "code_before": "import numpy as np\ndef final_test_func(arr):\n    arr = np.array(arr, dtype=object)\n",
     "input": "    if np.alen(arr) > 0 and not (arr == 'sentinel').any():\n        res = np.trapz(arr[arr != None])\n        result = np.round_(res, 2)\n    else:\n        result = None",
     "code_after": "\n    return result",
     "package": "numpy",

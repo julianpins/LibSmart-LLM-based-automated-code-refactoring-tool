@@ -67,33 +67,33 @@
     "input": "is_member = np.Setmember1d([1, 5], [1, 2, 3, 4])",
     "package": "numpy",
     "version": "1.4.0",
-    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `isin` instead.",
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
-    "output": "is_member = np.in1d([1, 5], [1, 2, 3, 4])"
+    "output": "is_member = np.isin([1, 5], [1, 2, 3, 4])"
   },
   {
     "input": "elements = np.array([10, 20, 30, 40])\ntest_elements = np.array([20, 50])\nmask = np.Setmember1d(test_elements, elements)\nprint(elements[mask])",
     "package": "numpy",
     "version": "1.4.0",
-    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `isin` instead.",
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
-    "output": "elements = np.array([10, 20, 30, 40])\ntest_elements = np.array([20, 50])\nmask = np.in1d(test_elements, elements)\nprint(elements[mask])"
+    "output": "elements = np.array([10, 20, 30, 40])\ntest_elements = np.array([20, 50])\nmask = np.isin(test_elements, elements)\nprint(elements[mask])"
   },
   {
     "input": "def check_existence(main_array, values_to_check):\n    print('Checking for existence of values...')\n    return np.Setmember1d(values_to_check, main_array).any()\n\nmain = [1, 2, 3]\ncheck = [4, 5, 1]\ncheck_existence(main, check)",
     "package": "numpy",
     "version": "1.4.0",
-    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `isin` instead.",
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
-    "output": "def check_existence(main_array, values_to_check):\n    print('Checking for existence of values...')\n    return np.in1d(values_to_check, main_array).any()\n\nmain = [1, 2, 3]\ncheck = [4, 5, 1]\ncheck_existence(main, check)"
+    "output": "def check_existence(main_array, values_to_check):\n    print('Checking for existence of values...')\n    return np.isin(values_to_check, main_array).any()\n\nmain = [1, 2, 3]\ncheck = [4, 5, 1]\ncheck_existence(main, check)"
   },
   {
     "input": "a = np.arange(10)\nb = np.array([2, 8, 12])\nindices = np.nonzero(np.Setmember1d(b, a))[0]\nprint(f'Elements {b[indices]} are present.')",
     "package": "numpy",
     "version": "1.4.0",
-    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `in1d` instead.",
+    "context": "The function `Setmember1d` is deprecated since NumPy 1.4.0. Use `isin` instead.",
     "functionality": "Test whether each element of a 1D array is also present in a second array.",
-    "output": "a = np.arange(10)\nb = np.array([2, 8, 12])\nindices = np.nonzero(np.in1d(b, a))[0]\nprint(f'Elements {b[indices]} are present.')"
+    "output": "a = np.arange(10)\nb = np.array([2, 8, 12])\nindices = np.nonzero(np.isin(b, a))[0]\nprint(f'Elements {b[indices]} are present.')"
   },
   {
     "input": "hist, bins = np.histogram(data, normed=True)",
@@ -1683,7 +1683,7 @@
     "input": "a = [1, 2, 8]\nb = [2, 7, 8]\nmembers = np.Setmember1d(a, b)\nstacked = np.row_stack((a, b, members))",
     "package": "numpy",
     "version": "2.0.0",
-    "context": "`Setmember1d` is deprecated since 1.4.0 (use `in1d`, which is also deprecated for `isin`), and `row_stack` is deprecated since 2.0.0 (use `vstack`).",
+    "context": "`Setmember1d` is deprecated since 1.4.0 (use `isin`), and `row_stack` is deprecated since 2.0.0 (use `vstack`).",
     "functionality": "Find common members and stack the results.",
     "output": "a = [1, 2, 8]\nb = [2, 7, 8]\nmembers = np.isin(a, b)\nstacked = np.vstack((a, b, members))"
   },
@@ -1837,7 +1837,7 @@
     "version": "2.1.0",
     "context": "`np.safe_eval` is deprecated (2.0.0), and calling `np.nonzero` on a scalar is deprecated (2.1.0).",
     "functionality": "Evaluate a string and find non-zero elements.",
-    "output": "import ast\nval = ast.literal_eval('1')\nres = np.nonzero(np.array(val))"
+    "output": "import ast\nval = ast.literal_eval('1')\nres = np.nonzero(atleast_1d(val))"
   },
   {
     "input": "import numpy as np\ncash_flows = [-100, 50, 50]\nrate = np.irr(cash_flows)\nprint(f'Rank: {np.rank(cash_flows)}, Len: {np.alen(cash_flows)}, Rate: {rate}')",
