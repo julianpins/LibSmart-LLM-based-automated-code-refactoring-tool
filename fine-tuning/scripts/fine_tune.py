@@ -47,6 +47,9 @@ bnb_config = BitsAndBytesConfig(
 
 tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token
+# For mistral:
+# tokenizer.padding_side = 'right'
+
 
 model = AutoModelForCausalLM.from_pretrained(
     base_model,
@@ -56,6 +59,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 print("\nModel and tokenizer loaded successfully.")
 
+#For mistral: r = 16, lora_alpha = 32
 peft_config = LoraConfig(
     r = 8,
     lora_alpha = 16,
