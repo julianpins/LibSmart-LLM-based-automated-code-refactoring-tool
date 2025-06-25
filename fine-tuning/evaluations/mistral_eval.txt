@@ -1,0 +1,1024 @@
+Starting Test Suite for 52 samples:
+
+==========================================
+Running Test 1/52
+ Model raw output:
+
+{
+    "context": "The function `np.unique1d` is deprecated since NumPy 1.20.0. Use `np.unique` instead.",
+    "output": "    # Find the unique elements of an array.\n    unique_vals = np.unique(arr)"
+}
+Parsed suggestion:
+```python
+# Find the unique elements of an array.
+    unique_vals = np.unique(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 1 total score: 10/10 ---
+
+==========================================
+Running Test 2/52
+ Model raw output:
+
+{
+    "context": "The function `np.Intersect1d_nu` is deprecated since NumPy 1.20.0. Use `np.intersect1d` instead.",
+    "output": "    intersected_vals = np.intersect1d(arr1, arr2)"
+}
+Parsed suggestion:
+```python
+intersected_vals = np.intersect1d(arr1, arr2)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 2 total score: 10/10 ---
+
+==========================================
+Running Test 3/52
+ Model raw output:
+
+{
+    "context": "The function `np.Setmember1d` is deprecated since NumPy 1.20.0. Use `np.isin` instead.",
+    "output": "    mask = np.isin(elements, test_elements)"
+}
+Parsed suggestion:
+```python
+mask = np.isin(elements, test_elements)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 3 total score: 10/10 ---
+
+==========================================
+Running Test 4/52
+ Model raw output:
+
+{
+    "context": "The alias `np.histogram` is deprecated since NumPy 1.20.0. Use `np.histogram` instead.",
+    "output": "    hist, _ = np.histogram(data, bins=5, normed=True)"
+}
+Parsed suggestion:
+```python
+hist, _ = np.histogram(data, bins=5, normed=True)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 5/52
+ Model raw output:
+
+{
+    "context": "The function `np.fft.refft` is deprecated since NumPy 1.20.0. Use `np.fft.rfft` instead.",
+    "output": "    fft_result = np.fft.rfft(signal)"
+}
+Parsed suggestion:
+```python
+fft_result = np.fft.rfft(signal)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 5 total score: 10/10 ---
+
+==========================================
+Running Test 6/52
+ Model raw output:
+
+{
+    "context": "The method `sync` is deprecated since NumPy 1.20.0. Use `flush` instead.",
+    "output": "    fp.flush()"
+}
+Parsed suggestion:
+```python
+fp.flush()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 6 total score: 10/10 ---
+
+==========================================
+Running Test 7/52
+ Model raw output:
+
+{
+    "context": "The function `np.get_numpy_include` is deprecated since NumPy 1.20.0. Use `np.get_include` instead.",
+    "output": "    path = np.get_include()"
+}
+Parsed suggestion:
+```python
+path = np.get_include()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 7 total score: 10/10 ---
+
+==========================================
+Running Test 8/52
+ Model raw output:
+
+{
+    "context": "Setting the format of a NumPy array is deprecated since NumPy 1.18.0. Use the `format` keyword in the `np.set_printoptions` function instead.",
+    "output": "from numpy import set_printoptions\nset_printoptions(format='%.2f')\narr = np.array([1.2345])"
+}
+Parsed suggestion:
+```python
+from numpy import set_printoptions
+set_printoptions(format='%.2f')
+arr = np.array([1.2345])
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 9/52
+ Model raw output:
+
+{
+    "context": "Accessing an element by index is deprecated since 1.18.0. Use `arr[idx]` instead.",
+    "output": "    value = arr[idx]"
+}
+Parsed suggestion:
+```python
+value = arr[idx]
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 10/52
+ Model raw output:
+
+{
+    "context": "The alias `np.float_` is deprecated since NumPy 1.20.0. Use `float` instead.",
+    "output": "result = float(n) * seq"
+}
+Parsed suggestion:
+```python
+result = float(n) * seq
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 11/52
+ Model raw output:
+
+{
+    "context": "The function `np.rank` is deprecated since NumPy 1.20.0. Use `np.ndim` instead.",
+    "output": "rank = np.ndim(arr)"
+}
+Parsed suggestion:
+```python
+rank = np.ndim(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 11 total score: 9/10 ---
+
+==========================================
+Running Test 12/52
+ Model raw output:
+
+{
+    "context": "The function `random_integers` is deprecated since NumPy 1.20.0. Use `randint` instead.",
+    "output": "res = np.random.randint(low, high, size)"
+}
+Parsed suggestion:
+```python
+res = np.random.randint(low, high, size)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 12 total score: 9/10 ---
+
+==========================================
+Running Test 13/52
+ Model raw output:
+
+{
+    "context": "The function `np.fix` is deprecated since NumPy 1.20.0. Use `np.round` instead.",
+    "output": "np.round(x, y)"
+}
+Parsed suggestion:
+```python
+np.round(x, y)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 14/52
+ Model raw output:
+
+{
+    "context": "The function `argsort` is deprecated since NumPy 1.20.0. Use `argsort` from the `numpy.core.multiarray` module instead.",
+    "output": "from numpy.core.multiarray import argsort\nindices = argsort(arr)"
+}
+Parsed suggestion:
+```python
+from numpy.core.multiarray import argsort
+indices = argsort(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 15/52
+ Model raw output:
+
+{
+    "context": "The alias `arr` is deprecated since NumPy 1.20.0. Use `a` instead.",
+    "output": "    if a:\n        is_empty = False\n    else:\n        is_empty = True"
+}
+Parsed suggestion:
+```python
+if a:
+        is_empty = False
+    else:
+        is_empty = True
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 16/52
+ Model raw output:
+
+{
+    "context": "The keyword `minlength` is deprecated since NumPy 1.18.0. Use `minlen` instead.",
+    "output": "    counts = np.bincount(arr, minlen=None)"
+}
+Parsed suggestion:
+```python
+counts = np.bincount(arr, minlen=None)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 17/52
+ Model raw output:
+
+{
+    "context": "Accessing a single column by index is deprecated since NumPy 1.20.0. Use `arr[:, idx]` instead.",
+    "output": "column_data = arr[:, idx]"
+}
+Parsed suggestion:
+```python
+column_data = arr[:, idx]
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 18/52
+ Model raw output:
+
+{
+    "context": "The function `np.asscalar` is deprecated since NumPy 1.20.0. Use `np.asscalar(arr)` instead.",
+    "output": "    scalar_value = np.asscalar(arr)"
+}
+Parsed suggestion:
+```python
+scalar_value = np.asscalar(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 19/52
+ Model raw output:
+
+{
+    "context": "The alias `dims` is deprecated since NumPy 1.20.0. Use `shape` instead.",
+    "output": "coords = np.unravel_index(indices, shape=array_dims)"
+}
+Parsed suggestion:
+```python
+coords = np.unravel_index(indices, shape=array_dims)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 19 total score: 9/10 ---
+
+==========================================
+Running Test 20/52
+ Model raw output:
+
+{
+    "context": "The function `np.alen` is deprecated since NumPy 1.20.0. Use `len` instead.",
+    "output": "length = len(arr)"
+}
+Parsed suggestion:
+```python
+length = len(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 20 total score: 9/10 ---
+
+==========================================
+Running Test 21/52
+ Model raw output:
+
+{
+    "context": "The function `np.array` is deprecated since NumPy 1.20.0. Use `np.asarray` instead.",
+    "output": "    arr = np.asarray(l)"
+}
+Parsed suggestion:
+```python
+arr = np.asarray(l)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 22/52
+ Model raw output:
+
+{
+    "context": "The method `numpy.ndarray.tostring` is deprecated since NumPy 1.20.0. Use `numpy.ndarray.tobytes` instead.",
+    "output": "byte_rep = arr.tobytes()"
+}
+Parsed suggestion:
+```python
+byte_rep = arr.tobytes()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 22 total score: 9/10 ---
+
+==========================================
+Running Test 23/52
+ Model raw output:
+
+{
+    "context": "Passing a single value to the constructor of a dtype is deprecated since NumPy 1.18.0. Use `np.int64` instead.",
+    "output": "arr = np.int64([val])"
+}
+Parsed suggestion:
+```python
+arr = np.int64([val])
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 23 total score: 9/10 ---
+
+==========================================
+Running Test 24/52
+ Model raw output:
+
+{
+    "context": "The function `ndincr` is deprecated since NumPy 1.18.0. Use `ndarray.ndim` instead.",
+    "output": "it.ndim += 1"
+}
+Parsed suggestion:
+```python
+it.ndim += 1
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 25/52
+ Model raw output:
+
+{
+    "context": "The alias `axis=32` for the last axis is deprecated since NumPy 1.18.0. Use `axis=-1` instead.",
+    "output": "    total = arr.sum(axis=-1)"
+}
+Parsed suggestion:
+```python
+total = arr.sum(axis=-1)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ❌ Test Case 1: Failed. [Expected: 6, Got: array([1, 5])]
+  ✅ Test Case 2: Passed
+  ❌ Test Case 3: Failed. [Expected: 4, Got: array([2, 2])]
+I/O CHECK Result: 1/3 passed (+2 pts)
+--- Sample 25 total score: 6/10 ---
+
+==========================================
+Running Test 26/52
+ Model raw output:
+
+{
+    "context": "The function `np.fastCopyAndTranspose` is deprecated since NumPy 1.20.0. Use `np.copy` and `np.transpose` instead.",
+    "output": "transposed = np.copy(arr).transpose()"
+}
+Parsed suggestion:
+```python
+transposed = np.copy(arr).transpose()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 26 total score: 9/10 ---
+
+==========================================
+Running Test 27/52
+ Model raw output:
+
+{
+    "context": "The function `np.msort` is deprecated since NumPy 1.20.0. Use `np.sort` instead.",
+    "output": "sorted_arr = np.sort(arr)"
+}
+Parsed suggestion:
+```python
+sorted_arr = np.sort(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ❌ Test Case 1: Failed. [Expected: array([[2, 1],
+       [3, 4]]), Got: array([[1, 3],
+       [2, 4]])]
+  ✅ Test Case 2: Passed
+  ❌ Test Case 3: Failed. [Expected: array([[5, 4, 3, 2, 1]]), Got: array([[1, 2, 3, 4, 5]])]
+I/O CHECK Result: 1/3 passed (+2 pts)
+--- Sample 27 total score: 5/10 ---
+
+==========================================
+Running Test 28/52
+ Model raw output:
+
+{
+    "context": "The alias `np.round_` is deprecated since NumPy 1.20.0. Use `np.round` instead.",
+    "output": "rounded = np.round(val, decimals=decimals)"
+}
+Parsed suggestion:
+```python
+rounded = np.round(val, decimals=decimals)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 28 total score: 9/10 ---
+
+==========================================
+Running Test 29/52
+ Model raw output:
+
+{
+    "context": "The function `np.product` is deprecated since NumPy 1.20.0. Use `np.prod` instead.",
+    "output": "prod = np.prod(arr)"
+}
+Parsed suggestion:
+```python
+prod = np.prod(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 29 total score: 9/10 ---
+
+==========================================
+Running Test 30/52
+ Model raw output:
+
+{
+    "context": "The function `np.cumproduct` is deprecated since NumPy 1.20.0. Use `np.cumprod` instead.",
+    "output": "    cumprod = np.cumprod(arr)"
+}
+Parsed suggestion:
+```python
+cumprod = np.cumprod(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 30 total score: 10/10 ---
+
+==========================================
+Running Test 31/52
+ Model raw output:
+
+{
+    "context": "The alias `np.sometrue` is deprecated since NumPy 1.20.0. Use `np.any` instead.",
+    "output": "result = np.any(arr)"
+}
+Parsed suggestion:
+```python
+result = np.any(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 31 total score: 9/10 ---
+
+==========================================
+Running Test 32/52
+ Model raw output:
+
+{
+    "context": "The alias `np.alltrue` is deprecated since NumPy 1.20.0. Use `np.all` instead.",
+    "output": "result = np.all(arr)"
+}
+Parsed suggestion:
+```python
+result = np.all(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 32 total score: 9/10 ---
+
+==========================================
+Running Test 33/52
+ Model raw output:
+
+{
+    "context": "The function `np.find_common_type` is deprecated since NumPy 1.20.0. Use `np.common_type` instead.",
+    "output": "common_type = np.common_type(type_list1, type_list2)"
+}
+Parsed suggestion:
+```python
+common_type = np.common_type(type_list1, type_list2)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 34/52
+ Model raw output:
+
+{
+    "context": "The function `np.safe_eval` is deprecated since NumPy 1.20.0. Use `ast.literal_eval` instead.",
+    "output": "import ast\nresult = ast.literal_eval(s)"
+}
+Parsed suggestion:
+```python
+import ast
+result = ast.literal_eval(s)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 34 total score: 9/10 ---
+
+==========================================
+Running Test 35/52
+ Model raw output:
+
+{
+    "context": "The alias `np.trapz` is deprecated since NumPy 1.20.0. Use `np.trapz` instead.",
+    "output": "    area = np.trapz(y, x=x)"
+}
+Parsed suggestion:
+```python
+area = np.trapz(y, x=x)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 36/52
+ Model raw output:
+
+{
+    "context": "The alias `np.in1d` is deprecated since NumPy 1.20.0. Use `np.in1d` instead.",
+    "output": "    mask = np.in1d(arr1, arr2, assume_unique=True)"
+}
+Parsed suggestion:
+```python
+mask = np.in1d(arr1, arr2, assume_unique=True)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 37/52
+ Model raw output:
+
+{
+    "context": "The function `np.row_stack` is deprecated since NumPy 1.20.0. Use `np.vstack` instead.",
+    "output": "    stacked = np.vstack(tup)"
+}
+Parsed suggestion:
+```python
+stacked = np.vstack(tup)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 37 total score: 10/10 ---
+
+==========================================
+Running Test 38/52
+ Model raw output:
+
+{
+    "context": "The format string `'a{length}'` is deprecated since NumPy 1.18.0. Use `'a{length}'` instead.",
+    "output": "    dt = np.dtype(f'a{length}')"
+}
+Parsed suggestion:
+```python
+dt = np.dtype(f'a{length}')
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 39/52
+ Model raw output:
+
+{
+    "context": "The alias `np.bincount` is deprecated since NumPy 1.20.0. Use `np.bincount` instead.",
+    "output": "counts = np.bincount(arr)"
+}
+Parsed suggestion:
+```python
+counts = np.bincount(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 40/52
+ Model raw output:
+
+{
+    "context": "The function `np.nonzero` is deprecated since NumPy 1.20.0. Use `np.argwhere` instead.",
+    "output": "indices = np.argwhere(val)"
+}
+Parsed suggestion:
+```python
+indices = np.argwhere(val)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 40 total score: 9/10 ---
+
+==========================================
+Running Test 41/52
+ Model raw output:
+
+{
+    "context": "`np.irr` is deprecated since 1.20.0 (use `np.irr1`), and `np.alen` is deprecated since 1.19.0 (use `len`).",
+    "output": "    rate = np.irr1(cash_flows)\n    length = len(cash_flows)"
+}
+Parsed suggestion:
+```python
+rate = np.irr1(cash_flows)
+    length = len(cash_flows)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 42/52
+ Model raw output:
+
+{
+    "context": "The method `mini` is deprecated since NumPy 1.18.0. Use `min` instead.",
+    "output": "np.ma.dump(arr, 'test.pkl'\n)\nreloaded_arr = np.ma.load('test.pkl')\nmin_val = reloaded_arr.min()"
+}
+Parsed suggestion:
+```python
+np.ma.dump(arr, 'test.pkl'
+)
+reloaded_arr = np.ma.load('test.pkl')
+min_val = reloaded_arr.min()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 43/52
+ Model raw output:
+
+{
+    "context": "The method `np.long` is deprecated since NumPy 1.20.0. Use `np.int64` instead.",
+    "output": "    arr = np.array(data, dtype=np.int64)\n    as_bytes = arr.tostring()"
+}
+Parsed suggestion:
+```python
+arr = np.array(data, dtype=np.int64)
+    as_bytes = arr.tostring()
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 44/52
+ Model raw output:
+
+{
+    "context": "The functions `np.sometrue` and `np.alltrue` are deprecated since NumPy 1.20.0. Use `np.any` and `np.all` instead.",
+    "output": "    rank = np.rank(arr)\n    is_any_true = np.any(arr)\n    is_all_true = np.all(arr)"
+}
+Parsed suggestion:
+```python
+rank = np.rank(arr)
+    is_any_true = np.any(arr)
+    is_all_true = np.all(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 45/52
+ Model raw output:
+
+{
+    "context": "`np.unique1d` is deprecated since 1.20.0 (use `np.unique`), and `np.row_stack` is deprecated since 1.18.0 (use `np.vstack`).",
+    "output": "unique1 = np.unique(list1)\nunique2 = np.unique(list2)\nstacked = np.vstack((unique1, unique2))"
+}
+Parsed suggestion:
+```python
+unique1 = np.unique(list1)
+unique2 = np.unique(list2)
+stacked = np.vstack((unique1, unique2))
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 45 total score: 9/10 ---
+
+==========================================
+Running Test 46/52
+ Model raw output:
+
+{
+    "context": "The functions `np.alen`, `np.rank`, `arr.tostring`, and `np.asscalar` are deprecated since NumPy 1.20.0. Use `len`, `np.ndim`, `arr.tobytes`, and `arr[0]` respectively.",
+    "output": "    length = len(arr)\n    rank = np.ndim(arr)\n    as_bytes = arr.tobytes()\n    scalar = arr[0]"
+}
+Parsed suggestion:
+```python
+length = len(arr)
+    rank = np.ndim(arr)
+    as_bytes = arr.tobytes()
+    scalar = arr[0]
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 46 total score: 10/10 ---
+
+==========================================
+Running Test 47/52
+ Model raw output:
+
+{
+    "context": "The function `np.sometrue` is deprecated since NumPy 1.20.0. Use `np.any` instead.",
+    "output": "    if not np.any(arr == 0):\n        result = np.product(arr)\n    else:\n        result = 0"
+}
+Parsed suggestion:
+```python
+if not np.any(arr == 0):
+        result = np.product(arr)
+    else:
+        result = 0
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 48/52
+ Model raw output:
+
+{
+    "context": "`np.fastCopyAndTranspose` is deprecated since 1.20.0 (use `np.copy` and `np.transpose`), and `np.unravel_index` is deprecated since 1.19.0 (use `np.argsort` and `np.unravel_index`),",
+    "output": "    transposed = np.copy(arr)\n    flat_idx = np.argsort(transposed.ravel())[0]\n    coords = np.unravel_index(flat_idx, dims=transposed.shape)"
+}
+Parsed suggestion:
+```python
+transposed = np.copy(arr)
+    flat_idx = np.argsort(transposed.ravel())[0]
+    coords = np.unravel_index(flat_idx, dims=transposed.shape)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+Running Test 49/52
+ Model raw output:
+
+{
+    "context": "The function `np.in1d` is deprecated since NumPy 1.20.0. Use `np.isin` instead.",
+    "output": "    arr = np.array(data, dtype=np.object)\n    is_in = np.isin(check_val, arr)\n    is_equal = arr == test_val"
+}
+Parsed suggestion:
+```python
+arr = np.array(data, dtype=np.object)
+    is_in = np.isin(check_val, arr)
+    is_equal = arr == test_val
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 50/52
+ Model raw output:
+
+{
+    "context": "`mini` is deprecated since 1.20.0 (use `min`), and `refft` is deprecated since 1.19.0 (use `rfft`).",
+    "output": "    min_val = masked_data.min()\n    fft_res = np.rfft(masked_data.compressed())"
+}
+Parsed suggestion:
+```python
+min_val = masked_data.min()
+    fft_res = np.rfft(masked_data.compressed())
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 51/52
+ Model raw output:
+
+{
+    "context": "The function `np.Setmember1d` is deprecated since NumPy 1.20.0. Use `np.isin` instead.",
+    "output": "    arr_i = arr.astype(np.int)\n    is_in = np.isin(arr_i, [2, 3])"
+}
+Parsed suggestion:
+```python
+arr_i = arr.astype(np.int)
+    is_in = np.isin(arr_i, [2, 3])
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+==========================================
+Running Test 52/52
+Model raw output:
+
+{
+    "context": "The function `np.alen` is deprecated since NumPy 1.20.0. Use `len` instead. Also, the function `np.trapz` is deprecated since NumPy 1.20.0. Use `trapz` instead.",
+    "output": "    if len(arr) > 0 and not (arr == 'sentinel').any():\n        res = np.trapz(arr[arr != None])\n        result = np.round_(res, 2)\n    else:\n        result = None"
+}
+Parsed suggestion:
+```python
+if len(arr) > 0 and not (arr == 'sentinel').any():
+        res = np.trapz(arr[arr != None])
+        result = np.round_(res, 2)
+    else:
+        result = None
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+COMPLETE
+Total Score: 272 / 520
+Overall Performance: 52.31%
+==========================================
