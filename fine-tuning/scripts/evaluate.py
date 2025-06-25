@@ -1,3 +1,4 @@
+#Uncomment:
 #!pip install -q -U "torch==2.3.1" "transformers==4.41.2" "peft==0.11.1" "accelerate==0.30.1" "trl==0.9.4" "datasets==2.19.2" "bitsandbytes==0.43.1" numpy_financial
 
 import json
@@ -8,6 +9,7 @@ import os
 import ast
 import pickle
 
+#Uncomment:
 #import torch
 #from peft import PeftModel
 #from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
@@ -16,11 +18,11 @@ import numpy as np
 from numpy import ma
 import numpy_financial as npf
 
-
+#For different models
 #"google/gemma-2b", "codellama/CodeLlama-7b-hf", "mistralai/Mistral-7B-Instruct-v0.2"
 BASE_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.2"
 
-#
+#depending on model
 ADAPTER_PATH = "./mistral-7b-libsmart"
 
 PATH_TO_VALIDATION = 'data/datasets/validation_data.json'
@@ -65,6 +67,7 @@ def get_model_suggestion(model, tokenizer, input_code, all_samples, index):
     print("Getting suggested code: Using expected output")
     return all_samples[index]['output']
 
+    #Uncomment for actual model-response
     '''
     instruction = "Analyze the following Python code for a deprecated NumPy function and generate a JSON object with the suggested fix and context."
     prompt = f"<s>[INST] {instruction}\n\n### INPUT CODE:\n```python\n{input_code}\n``` [/INST]\n{output_json}</s>"
@@ -94,6 +97,7 @@ def get_model_suggestion(model, tokenizer, input_code, all_samples, index):
         return ""
     '''
 
+#checks for deprecation errors / warnings
 def has_deprecation(f, sample_input):
     if not callable(f): return None
     with warnings.catch_warnings(record=True) as w:
@@ -109,6 +113,8 @@ def has_deprecation(f, sample_input):
             if issubclass(item.category, DeprecationWarning): return True
     return False
 
+
+#cover all important datatypes in numpy
 def compare_outputs(actual, expected):
     if isinstance(actual, np.ma.MaskedArray) and actual.ndim == 0: actual = actual.item() if not actual.mask else np.ma.masked
     if isinstance(expected, np.ma.MaskedArray) and expected.ndim == 0: expected = expected.item() if not expected.mask else np.ma.masked
@@ -131,6 +137,7 @@ def compare_outputs(actual, expected):
 
 #calculates score for all samples in validation_data
 def run_test_suite():
+    #Uncomment:
     #model, tokenizer = load_model_and_tokenizer(BASE_MODEL_ID, ADAPTER_PATH)
     model, tokenizer = None, None
     try:
