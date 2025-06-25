@@ -203,7 +203,7 @@ def run_test_suite():
             total_score += sample_score
             continue
 
-        #CHECK 4: CODE MATCH
+        #CODE MATCH
         '''if suggested_code.strip() == sample['output'].strip():
             print(f"✅ CODE MATCH CHECK: Success (+{POINTS_CODE_MATCH} pts)")
             sample_score += POINTS_CODE_MATCH
