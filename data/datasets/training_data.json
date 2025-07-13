@@ -1878,5 +1878,109 @@
     "context": "`np.long` (1.20.0), `.tostring()` (1.19.0), `np.sometrue` (1.25.0), and `np.product` (1.25.0) are deprecated.",
     "functionality": "Create an array and perform several deprecated operations on it.",
     "output": "arr = np.array([1, 2, 3], dtype=int)\nprint(arr.tobytes())\nprint(np.any(arr > 5))\nprint(np.prod(arr))"
+  },
+  {
+    "input": "from numpy.testing import assert_array_equal\nassert_array_equal(np.array([1, 2]), np.array([1, 2]))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Assert that two arrays have the same shape and elements.",
+    "output": "from numpy.testing import assert_array_equal\nassert_array_equal(np.array([1, 2]), np.array([1, 2]))"
+  },
+  {
+    "input": "a = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nnp.concatenate([a, b])",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Join a sequence of arrays along an existing axis.",
+    "output": "a = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nnp.concatenate([a, b])"
+  },
+  {
+    "input": "a = np.arange(6).reshape(2, 3)\nnp.transpose(a)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Reverse or permute the axes of an array; returns the modified array.",
+    "output": "a = np.arange(6).reshape(2, 3)\nnp.transpose(a)"
+  },
+  {
+    "input": "np.set_printoptions(precision=4, suppress=True)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Set printing options for NumPy objects.",
+    "output": "np.set_printoptions(precision=4, suppress=True)"
+  },
+  {
+    "input": "a = np.array([1, 0, np.nan, 3])\nnp.nansum(a)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Calculate the sum of array elements treating NaNs as zero.",
+    "output": "a = np.array([1, 0, np.nan, 3])\nnp.nansum(a)"
+  },
+  {
+    "input": "np.linspace(0, 10, num=5)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Return evenly spaced numbers over a specified interval.",
+    "output": "np.linspace(0, 10, num=5)"
+  },
+  {
+    "input": "np.shares_memory(np.array([1,2]), np.array([1,2]))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Determine if two arrays share memory.",
+    "output": "np.shares_memory(np.array([1,2]), np.array([1,2]))"
+  },
+  {
+    "input": "arr = np.array([1,2,3])\nnp.result_type(arr, np.float32)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Returns the type that results from applying the NumPy type promotion rules to the arguments.",
+    "output": "arr = np.array([1,2,3])\nnp.result_type(arr, np.float32)"
+  },
+  {
+    "input": "np.triu(np.ones((3,3)), k=1)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Return the upper triangle of an array.",
+    "output": "np.triu(np.ones((3,3)), k=1)"
+  },
+  {
+    "input": "np.tril(np.ones((3,3)), k=-1)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Return the lower triangle of an array.",
+    "output": "np.tril(np.ones((3,3)), k=-1)"
+  },
+  {
+    "input": "np.random.permutation(10)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Randomly permute a sequence, or return a permuted range.",
+    "output": "np.random.permutation(10)"
+  },
+  {
+    "input": "np.array_equal(np.array([1, 2]), np.array([1, 2]))",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Returns True if two arrays have the same shape and elements, False otherwise.",
+    "output": "np.array_equal(np.array([1, 2]), np.array([1, 2]))"
+  },
+  {
+    "input": "arr = np.array([1,2,3,4,5])\nnp.clip(arr, 2, 4)",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Clip (limit) the values in an array.",
+    "output": "arr = np.array([1,2,3,4,5])\nnp.clip(arr, 2, 4)"
   }
 ]
