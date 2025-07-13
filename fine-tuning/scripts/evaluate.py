@@ -10,10 +10,10 @@ import ast
 import pickle
 
 #Uncomment:
-#import torch
-#from peft import PeftModel
-#from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-
+import torch
+from peft import PeftModel
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers.utils.quantization_config import BitsAndBytesConfig
 import numpy as np
 from numpy import ma
 import numpy_financial as npf

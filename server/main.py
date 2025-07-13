@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import logging
 import sys
+import os
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent))
@@ -27,18 +28,56 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-rag = RAGService()
+rag = None
+
+# Get available models
+def get_available_models():
+
+    models_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
+    models = []
+
+    if models_dir.exists():
+        for model_dir in models_dir.iterdir():
+            if model_dir.is_dir() and (model_dir / "adapter_config.json").exists():
+                models.append(model_dir.name)
+
+    return models
+
+# Prompt for model selection
+def select_model():
+
+    models = get_available_models()
+
+    if not models:
+        print("No fine-tuned models found. Using Ollama fallback.")
+        return None
+    
+    print("\nAvailable models:")
+
+    for i, model in enumerate(models, 1):
+        print(f"{i}. {model}")
+
+    print(f"{len(models) + 1}. Use Ollama (deepseek-coder)")
+    
+    while True:
+        try:
+            choice = input("\nSelect model (number): ")
+            idx = int(choice) - 1
+            if idx == len(models):
+                return None
+            if 0 <= idx < len(models):
+                return models[idx]
+        except:
+            print("Invalid selection. Try again.")
 
 @app.get("/health", response_model=HealthResponse)
 async def health() -> HealthResponse:
     return HealthResponse(
         status = "healthy",
-        chroma_connected = rag.is_connected(),
-        ollama_available = rag.is_model_available()
+        chroma_connected = rag.is_connected() if rag else False,
+        model_available = rag.is_model_available() if rag else False
     )
 
-
-# Main endpoint
 @app.post("/analyze", response_model = CodeAnalysisResponse)
 async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
     logger.info(f"Analyzing code: {len(req.code)} chars, NumPy {req.numpy_version}")
@@ -60,14 +99,16 @@ async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
         logger.exception("Analysis failed")
         raise HTTPException(status_code = 500, detail = str(e))
 
-
-# Startup event handler, deprecated though – will fix this later
 @app.on_event("startup")
 async def startup() -> None:
+    global rag
+    selected_model = select_model()
+    rag = RAGService(selected_model)
+    
     logger.info(f"Starting {API_TITLE} v{API_VERSION}")
+    logger.info(f"Model: {selected_model or 'Ollama (deepseek-coder)'}")
     logger.info(f"ChromaDB: {'connected' if rag.is_connected() else 'disconnected'}")
-    logger.info(f"Ollama: {'available' if rag.is_model_available() else 'unavailable'}")
-
+    logger.info(f"Model: {'available' if rag.is_model_available() else 'unavailable'}")
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host=API_HOST, port=API_PORT, reload=True)
+    uvicorn.run("main:app", host = API_HOST, port = API_PORT, reload = True)

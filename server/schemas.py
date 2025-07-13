@@ -15,8 +15,8 @@ class FunctionInfo(BaseModel):
 
 class CodeAnalysisResponse(BaseModel):
     modernized_code: str
-    changes: List[Dict[str, str]] = Field(default_factory=list)
-    retrieved_context: Dict[str, List[str]] = Field(default_factory=dict)
+    changes: List[Dict[str, str]] = Field(default_factory = list)
+    retrieved_context: Dict[str, List[str]] = Field(default_factory = dict)
     success: bool = True
     error: Optional[str] = None
 
@@ -24,4 +24,4 @@ class CodeAnalysisResponse(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     chroma_connected: bool
-    ollama_available: bool
+    model_available: bool

@@ -21,7 +21,8 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
         self.funcs: List[FunctionInfo] = []
     
     # Extract NumPy function calls from AST
-    def visit_call(self, node: ast.Call) -> None:
+    def visit_Call(self, node: ast.Call) -> None:
+
         name = self._get_name(node.func)
         if name and self._is_numpy(name):
             self.funcs.append(FunctionInfo(
@@ -32,6 +33,7 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
         self.generic_visit(node)
     
     def _get_name(self, node: ast.AST) -> str:
+
         if isinstance(node, ast.Name):
             return node.id
         elif isinstance(node, ast.Attribute):
@@ -46,18 +48,22 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
         return ""
     
     def _is_numpy(self, name: str) -> bool:
+
         parts = name.split('.')
         return len(parts) > 1 and parts[0] in self.aliases
 
 class RAGService:
-    def __init__(self):
+
+    def __init__(self, model_name: str = None):
         self.collection: Any = None
         self._init_chroma()
-        self.model = ModelService()
+        self.model = ModelService(model_name)
         
     # Initialize ChromaDB connection
     def _init_chroma(self) -> None:
+
         try:
+
             from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
             
             embed_fn = SentenceTransformerEmbeddingFunction(
@@ -67,7 +73,7 @@ class RAGService:
             
             client = chromadb.PersistentClient(
                 path = CHROMA_DB_DIR,
-                settings = Settings(anonymized_telemetry=False)
+                settings = Settings(anonymized_telemetry = False)
             )
             
             try:
@@ -80,16 +86,21 @@ class RAGService:
                     metadata={"hnsw:space": "cosine"}
                 )
                 logger.info(f"Created collection: {COLLECTION_NAME}")
+
         except Exception as e:
+
             logger.error(f"ChromaDB init failed: {e}")
     
     # Extract NumPy functions from code
     def extract_funcs(self, code: str) -> List[FunctionInfo]:
+
         try:
+
             aliases = set(NUMPY_ALIASES)
             
             for match in re.findall(r'import\s+numpy\s+as\s+(\w+)', code):
                 aliases.add(match)
+
             if 'import numpy' in code:
                 aliases.add('numpy')
             
@@ -98,16 +109,20 @@ class RAGService:
             extractor.visit(tree)
             
             return extractor.funcs
+        
         except Exception as e:
+
             logger.error(f"Function extraction failed: {e}")
             return []
     
     # Query vector DB with multiple variations
     def query_db(self, func: str, version: str) -> List[Dict[str, Any]]:
+
         if not self.collection:
             return []
         
         try:
+
             variations = [func, f"numpy.{func}", f"np.{func}"]
             all_chunks: List[Dict[str, Any]] = []
             
@@ -134,11 +149,13 @@ class RAGService:
             return all_chunks[:3]
             
         except Exception as e:
+
             logger.error(f"DB query failed for {func}: {e}")
             return []
     
     # Main analysis function
     def analyze_code(self, code: str, version: str) -> CodeAnalysisResponse:
+
         logger.info(f"Analyzing code with NumPy {version}")
         
         funcs = self.extract_funcs(code)
@@ -147,6 +164,7 @@ class RAGService:
         logger.info(f"Found {len(unique_funcs)} unique NumPy functions")
         
         ctx: Dict[str, List[Dict[str, Any]]] = {}
+
         for fn in unique_funcs:
             ctx[fn] = self.query_db(fn, version)
         
@@ -172,7 +190,9 @@ class RAGService:
                 retrieved_context = retrieved_chunks,
                 success = result["success"]
             )
+        
         else:
+            
             logger.warning("Model not available")
             return CodeAnalysisResponse(
                 modernized_code = code,
