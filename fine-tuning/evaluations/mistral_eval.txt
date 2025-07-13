@@ -918,7 +918,7 @@ Running Test 47/52
 }
 Parsed suggestion:
 ```python
-if not np.any(arr == 0):
+    if not np.any(arr == 0):
         result = np.product(arr)
     else:
         result = 0
@@ -990,7 +990,7 @@ Running Test 51/52
 }
 Parsed suggestion:
 ```python
-arr_i = arr.astype(np.int)
+    arr_i = arr.astype(np.int)
     is_in = np.isin(arr_i, [2, 3])
 ```
 ✅ COMPILE CHECK: Success (+1 pts)
@@ -1007,7 +1007,7 @@ Model raw output:
 }
 Parsed suggestion:
 ```python
-if len(arr) > 0 and not (arr == 'sentinel').any():
+    if len(arr) > 0 and not (arr == 'sentinel').any():
         res = np.trapz(arr[arr != None])
         result = np.round_(res, 2)
     else:
@@ -1021,4 +1021,120 @@ if len(arr) > 0 and not (arr == 'sentinel').any():
 COMPLETE
 Total Score: 272 / 520
 Overall Performance: 52.31%
+==========================================
+
+
+
+
+
+
+
+
+
+START
+
+
+
+
+
+
+
+
+Running Test 45/52
+ Model raw output:
+
+{
+    "context": "`np.unique1d` is deprecated since 1.20.0 (use `np.unique`), and `np.row_stack` is deprecated since 1.18.0 (use `np.vstack`).",
+    "output": "unique1 = np.unique(list1)\nunique2 = np.unique(list2)\nstacked = np.vstack((unique1, unique2))"
+}
+Parsed suggestion:
+```python
+unique1 = np.unique(list1)
+unique2 = np.unique(list2)
+stacked = np.vstack((unique1, unique2))
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+✅ DEPRECATION CHECK: Success (+2 pts)
+Running I/O Test Cases
+  ✅ Test Case 1: Passed
+  ✅ Test Case 2: Passed
+  ✅ Test Case 3: Passed
+I/O CHECK Result: 3/3 passed (+6 pts)
+--- Sample 45 total score: 9/10 ---
+
+==========================================
+
+Running Test 51/52
+ Model raw output:
+
+{
+    "context": "The function `np.Setmember1d` is deprecated since NumPy 1.20.0. Use `np.isin` instead.",
+    "output": "    arr_i = arr.astype(np.int)\n    is_in = np.isin(arr_i, [2, 3])"
+}
+Parsed suggestion:
+```python
+    arr_i = arr.astype(np.int)
+    is_in = np.isin(arr_i, [2, 3])
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+
+==========================================
+Running Test 47/52
+ Model raw output:
+
+{
+    "context": "The function `np.sometrue` is deprecated since NumPy 1.20.0. Use `np.any` instead.",
+    "output": "    if not np.any(arr == 0):\n        result = np.product(arr)\n    else:\n        result = 0"
+}
+Parsed suggestion:
+```python
+    if not np.any(arr == 0):
+        result = np.product(arr)
+    else:
+        result = 0
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
+=====================================================
+
+Running Test 39/52
+ Model raw output:
+
+{
+    "context": "The alias `np.bincount` is deprecated since NumPy 1.20.0. Use `np.bincount` instead.",
+    "output": "counts = np.bincount(arr)"
+}
+Parsed suggestion:
+```python
+counts = np.bincount(arr)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+❌ INDENTATION CHECK: Failed.
+❌ DEPRECATION CHECK: Function crashed during test.
+
+==========================================
+
+==========================================
+Running Test 41/52
+ Model raw output:
+
+{
+    "context": "`np.irr` is deprecated since 1.20.0 (use `np.irr1`), and `np.alen` is deprecated since 1.19.0 (use `len`).",
+    "output": "    rate = np.irr1(cash_flows)\n    length = len(cash_flows)"
+}
+Parsed suggestion:
+```python
+rate = np.irr1(cash_flows)
+    length = len(cash_flows)
+```
+✅ COMPILE CHECK: Success (+1 pts)
+✅ INDENTATION CHECK: Success (+1 pts)
+❌ DEPRECATION CHECK: Failed. Deprecation found.
+
 ==========================================
