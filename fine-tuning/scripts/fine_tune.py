@@ -1,4 +1,4 @@
-#For finetuning different models in google colab
+# For finetuning different models in google colab
 
 
 #Install required libraries in colab:
@@ -9,7 +9,10 @@ import torch
 
 from datasets import Dataset
 from peft import LoraConfig
-from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, BitsAndBytesConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers.utils.quantization_config import BitsAndBytesConfig
+from transformers.training_args import TrainingArguments
+
 from trl import SFTTrainer
 from huggingface_hub import notebook_login
 
@@ -96,5 +99,5 @@ print("COMPLETE!")
 trainer.model.save_pretrained(new_model_name)
 print(f"Model adapter saved to ./{new_model_name}")
 
-#Create zip file to download trained model from colab:
-#!zip -r libsmart_adapter.zip ./{new_model_name}
+# Create zip file to download trained model from colab:
+# !zip -r libsmart_adapter.zip ./{new_model_name}
