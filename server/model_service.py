@@ -93,7 +93,7 @@ class ModelService:
             raise
 
     def _generate_finetuned(self, prompt: str) -> str:
-        
+
         instruction = """Modernize deprecated NumPy code. Output in two parts separated by "---EXPLANATION---":
 1. First part: Only the modernized code
 2. Second part: Explanation of what changes were made and why. Keep this very concise, don't be too verbose. No more than 1-2 sentences per change.
@@ -106,7 +106,7 @@ If no deprecated functionality is found, output only 'No deprecated functionalit
         else:
             full_prompt = f"{instruction}\n\nCode:\n{prompt}\n\nOutput:\n"
         
-        inputs = self.tokenizer(full_prompt, return_tensors="pt", add_special_tokens=False)
+        inputs = self.tokenizer(full_prompt, return_tensors = "pt", add_special_tokens = False)
         
         if torch.backends.mps.is_available():
             inputs = inputs.to("mps")
