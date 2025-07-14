@@ -93,9 +93,10 @@ class ModelService:
             raise
 
     def _generate_finetuned(self, prompt: str) -> str:
+        
         instruction = """Modernize deprecated NumPy code. Output in two parts separated by "---EXPLANATION---":
 1. First part: Only the modernized code
-2. Second part: Explanation of what changes were made and why
+2. Second part: Explanation of what changes were made and why. Keep this very concise, don't be too verbose. No more than 1-2 sentences per change.
 If no deprecated functionality is found, output only 'No deprecated functionality found'"""
         
         if "mistral" in self.model_name:
@@ -149,7 +150,7 @@ Instructions:
 - Ignore context that doesn't indicate deprecation
 - Output in two parts separated by "---EXPLANATION---"
 - First part: Only the modernized code in a ```python block
-- Second part: Explanation of what changes were made and why
+- Second part: Explanation of what changes were made and why. Keep this very concise, don't be too verbose. No more than 1-2 sentences per change.
 - If no deprecated functionality found, output only "No deprecated functionality found"
 
 Output:"""
