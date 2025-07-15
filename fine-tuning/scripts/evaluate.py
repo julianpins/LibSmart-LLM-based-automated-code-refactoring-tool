@@ -1,5 +1,5 @@
 #Uncomment:
-#!pip install -q -U "torch==2.3.1" "transformers==4.41.2" "peft==0.11.1" "accelerate==0.30.1" "trl==0.9.4" "datasets==2.19.2" "bitsandbytes==0.43.1" numpy_financial
+!pip install -q -U "torch==2.3.1" "transformers==4.41.2" "peft==0.11.1" "accelerate==0.30.1" "trl==0.9.4" "datasets==2.19.2" "bitsandbytes==0.43.1" numpy_financial
 
 import json
 import warnings
