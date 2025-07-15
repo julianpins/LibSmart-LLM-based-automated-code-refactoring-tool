@@ -1,20 +1,18 @@
 import requests
 import json
-import re
 import logging
 import torch
 import platform
 from pathlib import Path
 from typing import Dict, List, Any
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from transformers.utils.quantization_config import  BitsAndBytesConfig
+from transformers.utils.quantization_config import BitsAndBytesConfig
 from peft import PeftModel
 
 from config import OLLAMA_MODEL, OLLAMA_BASE_URL, MODEL_TEMPERATURE, MODEL_MAX_TOKENS
 
 logger = logging.getLogger(__name__)
 
-# Base model mapping
 BASE_MODELS = {
     "codellama-7b-libsmart": "codellama/CodeLlama-7b-hf",
     "gemma-2b-libsmart": "google/gemma-2b", 
@@ -36,13 +34,12 @@ class ModelService:
             self.base_url = OLLAMA_BASE_URL
             self.api_url = f"{self.base_url}/api/generate"
 
-    # DOESN'T WORK AT THE MOMENT, QUANTIZATION WITH PICKLE FILE SOMEHOW NOT SUPPORTED!!!
-    
-    # Load fine-tuned model
     def _load_finetuned_model(self):
 
         try:
+
             base_model_id = BASE_MODELS.get(self.model_name)
+
             if not base_model_id:
                 raise ValueError(f"Unknown model: {self.model_name}")
             
@@ -50,22 +47,18 @@ class ModelService:
             
             logger.info(f"Loading base model: {base_model_id}")
             
-            # macOS: Use PyTorch quantization
             if platform.system() == "Darwin":
                 logger.info("Using PyTorch dynamic quantization for macOS")
                 
-                # Load in float32 first
                 self.model = AutoModelForCausalLM.from_pretrained(
                     base_model_id,
                     torch_dtype = torch.float32,
                     low_cpu_mem_usage = True
                 )
                 
-                # Apply PEFT adapter before quantization
                 logger.info(f"Loading adapter from: {adapter_path}")
                 self.model = PeftModel.from_pretrained(self.model, str(adapter_path))
                 
-                # Apply dynamic quantization
                 self.model = torch.quantization.quantize_dynamic(
                     self.model,
                     {torch.nn.Linear},
@@ -75,7 +68,7 @@ class ModelService:
                 logger.info("Applied int8 dynamic quantization")
                 
             else:
-                # Linux/Windows: Use bitsandbytes
+
                 bnb_config = BitsAndBytesConfig(
                     load_in_4bit = True,
                     bnb_4bit_quant_type = "nf4",
@@ -99,24 +92,26 @@ class ModelService:
             logger.error(f"Failed to load model: {e}")
             raise
 
-    # Generate response from fine-tuned model
     def _generate_finetuned(self, prompt: str) -> str:
-        instruction = "Analyze the following Python code for a deprecated NumPy function and generate a JSON object with the suggested fix and context."
+
+        instruction = """Modernize deprecated NumPy code. Output in two parts separated by "---EXPLANATION---":
+1. First part: Only the modernized code
+2. Second part: Explanation of what changes were made and why. Keep this very concise, don't be too verbose. No more than 1-2 sentences per change.
+If no deprecated functionality is found, output only 'No deprecated functionality found'"""
         
         if "mistral" in self.model_name:
-            full_prompt = f"<s>[INST] {instruction}\n\n### INPUT CODE:\n```python\n{prompt}\n``` [/INST]"
+            full_prompt = f"<s>[INST] {instruction}\n\nCode:\n{prompt} [/INST]"
         elif "gemma" in self.model_name:
-            full_prompt = f"<start_of_turn>user\n{instruction}\n\n### INPUT CODE:\n```python\n{prompt}\n```<end_of_turn>\n<start_of_turn>model\n"
+            full_prompt = f"<start_of_turn>user\n{instruction}\n\nCode:\n{prompt}<end_of_turn>\n<start_of_turn>model\n"
         else:
-            full_prompt = f"{instruction}\n\n### INPUT CODE:\n```python\n{prompt}\n```\n\n### OUTPUT:\n"
+            full_prompt = f"{instruction}\n\nCode:\n{prompt}\n\nOutput:\n"
         
         inputs = self.tokenizer(full_prompt, return_tensors = "pt", add_special_tokens = False)
         
-        if torch.cuda.is_available():
-            inputs = inputs.to("cuda")
+        if torch.backends.mps.is_available():
+            inputs = inputs.to("mps")
         
         with torch.no_grad():
-
             outputs = self.model.generate(
                 **inputs,
                 max_new_tokens = 256,
@@ -125,101 +120,56 @@ class ModelService:
                 eos_token_id = self.tokenizer.eos_token_id
             )
         
-        response = self.tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
+        response = self.tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens = True)
         return response
 
     def create_prompt(self, code: str, version: str, funcs: List[str], ctx: Dict[str, List[Dict[str, Any]]]) -> str:
-        
+
         if not self.use_ollama:
             return code
         
         context_parts = []
 
         for fn, chunks in ctx.items():
-            if chunks:
-                for chunk in chunks[:3]:
-                    if chunk['similarity_score'] > 0.4:
-                        content = chunk['content'].replace('\n', ' ')[:600]
-                        context_parts.append(f"- {content}")
+            if chunks and chunks[0]['similarity_score'] > 0.4:
+                content = chunks[0]['content']
+                if 'deprecated' in content.lower() or 'replacement' in content.lower():
+                    context_parts.append(f"- {fn}: {content[:200]}...")
 
-        context_section = "\n".join(context_parts) if context_parts else "No deprecation information found."
+        context = "\n".join(context_parts) if context_parts else ""
 
-        prompt = f"""You are a NumPy expert. Modernize NumPy {version} code by replacing deprecated functions.
+        prompt = f"""Modernize this NumPy {version} code by replacing deprecated functions, parameters, or keywords.
 
-Deprecation Information:
-{context_section}
-
-Code to modernize:
+{f"Context from documentation:\n{context}\n" if context else ""}Code:
 ```python
 {code}
 ```
 
-For each deprecated function call, provide the exact code snippet that needs to be replaced and its modernized version.
+Instructions:
+- Check if any NumPy functionality is deprecated (functions, parameters, keywords)
+- Ignore context that doesn't indicate deprecation
+- Output in two parts separated by "---EXPLANATION---"
+- First part: Only the modernized code in a ```python block
+- Second part: Explanation of what changes were made and why. Keep this very concise, don't be too verbose. No more than 1-2 sentences per change.
+- If no deprecated functionality found, output only "No deprecated functionality found"
 
-Respond in JSON format:
-{{
-  "code": "full modernized code here",
-  "changes": [
-    {{"input": "exact_deprecated_code_snippet", "modernized_code": "exact_replacement_snippet", "reason": "explanation"}}
-  ]
-}}
-
-JSON Response:"""
+Output:"""
         
         return prompt
 
-    def parse_response(self, resp_text: str, orig_code: str) -> Dict[str, Any]:
-
-        try:
-            json_match = re.search(r'\{[\s\S]*\}', resp_text)
-            if json_match:
-                data = json.loads(json_match.group())
-                return {
-                    "modernized_code": data.get("code", orig_code),
-                    "changes": data.get("changes", []),
-                    "success": bool(data.get("code") and data.get("code") != orig_code)
-                }
-        except json.JSONDecodeError:
-            logger.warning("JSON parse failed, using fallback")
-        
-        code_blocks = re.findall(r'```(?:python)?\n(.*?)\n```', resp_text, re.DOTALL)
-        code = code_blocks[0].strip() if code_blocks else orig_code
-        
-        changes = []
-        deprecated_patterns = [
-            r'(np\.\w+_?\([^)]*\))',
-            r'(numpy\.\w+_?\([^)]*\))',
-            r'(\w+\s*=\s*np\.\w+)',
-        ]
-        
-        for pattern in deprecated_patterns:
-            for match in re.finditer(pattern, orig_code):
-                snippet = match.group(1)
-                if 'deprecated' in resp_text.lower() and snippet in resp_text:
-                    changes.append({
-                        "input": snippet,
-                        "modernized_code": snippet,
-                        "reason": "Deprecated function detected"
-                    })
-        
-        return {
-            "modernized_code": code,
-            "changes": changes,
-            "success": code != orig_code
-        }
-
-    # Main call method
-    def call_model(self, code: str, version: str, funcs: List[str], ctx: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Any]:
+    def call_model(self, code: str, version: str, funcs: List[str], ctx: Dict[str, List[Dict[str, Any]]]) -> str:
 
         logger.info(f"Calling model for {len(funcs)} functions")
         
         try:
+
             if self.use_ollama:
+
                 prompt = self.create_prompt(code, version, funcs, ctx)
                 
                 resp = requests.post(
                     self.api_url,
-                    json={
+                    json = {
                         "model": OLLAMA_MODEL,
                         "prompt": prompt,
                         "stream": False,
@@ -233,37 +183,29 @@ JSON Response:"""
                 
                 if resp.status_code == 200:
                     result = resp.json()
-                    response_text = result.get("response", "")
-                    return self.parse_response(response_text, code)
+                    return result.get("response", "")
                 else:
                     logger.error(f"Ollama call failed: {resp.status_code}")
-                    return {
-                        "modernized_code": code,
-                        "changes": [],
-                        "success": False
-                    }
+                    return "Model call failed"
                 
             else:
 
-                response_text = self._generate_finetuned(code)
-                return self.parse_response(response_text, code)
+                return self._generate_finetuned(code)
                 
         except Exception as e:
-            logger.exception("Model call exception")
-            return {
-                "modernized_code": code,
-                "changes": [],
-                "success": False
-            }
 
-    # Check availability
+            logger.exception("Model call exception")
+            raise
+
     def is_available(self) -> bool:
-        
+
         if self.use_ollama:
+
             try:
                 resp = requests.get(f"{self.base_url}/api/tags", timeout=2)
                 return resp.status_code == 200
             except:
                 return False
+            
         else:
             return self.model is not None and self.tokenizer is not None

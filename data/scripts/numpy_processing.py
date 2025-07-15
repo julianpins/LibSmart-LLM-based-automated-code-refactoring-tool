@@ -10,11 +10,13 @@ import torch
 class NumpyDocProcessor:
 
     def __init__(self):
+
         device = 'mps' if torch.backends.mps.is_available() else 'cpu'
+
         self.embeddings = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-base-en-v1.5",
-            model_kwargs={'device': device},
-            encode_kwargs={'normalize_embeddings': True}
+            model_name = "BAAI/bge-base-en-v1.5",
+            model_kwargs = {'device': device},
+            encode_kwargs = {'normalize_embeddings': True}
         )
         
         db_path = Path("data/docs/chroma_db")
@@ -85,15 +87,16 @@ class NumpyDocProcessor:
         for chunk in chunks:
 
             doc = Document(
-                page_content=chunk['content'],
-                metadata=chunk['metadata']
+                page_content = chunk['content'],
+                metadata = chunk['metadata']
             )
+
             docs.append(doc)
 
         return docs
 
     def process_file(self, filepath):
-        
+
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
         
@@ -108,11 +111,15 @@ class NumpyDocProcessor:
 
 
 if __name__ == "__main__":
+
     processor = NumpyDocProcessor()
     md_file = Path("data/docs/numpy_deprecations.md")
     
     if md_file.exists():
+
         count = processor.process_file(md_file)
         print(f"Processing complete. Total chunks: {count}")
+
     else:
+        
         print(f"File not found: {md_file}")

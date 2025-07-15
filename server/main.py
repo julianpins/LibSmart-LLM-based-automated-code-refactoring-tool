@@ -16,34 +16,31 @@ logging.basicConfig(
     level = logging.INFO,
     format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
+
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title = API_TITLE, version = API_VERSION)
+app = FastAPI(title=API_TITLE, version=API_VERSION)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins = ["*"],
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
 )
 
 rag = None
 
-# Get available models
 def get_available_models():
 
     models_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
     models = []
-
     if models_dir.exists():
         for model_dir in models_dir.iterdir():
             if model_dir.is_dir() and (model_dir / "adapter_config.json").exists():
                 models.append(model_dir.name)
-
     return models
 
-# Prompt for model selection
 def select_model():
 
     models = get_available_models()
@@ -78,12 +75,12 @@ async def health() -> HealthResponse:
         model_available = rag.is_model_available() if rag else False
     )
 
-@app.post("/analyze", response_model = CodeAnalysisResponse)
+@app.post("/analyze", response_model=CodeAnalysisResponse)
 async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
     logger.info(f"Analyzing code: {len(req.code)} chars, NumPy {req.numpy_version}")
     
     if not rag.is_connected():
-        raise HTTPException(status_code = 503, detail = "Vector database unavailable")
+        raise HTTPException(status_code=503, detail="Vector database unavailable")
     
     try:
         result = rag.analyze_code(req.code, req.numpy_version)
@@ -91,13 +88,13 @@ async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
         if result.error:
             logger.error(f"Analysis error: {result.error}")
         else:
-            logger.info(f"Analysis successful: {len(result.changes)} changes, {len(result.retrieved_context)} functions analyzed")
+            logger.info(f"Analysis successful: {len(result.retrieved_context)} functions analyzed")
         
         return result
         
     except Exception as e:
         logger.exception("Analysis failed")
-        raise HTTPException(status_code = 500, detail = str(e))
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.on_event("startup")
 async def startup() -> None:
@@ -111,4 +108,4 @@ async def startup() -> None:
     logger.info(f"Model: {'available' if rag.is_model_available() else 'unavailable'}")
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host = API_HOST, port = API_PORT, reload = True)
+    uvicorn.run("main:app", host=API_HOST, port=API_PORT, reload=True)
