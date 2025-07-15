@@ -778,5 +778,131 @@
       {"input": "['sentinel']", "expected_output": "None"},
       {"input": "[10, 20, 30]", "expected_output": "40.0"}
     ]
+  },
+  {
+    "code_before": "import numpy as np\ndef create_double_precision_array(data):\n    # This function creates an array with a specific data type\n    print('Creating array...')\n",
+    "input": "    arr = np.array(data, dtype=np.double)\n    # Some other processing happens here\n    sum_val = np.sum(arr)",
+    "code_after": "\n    print('Processing complete.')\n    return arr.dtype, sum_val",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.double` is deprecated since NumPy 1.20.0. Use `np.float64` instead.",
+    "functionality": "Create a double-precision float array and calculate its sum.",
+    "output": "    arr = np.array(data, dtype=np.float64)\n    # Some other processing happens here\n    sum_val = np.sum(arr)",
+    "test_cases": [
+      {"input": "[1.5, 2.5, 3.5]", "expected_output": "(np.dtype('float64'), 7.5)"},
+      {"input": "[]", "expected_output": "(np.dtype('float64'), 0.0)"},
+      {"input": "[0.1]", "expected_output": "(np.dtype('float64'), 0.1)"}      
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef create_complex_array(data):\n    # This function creates a complex array\n",
+    "input": "    z = np.array(data, dtype=np.cfloat)\n    # Perform some operation\n    z_conj = np.conjugate(z)",
+    "code_after": "\n    return z_conj",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.cfloat` is deprecated since NumPy 1.20.0. Use `np.complex128` instead.",
+    "functionality": "Create a complex array and return its conjugate.",
+    "output": "    z = np.array(data, dtype=np.complex128)\n    # Perform some operation\n    z_conj = np.conjugate(z)",
+    "test_cases": [
+      {"input": "[1+2j, 3-4j]", "expected_output": "np.array([1.-2.j, 3.+4.j])"},
+      {"input": "[5j, -1]", "expected_output": "np.array([-0.-5.j, -1.+0.j])"},
+      {"input": "[-1+42j]", "expected_output": "np.array([-1.-42.j])"}
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef create_string_array_and_join(items):\n    # This function creates a string array\n",
+    "input": "    str_arr = np.array(items, dtype=np.str)\n    # Join the strings\n    joined = '-'.join(str_arr)",
+    "code_after": "\n    return joined",
+    "package": "numpy",
+    "version": "1.20.0",
+    "context": "The alias `np.str` is deprecated since NumPy 1.20.0. Use the built-in `str` instead.",
+    "functionality": "Create a string array and join its elements.",
+    "output": "    str_arr = np.array(items, dtype=str)\n    # Join the strings\n    joined = '-'.join(str_arr)",
+    "test_cases": [
+      {"input": "['a', 'b', 'c']", "expected_output": "'a-b-c'"},
+      {"input": "['test']", "expected_output": "'test'"},
+      {"input": "['1', '2']", "expected_output": "'1-2'"}
+
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef extract_scalar_from_array(arr):\n    # This function extracts a single value from an array\n    print('Extracting scalar value...')\n",
+    "input": "    value = np.asscalar(arr)\n    print('Extraction complete.')",
+    "code_after": "\n    return value * 2",
+    "package": "numpy",
+    "version": "1.16.0",
+    "context": "The function `numpy.asscalar` is deprecated since NumPy 1.16.0. Use `numpy.ndarray.item` instead.",
+    "functionality": "Extract a scalar from a 1-element array and double it.",
+    "output": "    value = arr.item()\n    print('Extraction complete.')",
+    "test_cases": [
+      {"input": "np.array([10])", "expected_output": "20"},
+      {"input": "np.array([[-5.5]])", "expected_output": "-11."},
+      {"input": "np.array([[['test']]])", "expected_output": "'testtest'"}
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef limit_array_values(arr, min_val, max_val):\n    # This function limits the values in an array\n    original_sum = arr.sum()\n",
+    "input": "    clipped_arr = np.clip(arr, min_val, max_val)\n    # Log the result\n    print('Clipping complete')",
+    "code_after": "\n    return clipped_arr",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Clip (limit) the values in an array.",
+    "output": "    clipped_arr = np.clip(arr, min_val, max_val)\n    # Log the result\n    print('Clipping complete')",
+    "test_cases": [
+      {"input": "(np.arange(10), 2, 7)", "expected_output": "np.array([2, 2, 2, 3, 4, 5, 6, 7, 7, 7])"},
+      {"input": "(np.array([-5, 5, 0]), 0, 10)", "expected_output": "np.array([0, 5, 0])"},
+      {"input": "(np.array([1, 2, 3, 4, 5]), 2, 4)", "expected_output": "np.array([2, 2, 3, 4, 4])"}
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef combine_arrays_vertically(arr1, arr2):\n    # This function combines arrays\n    print(f'Combining arrays with shapes {arr1.shape} and {arr2.shape}')\n",
+    "input": "    combined = np.concatenate((arr1, arr2), axis=0)\n    # Final check\n    assert combined.shape[1] == arr1.shape[1]",
+    "code_after": "\n    return combined.shape",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Combine arrays along rows and return the new shape.",
+    "output": "    combined = np.concatenate((arr1, arr2), axis=0)\n    # Final check\n    assert combined.shape[1] == arr1.shape[1]",
+    "test_cases": [
+      {"input": "(np.ones((2, 3)), np.zeros((1, 3)))", "expected_output": "(3, 3)"},
+      {"input": "(np.ones((5, 1)), np.zeros((5, 1)))", "expected_output": "(10, 1)"},
+      {"input": "(np.array([[1, 2, 3], [4, 5, 6]]),np.array([[1, 2, 6]]))", "expected_output": "(3, 3)"}
+
+
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef sum_ignoring_nan(data):\n    # This function calculates a sum while ignoring NaN values\n    num_items = len(data)\n",
+    "input": "    total = np.nansum(data)\n    # Log the result\n    print(f'Sum of {num_items} items is {total}')",
+    "code_after": "\n    return total",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Calculate the sum of array elements treating NaNs as zero.",
+    "output": "    total = np.nansum(data)\n    # Log the result\n    print(f'Sum of {num_items} items is {total}')",
+    "test_cases": [
+      {"input": "np.array([1, 2, np.nan, 4])", "expected_output": "7.0"},
+      {"input": "np.array([np.nan, np.nan])", "expected_output": "0.0"},
+      {"input": "np.array([1, 2, 3])", "expected_output": "6"}
+
+    ]
+  },
+  {
+    "code_before": "import numpy as np\ndef get_matrix_transpose(matrix):\n    # This function transposes a matrix\n    print('Transposing matrix...')\n",
+    "input": "    transposed_matrix = np.transpose(matrix)\n    # Some other operation\n    if transposed_matrix.shape[0] > 1:\n        print('Transpose has more than one row')",
+    "code_after": "\n    return transposed_matrix",
+    "package": "numpy",
+    "version": "2.0.0",
+    "context": "This code chunk does not contain deprecated functions.",
+    "functionality": "Return the transpose of a matrix.",
+    "output": "    transposed_matrix = np.transpose(matrix)\n    # Some other operation\n    if transposed_matrix.shape[0] > 1:\n        print('Transpose has more than one row')",
+    "test_cases": [
+      {"input": "np.array([[1, 2, 3], [4, 5, 6]])", "expected_output": "np.array([[1, 4], [2, 5], [3, 6]])"},
+      {"input": "np.array([[10, 20]])", "expected_output": "np.array([[10], [20]])"},
+      {"input": "np.array([[1, 2], [3, 4], [5, 6]])", "expected_output": "np.array([[1, 3, 5], [2, 4, 6]])"}
+
+
+    ]
   }
 ]
