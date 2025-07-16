@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LibSmart</title>
+    <link href="{{stylesUri}}" rel="stylesheet">
+</head>
+<body>
+    <h1>LibSmart</h1>
+    <div id="loader">Loading...</div>
+    <div id="result" style="display:none;">
+        <div id="no-changes">
+            <p>No deprecated functionality found!</p>
+        </div>
+        <div id="changes-found">
+            <h3>Suggested Change:</h3>
+            <pre><code id="modernized-code"></code></pre>
+            <button id="replace-btn">Accept Change</button>
+            <h3>Context:</h3>
+            <div id="explanation"></div>
+        </div>
+    </div>
+    <script src="{{scriptUri}}"></script>
+</body>
+</html>

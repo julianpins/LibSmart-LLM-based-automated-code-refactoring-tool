@@ -1,0 +1,28 @@
+{
+  "name": "numpy-libsmart",
+  "displayName": "libsmart",
+  "description": "Analyzes and modernizes deprecated NumPy code using a RAG backend and LLM.",
+  "version": "1.0.0",
+  "publisher": "mcmurdo",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "libsmart.modernize",
+        "title": "Find and Replace Deprecated Functions"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection && editorLangId == python",
+          "command": "libsmart.modernize",
+          "group": "1_modification"
+        }
+      ]
+    }
+  }
+}
