@@ -120,36 +120,6 @@
     ]
   },
   {
-    "code_before": "import numpy as np\ndef get_by_float_index(arr, idx):\n",
-    "input": "    value = arr[idx]",
-    "code_after": "\n    return value",
-    "package": "numpy",
-    "version": "1.8.0",
-    "context": "Using a non-integer (e.g., float) for array indexing is deprecated since NumPy 1.8.0. Use an integer instead.",
-    "functionality": "Access an element of an array using an index.",
-    "output": "    value = arr[int(idx)]",
-    "test_cases": [
-      {"input": "(np.arange(10), 3.0)", "expected_output": "3"},
-      {"input": "(np.array([10, 20, 30]), 0.0)", "expected_output": "10"},
-      {"input": "(np.array([10, 20, 30]), 1.9)", "expected_output": "20"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef repeat_list_with_float(seq, n):\n",
-    "input": "    result = np.float_(n) * seq",
-    "code_after": "\n    return result",
-    "package": "numpy",
-    "version": "1.9.0",
-    "context": "Using a non-integer scalar for sequence repetition is deprecated since NumPy 1.9.0. Use a standard Python int.",
-    "functionality": "Repeat a sequence.",
-    "output": "    result = int(n) * seq",
-    "test_cases": [
-      {"input": "(['a', 'b'], 2.0)", "expected_output": "['a', 'b', 'a', 'b']"},
-      {"input": "([1], 4.0)", "expected_output": "[1, 1, 1, 1]"},
-      {"input": "([], 10.0)", "expected_output": "[]"}
-    ]
-  },
-  {
     "code_before": "import numpy as np\ndef get_array_rank(arr):\n",
     "input": "    rank = np.rank(arr)",
     "code_after": "\n    return rank",
@@ -180,36 +150,6 @@
     ]
   },
   {
-    "code_before": "import numpy as np\ndef fix_with_out(x, y):\n",
-    "input": "    np.fix(x, y)",
-    "code_after": "\n    return y",
-    "package": "numpy",
-    "version": "1.13.0",
-    "context": "Passing the output array as a positional argument is deprecated since NumPy 1.13.0. Use the keyword argument `out` instead, e.g., `f(x, out=out)`.",
-    "functionality": "Round to nearest integer towards zero, using an output array.",
-    "output": "    np.fix(x, out=y)",
-    "test_cases": [
-      {"input": "(np.array([-1.9, -0.2, 0.2, 1.9]), np.empty(4))", "expected_output": "np.array([-1., -0.,  0.,  1.])"},
-      {"input": "(np.array([2.0, 3.0]), np.empty(2))", "expected_output": "np.array([2., 3.])"},
-      {"input": "(np.array([-2.5, 2.5]), np.empty(2))", "expected_output": "np.array([-2.,  2.])"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef get_masked_argsort(arr):\n",
-    "input": "    indices = arr.argsort()",
-    "code_after": "\n    return indices",
-    "package": "numpy",
-    "version": "1.13.0",
-    "context": "Calling `np.ma.argsort` without an `axis` argument is deprecated since NumPy 1.13.0. To keep the old behavior of flattening the array, use `axis=None`.",
-    "functionality": "Return the indices that would sort a masked array.",
-    "output": "    indices = arr.argsort(axis=None)",
-    "test_cases": [
-      {"input": "np.ma.array([[3, 2], [1, 4]], mask=[[0, 1], [0, 0]])", "expected_output": "np.ma.array([2, 0, 3, 1])"},
-      {"input": "np.ma.array([1, 3, 2], mask=[0, 1, 0])", "expected_output": "np.ma.array([0, 2, 1])"},
-      {"input": "np.ma.array([1, 2, 3], mask=[0, 0, 0])", "expected_output": "np.ma.array([0, 1, 2])"}
-    ]
-  },
-  {
     "code_before": "import numpy as np\ndef check_if_empty(arr):\n",
     "input": "    if arr:\n        is_empty = False\n    else:\n        is_empty = True",
     "code_after": "\n    return is_empty",
@@ -237,21 +177,6 @@
       {"input": "np.array([0, 1, 1, 2, 3, 0])", "expected_output": "np.array([2, 2, 1, 1])"},
       {"input": "np.array([5])", "expected_output": "np.array([0, 0, 0, 0, 0, 1])"},
       {"input": "np.array([], dtype=int)", "expected_output": "np.array([], dtype=int)"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef get_column(arr):\n    idx = [slice(None), 0]\n",
-    "input": "    column_data = arr[idx]",
-    "code_after": "\n    return column_data",
-    "package": "numpy",
-    "version": "1.15.0",
-    "context": "Indexing an array with a list of separate index objects is deprecated since NumPy 1.15.0. Use a tuple `arr[tuple(ind)]` instead.",
-    "functionality": "Index an array using a dynamically created set of indices.",
-    "output": "    column_data = arr[tuple(idx)]",
-    "test_cases": [
-      {"input": "np.arange(4).reshape(2, 2)", "expected_output": "np.array([0, 2])"},
-      {"input": "np.array([[10, 20], [30, 40]])", "expected_output": "np.array([10, 30])"},
-      {"input": "np.ones((5, 3))", "expected_output": "np.array([1., 1., 1., 1., 1.])"}
     ]
   },
   {
@@ -357,21 +282,6 @@
       {"input": "np.array([10, 20, 30])", "expected_output": "np.array(10)"},
       {"input": "np.array([99, -1, 50])", "expected_output": "np.array(99)"},
       {"input": "np.arange(5)", "expected_output": "np.array(0)"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef sum_all(arr):\n",
-    "input": "    total = arr.sum(axis=32)",
-    "code_after": "\n    return total",
-    "package": "numpy",
-    "version": "1.23.0",
-    "context": "Using `axis=32` (the old default sentinel) is deprecated since NumPy 1.23.0. Use `axis=None` to sum over all axes.",
-    "functionality": "Sum of array elements over all axes.",
-    "output": "    total = arr.sum(axis=None)",
-    "test_cases": [
-      {"input": "np.arange(4).reshape(2,2)", "expected_output": "6"},
-      {"input": "np.array([10, 20])", "expected_output": "30"},
-      {"input": "np.array([[1, 1], [1, 1]])", "expected_output": "4"}
     ]
   },
   {
@@ -555,51 +465,6 @@
     ]
   },
   {
-    "code_before": "import numpy as np\ndef create_string_dtype(length):\n",
-    "input": "    dt = np.dtype(f'a{length}')",
-    "code_after": "\n    return dt",
-    "package": "numpy",
-    "version": "2.0.0",
-    "context": "Using 'a' to signify a string dtype is deprecated since NumPy 2.0.0. Use 'S' instead.",
-    "functionality": "Create a data type object for a fixed-length bytestring.",
-    "output": "    dt = np.dtype(f'S{length}')",
-    "test_cases": [
-      {"input": "10", "expected_output": "np.dtype('S10')"},
-      {"input": "1", "expected_output": "np.dtype('S1')"},
-      {"input": "0", "expected_output": "np.dtype('S0')"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef count_from_floats(arr):\n",
-    "input": "    counts = np.bincount(arr)",
-    "code_after": "\n    return counts",
-    "package": "numpy",
-    "version": "2.1.0",
-    "context": "Passing a non-integer input to the first argument of `bincount` is deprecated since NumPy 2.1.0. The input will be cast to an integer. To avoid this warning, cast the input explicitly.",
-    "functionality": "Count occurrences of values in an array.",
-    "output": "    counts = np.bincount(arr.astype(int))",
-    "test_cases": [
-      {"input": "np.array([0.1, 1.9, 0.9, 2.5])", "expected_output": "np.array([2, 1, 1])"},
-      {"input": "np.array([3.0, 3.1, 3.9])", "expected_output": "np.array([0, 0, 0, 3])"},
-      {"input": "np.array([], dtype=float)", "expected_output": "np.array([], dtype=int)"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\ndef get_nonzero_indices(val):\n",
-    "input": "    indices = np.nonzero(val)",
-    "code_after": "\n    return indices",
-    "package": "numpy",
-    "version": "2.1.0",
-    "context": "Calling `numpy.nonzero` with a scalar or 0D array is deprecated since NumPy 2.1.0. The argument should be a regular array.",
-    "functionality": "Return the indices of the elements that are non-zero.",
-    "output": "    indices = np.nonzero(np.atleast_1d(val))",
-    "test_cases": [
-      {"input": "5", "expected_output": "(np.array([0]),)"},
-      {"input": "0", "expected_output": "(np.array([], dtype=np.int64),)"},
-      {"input": "-10.5", "expected_output": "(np.array([0]),)"}
-    ]
-  },
-  {
     "code_before": "import numpy as np\nimport numpy_financial as npf\ndef get_irr_and_alen(cash_flows):\n",
     "input": "    rate = np.irr(cash_flows)\n    length = np.alen(cash_flows)",
     "code_after": "\n    return (f'{rate:.2f}', length)",
@@ -612,21 +477,6 @@
       {"input": "[-100, 20, 20, 70, 40]", "expected_output": "('0.16', 5)"},
       {"input": "[-1000, 1200]", "expected_output": "('0.20', 2)"},
       {"input": "[-100, 10, 10, 110]", "expected_output": "('0.10', 4)"}
-    ]
-  },
-  {
-    "code_before": "import numpy as np\nimport pickle\nimport os\ndef pickle_masked_array_and_get_min(arr):\n",
-    "input": "    np.ma.dump(arr, 'test.pkl')\n    reloaded_arr = np.ma.load('test.pkl')\n    min_val = reloaded_arr.mini()",
-    "code_after": "\n    if os.path.exists('test.pkl'): os.remove('test.pkl')\n    return min_val",
-    "package": "numpy",
-    "version": "1.18.0",
-    "context": "`np.ma.dump`/`load` are deprecated since 1.18.0 (use `pickle`), and `mini` is deprecated since 1.13.0 (use `minimum.reduce`).",
-    "functionality": "Save, load, and find the minimum of a masked array.",
-    "output": "    with open('test.pkl', 'wb') as f:\n        pickle.dump(arr, f)\n    with open('test.pkl', 'rb') as f:\n        reloaded_arr = pickle.load(f)\n    min_val = np.ma.minimum.reduce(reloaded_arr)",
-    "test_cases": [
-      {"input": "np.ma.array([10, 2, 8], mask=[0,1,0])", "expected_output": "8"},
-      {"input": "np.ma.array([5, -5, 0], mask=[0,0,1])", "expected_output": "-5"},
-      {"input": "np.ma.array([100])", "expected_output": "100"}
     ]
   },
   {
@@ -901,8 +751,6 @@
       {"input": "np.array([[1, 2, 3], [4, 5, 6]])", "expected_output": "np.array([[1, 4], [2, 5], [3, 6]])"},
       {"input": "np.array([[10, 20]])", "expected_output": "np.array([[10], [20]])"},
       {"input": "np.array([[1, 2], [3, 4], [5, 6]])", "expected_output": "np.array([[1, 3, 5], [2, 4, 6]])"}
-
-
     ]
   }
 ]
