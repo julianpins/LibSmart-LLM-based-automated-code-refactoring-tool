@@ -1,0 +1,55 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality
+0,Pass,Pass,Pass,Pass
+1,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+2,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+3,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)","Fail: Error during execution, most likely due to deprecation: histogram() got an unexpected keyword argument 'normed'",Fail: Skipped
+4,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+5,Pass,"Fail: IndentationError: unexpected indent (<string>, line 13)",Pass,Fail: Error during execution of Test Case 1: 'memmap' object has no attribute 'sync'
+6,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+7,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute '_format'
+8,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+9,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+10,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: The truth value of an empty array is ambiguous. Use `array.size > 0` to check that an array is not empty.",Fail: Skipped
+11,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+12,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+13,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)","Fail: Error during execution, most likely due to deprecation: unravel_index() got an unexpected keyword argument 'dims'",Fail: Skipped
+14,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+15,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)","Fail: Error during execution, most likely due to deprecation: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.",Fail: Skipped
+16,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+17,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+18,Pass,"Fail: IndentationError: unexpected indent (<string>, line 7)",Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'ndincr'
+19,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,"Fail: Failed: [Expected: array([[1, 3],
+       [2, 4]]), Got: array([[99,  3],
+       [ 2,  4]])]"
+20,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,"Fail: Failed: [Expected: array([[2, 1],
+       [3, 4]]), Got: array([[1, 3],
+       [2, 4]])]"
+21,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Fail: Error during execution of Test Case 1: `np.round_` was removed in the NumPy 2.0 release. Use `np.round` instead.
+22,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+23,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+24,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+25,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+26,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,"Fail: Error during execution of Test Case 1: `np.find_common_type` was removed in the NumPy 2.0 release. Use `numpy.promote_types` or `numpy.result_type` instead. To achieve semantics for the `scalar_types` argument, use `numpy.result_type` and pass the Python values `0`, `0.0`, or `0j`."
+27,Pass,"Fail: IndentationError: expected an indented block after function definition on line 3 (<string>, line 5)",Fail: Output contained deprecated features,Fail: Skipped
+28,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+29,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+30,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+31,Pass,"Fail: IndentationError: expected an indented block after function definition on line 3 (<string>, line 5)",Fail: Output contained deprecated features,Fail: Skipped
+32,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+33,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+34,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+35,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+36,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Pass
+37,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Pass,Fail: Error during execution of Test Case 1: `np.fastCopyAndTranspose` was removed in the NumPy 2.0 release. Use `arr.T.copy()` instead.
+38,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+39,Pass,"Fail: IndentationError: unexpected indent (<string>, line 8)",Pass,Fail: Error during execution of Test Case 1: 'MaskedArray' object has no attribute 'mini'
+40,Pass,"Fail: IndentationError: expected an indented block after function definition on line 2 (<string>, line 4)",Fail: Output contained deprecated features,Fail: Skipped
+41,Pass,"Fail: IndentationError: 'return' outside function (<string>, line 11)",Fail: Output contained deprecated features,Fail: Skipped
+42,Pass,"Fail: IndentationError: unexpected indent (<string>, line 9)",Pass,Pass
+43,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.cfloat` was removed in the NumPy 2.0 release. Use `np.complex128` instead.
+44,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+45,Pass,"Fail: IndentationError: unexpected indent (<string>, line 9)",Pass,Pass
+46,Pass,"Fail: IndentationError: unexpected indent (<string>, line 10)",Pass,Pass
+47,Pass,"Fail: IndentationError: unexpected indent (<string>, line 10)",Pass,Pass
+48,Pass,"Fail: IndentationError: unexpected indent (<string>, line 10)",Pass,Pass
+49,Pass,Pass,Pass,Pass
