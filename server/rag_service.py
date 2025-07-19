@@ -1,7 +1,6 @@
 import ast
-import re
 import logging
-from typing import List, Dict, Set, Any, Tuple
+from typing import List, Dict, Set, Any
 import chromadb
 import torch
 from chromadb.config import Settings
@@ -115,11 +114,14 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
 
 class RAGService:
 
-    def __init__(self, model_name: str = None):
-
+    def __init__(self, model_name: str | None = None):
         self.collection: Any = None
         self._init_chroma()
-        self.model = ModelService(model_name)
+        
+        if model_name:
+            self.model = ModelService(model_name)
+        else:
+            raise ValueError("Model name is required")
         
     def _init_chroma(self) -> None:
 
@@ -130,7 +132,7 @@ class RAGService:
             embed_fn = SentenceTransformerEmbeddingFunction(
                 model_name="BAAI/bge-base-en-v1.5",
                 device="mps" if torch.backends.mps.is_available() else "cpu"
-            )
+            )  # type: ignore
             
             client = chromadb.PersistentClient(
                 path=CHROMA_DB_DIR,
@@ -138,16 +140,13 @@ class RAGService:
             )
             
             try:
-
-                self.collection = client.get_collection(COLLECTION_NAME, embedding_function=embed_fn)
+                self.collection = client.get_collection(COLLECTION_NAME, embedding_function=embed_fn)  # type: ignore
                 logger.info(f"Connected to collection: {COLLECTION_NAME}")
-
             except:
-
                 self.collection = client.create_collection(
-                    name = COLLECTION_NAME,
-                    embedding_function = embed_fn,
-                    metadata = {"hnsw:space": "cosine"}
+                    name=COLLECTION_NAME,
+                    embedding_function=embed_fn,  # type: ignore
+                    metadata={"hnsw:space": "cosine"}
                 )
 
                 logger.info(f"Created collection: {COLLECTION_NAME}")
@@ -228,19 +227,65 @@ class RAGService:
             logger.error(f"DB query failed for {func}: {e}")
             return []
     
-    def extract_changes(self, output: str) -> tuple[str, List[str]]:
-
-        if "---EXPLANATION---" not in output:
-            return output.strip(), []
+    def extract_changes(self, output: str, original_code: str = "", context: Dict[str, List[Dict[str, Any]]] | None = None) -> tuple[str, List[str]]:
+        # Parse output based on the expected format from fine-tuned models
+        modernized_code = ""
+        explanation = ""
         
-        parts = output.split("---EXPLANATION---")
-        code = parts[0].strip()
-        explanation = parts[1].strip()
+        if "### Refactored Code" in output:
+            # Extract code section
+            parts = output.split("### Refactored Code")
+            if len(parts) > 1:
+                code_section = parts[1].split("### Deprecation Context")[0].strip()
+                # Extract code from markdown block
+                if "```python" in code_section:
+                    code_lines = code_section.split("```python")[1].split("```")[0].strip()
+                    modernized_code = code_lines
+                else:
+                    modernized_code = code_section
+                
+                # Extract explanation from Deprecation Context section only
+                if "### Deprecation Context" in output:
+                    explanation = output.split("### Deprecation Context")[1].strip()
+                    # Filter out markdown code blocks and links
+                    import re
+                    explanation = re.sub(r'```python.*?```', '', explanation, flags=re.DOTALL).strip()
+                    explanation = re.sub(r'\[.*?\]\(.*?\)', '', explanation).strip()
+                    # Filter out additional sections like "### No Changes Needed"
+                    explanation = re.sub(r'###.*', '', explanation).strip()
+                    # Filter out input code repetition
+                    if "### INPUT CODE:" in explanation:
+                        explanation = explanation.split("### INPUT CODE:")[0].strip()
+        else:
+            # Fallback: use the entire output as code
+            modernized_code = output.strip()
+            explanation = "Code was modernized to replace deprecated NumPy functionality"
         
-        if not explanation or "no deprecated functionality" in explanation.lower():
-            return code, []
+        if not modernized_code or modernized_code == original_code:
+            modernized_code = original_code
+            explanation = "No deprecated functionality found"
+        
+        return modernized_code, [explanation]
+    
+    def _generate_explanation(self, original: str, modernized: str, context: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
+        if not modernized or modernized == original:
+            return "No changes needed"
+        
+        # Use context to generate specific explanations
+        if context:
+            explanations = []
+            for func, chunks in context.items():
+                if chunks and func in original:
+                    # Extract key info from context
+                    content = chunks[0]['content']
+                    if 'deprecated' in content.lower():
+                        if 'replacement' in content.lower() or 'use' in content.lower():
+                            explanations.append(f"Updated {func} to modern equivalent")
             
-        return code, [explanation]
+            if explanations:
+                return '; '.join(explanations)
+        
+        return "Modernized deprecated NumPy functionality"
     
     def analyze_code(self, code: str, version: str) -> CodeAnalysisResponse:
 
@@ -267,12 +312,13 @@ class RAGService:
             try:
 
                 output = self.model.call_model(code, version, unique_funcs, ctx)
-                modernized_code, changes = self.extract_changes(output)
+                modernized_code, changes = self.extract_changes(output, code, ctx)
 
                 return CodeAnalysisResponse(
                     modernized_code = modernized_code,
                     retrieved_context = retrieved_context,
-                    changes = changes
+                    changes = changes,
+                    raw_output = output
                 )
             
             except Exception as e:

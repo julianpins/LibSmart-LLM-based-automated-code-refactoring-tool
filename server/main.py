@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import logging
 import sys
-import os
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent))
@@ -32,13 +31,14 @@ app.add_middleware(
 rag = None
 
 def get_available_models():
-
     models_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
     models = []
     if models_dir.exists():
-        for model_dir in models_dir.iterdir():
-            if model_dir.is_dir() and (model_dir / "adapter_config.json").exists():
-                models.append(model_dir.name)
+        for item in models_dir.iterdir():
+            if item.is_dir() and any(item.glob("*.gguf")):
+                models.append(item.name)
+            elif item.is_file() and item.suffix == ".gguf":
+                models.append(item.stem)
     return models
 
 def select_model():
@@ -99,11 +99,15 @@ async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
 @app.on_event("startup")
 async def startup() -> None:
     global rag
-    selected_model = select_model()
-    rag = RAGService(selected_model)
+    try:
+        selected_model = select_model()
+        rag = RAGService(selected_model)
+    except Exception as e:
+        logger.error(f"Failed to initialize RAG service: {e}")
+        raise
     
     logger.info(f"Starting {API_TITLE} v{API_VERSION}")
-    logger.info(f"Model: {selected_model or 'Ollama (deepseek-coder)'}")
+    logger.info(f"Model: {selected_model}")
     logger.info(f"ChromaDB: {'connected' if rag.is_connected() else 'disconnected'}")
     logger.info(f"Model: {'available' if rag.is_model_available() else 'unavailable'}")
 
