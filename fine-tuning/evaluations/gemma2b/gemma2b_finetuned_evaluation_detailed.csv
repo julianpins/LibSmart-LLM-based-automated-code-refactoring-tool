@@ -1,0 +1,51 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality
+0,Pass,Pass,Pass,Pass
+1,Pass,Pass,Pass,Pass
+2,Pass,Pass,Pass,Pass
+3,Pass,Pass,Pass,Pass
+4,Pass,Pass,Pass,Pass
+5,Pass,Pass,Pass,Pass
+6,Pass,Pass,Pass,Pass
+7,Pass,Pass,Pass,"Fail: Failed: [Expected: '[1.23 6.79]', Got: '[1.23]']"
+8,Pass,Pass,Pass,Pass
+9,Pass,Pass,Pass,Pass
+10,Pass,Pass,Pass,Pass
+11,Pass,Pass,Pass,Pass
+12,Pass,Pass,Pass,Pass
+13,Pass,Pass,Pass,Pass
+14,Pass,Pass,Pass,Pass
+15,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.",Fail: Skipped
+16,Pass,Pass,Pass,Pass
+17,Pass,Pass,Pass,Pass
+18,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'ndincr'
+19,Pass,Pass,Pass,Pass
+20,Pass,Pass,Pass,Pass
+21,Pass,Pass,Pass,Pass
+22,Pass,Pass,Pass,Pass
+23,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+24,Pass,Pass,Pass,Pass
+25,Pass,Pass,Pass,Pass
+26,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: Field elements must be 2- or 3-tuples, got '<class 'numpy.int16'>'",Fail: Skipped
+27,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+28,Pass,Pass,Pass,Pass
+29,Pass,Pass,Pass,Pass
+30,Pass,Pass,Pass,Pass
+31,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+32,Pass,Pass,Pass,Pass
+33,Pass,Pass,Pass,Pass
+34,Pass,Pass,Pass,Pass
+35,Pass,Pass,Pass,Pass
+36,Pass,Pass,Pass,Pass
+37,Pass,Pass,Pass,Pass
+38,Pass,Pass,Pass,"Fail: Failed: [Expected: (True, True), Got: (np.True_, array([ True, False]))]"
+39,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'MaskedArray' object has no attribute 'mini'
+40,Pass,Pass,Pass,Pass
+41,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.round_` was removed in the NumPy 2.0 release. Use `np.round` instead.
+42,Pass,Pass,Pass,Pass
+43,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: Converting `np.complex` to a dtype is not allowed.",Fail: Skipped
+44,Pass,Pass,Pass,Pass
+45,Pass,Pass,Pass,Pass
+46,Pass,Pass,Pass,Pass
+47,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: tuple index out of range",Fail: Skipped
+48,Pass,Pass,Pass,Pass
+49,Pass,Pass,Pass,Pass

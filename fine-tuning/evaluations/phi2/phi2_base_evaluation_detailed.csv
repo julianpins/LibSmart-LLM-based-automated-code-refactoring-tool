@@ -1,0 +1,73 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality
+0,Pass,Pass,Pass,Pass
+1,Pass,Pass,Pass,Pass
+2,Pass,Pass,Pass,Pass
+3,Pass,Pass,Pass,Pass
+4,Pass,Pass,Pass,"Fail: Failed: [Expected: array([10.+0.j, -2.+2.j, -2.+0.j]), Got: array([10.+0.j, -2.+2.j, -2.+0.j, -2.-2.j])]"
+5,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'memmap' object has no attribute 'sync'
+6,Pass,Pass,Pass,Pass
+7,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute 'format'
+8,Pass,Pass,Pass,"Fail: Failed: [Expected: 3, Got: array([[[0, 1, 2, 3],
+        [0, 1, 2, 3],
+        [0, 1, 2, 3]],
+
+       [[0, 1, 2, 3],
+        [0, 1, 2, 3],
+        [0, 1, 2, 3]]])]"
+9,Pass,Pass,Pass,Pass
+10,"Fail: SyntaxError: expected an indented block after 'if' statement on line 4 (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+11,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+12,Pass,Pass,Pass,Pass
+13,Pass,Pass,Pass,"Fail: Failed: [Expected: (array([3, 6, 6]), array([4, 5, 1])), Got: array([[[0, 2, 4, 6, 0, 0, 0],
+        [0, 2, 4, 6, 2, 2, 2],
+        [0, 2, 4, 6, 4, 4, 4],
+        [1, 3, 5, 0, 0, 0, 0],
+        [1, 3, 5, 2, 2, 2, 2],
+        [1, 3, 5, 4, 4, 4, 4]],
+
+       [[0, 2, 4, 6, 1, 1, 1],
+        [0, 2, 4, 6, 3, 3, 3],
+        [0, 2, 4, 6, 5, 5, 5],
+        [1, 3, 5, 1, 1, 1, 1],
+        [1, 3, 5, 3, 3, 3, 3],
+        [1, 3, 5, 5, 5, 5, 5]]])]"
+14,Pass,Pass,Pass,Pass
+15,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.",Fail: Skipped
+16,Pass,Pass,Pass,Pass
+17,Pass,Pass,Pass,Pass
+18,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'nditer'
+19,Pass,Pass,Pass,"Fail: Failed: [Expected: array([[1, 3],
+       [2, 4]]), Got: array([[99,  3],
+       [ 2,  4]])]"
+20,Pass,Pass,Pass,"Fail: Failed: [Expected: array([[2, 1],
+       [3, 4]]), Got: array([[1, 3],
+       [2, 4]])]"
+21,Pass,Pass,Pass,Pass
+22,Pass,Pass,Pass,"Fail: Failed: [Expected: 24, Got: array([3, 8])]"
+23,Pass,Pass,Pass,Pass
+24,Pass,Pass,Pass,Pass
+25,Pass,Pass,Pass,Pass
+26,Pass,Pass,Pass,"Fail: Error during execution of Test Case 1: `np.find_common_type` was removed in the NumPy 2.0 release. Use `numpy.promote_types` or `numpy.result_type` instead. To achieve semantics for the `scalar_types` argument, use `numpy.result_type` and pass the Python values `0`, `0.0`, or `0j`."
+27,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+28,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+29,Pass,Pass,Pass,Pass
+30,Pass,Pass,Pass,Pass
+31,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+32,Pass,Pass,Pass,Pass
+33,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+34,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+35,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+36,"Fail: SyntaxError: expected an indented block after 'if' statement on line 4 (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+37,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: unravel_index() got an unexpected keyword argument 'dims'",Fail: Skipped
+38,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+39,Pass,Pass,Pass,"Fail: Failed: [Expected: (1, array([14. +0.j , -5.5+2.6j])), Got: (np.int64(1), array([14. +0.j , -5.5+2.6j, -5.5-2.6j]))]"
+40,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+41,"Fail: SyntaxError: expected an indented block after 'if' statement on line 5 (<string>, line 6)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+42,Pass,Pass,Pass,Pass
+43,Pass,Pass,Pass,Pass
+44,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+45,Pass,Pass,Pass,Pass
+46,Pass,Pass,Pass,Pass
+47,Pass,Pass,Pass,Pass
+48,Pass,Pass,Pass,Pass
+49,"Fail: SyntaxError: expected an indented block after 'if' statement on line 8 (<string>, line 9)",Fail: Skipped,Fail: Skipped,Fail: Skipped
