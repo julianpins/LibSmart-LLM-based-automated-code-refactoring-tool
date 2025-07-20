@@ -1,0 +1,51 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality
+0,Pass,Pass,Pass,Pass
+1,Pass,Pass,Pass,Pass
+2,Pass,Pass,Pass,Pass
+3,Pass,Pass,Pass,Pass
+4,Pass,Pass,Pass,Pass
+5,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'memmap' object has no attribute 'sync'
+6,Pass,Pass,Pass,Pass
+7,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute '_format'
+8,Pass,Pass,Pass,Pass
+9,Pass,Pass,Pass,Pass
+10,Pass,Pass,Pass,"Fail: Failed: [Expected: True, Got: False]"
+11,Pass,Pass,Pass,Pass
+12,Pass,Pass,Pass,Pass
+13,Pass,Pass,Pass,Pass
+14,Pass,Pass,Pass,Pass
+15,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.",Fail: Skipped
+16,Pass,Pass,Pass,Pass
+17,Pass,Pass,Pass,Pass
+18,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'next'
+19,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.fastCopyAndTranspose` was removed in the NumPy 2.0 release. Use `arr.T.copy()` instead.
+20,Pass,Pass,Pass,Pass
+21,Pass,Pass,Pass,Pass
+22,Pass,Pass,Pass,Pass
+23,Pass,Pass,Pass,Pass
+24,Pass,Pass,Pass,Pass
+25,Pass,Pass,Pass,Pass
+26,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'list' object has no attribute 'dtype'
+27,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+28,Pass,Pass,Pass,Pass
+29,Pass,Pass,Pass,Pass
+30,Pass,Pass,Pass,Pass
+31,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+32,Pass,Pass,Pass,Pass
+33,Pass,Pass,Pass,Pass
+34,Pass,Pass,Pass,Pass
+35,Pass,Pass,Pass,Pass
+36,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+37,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.fastCopyAndTranspose` was removed in the NumPy 2.0 release. Use `arr.T.copy()` instead.
+38,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+39,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'MaskedArray' object has no attribute 'mini'
+40,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+41,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+42,Pass,Pass,Pass,Pass
+43,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: Converting `np.complex` to a dtype is not allowed.",Fail: Skipped
+44,Pass,Pass,Pass,Pass
+45,Pass,Pass,Pass,Pass
+46,Pass,Pass,Pass,"Fail: Failed: [Expected: array([2, 2, 2, 3, 4, 5, 6, 7, 7, 7]), Got: array([0, 1, 1, 1, 1, 1, 1, 1, 1, 1])]"
+47,Pass,Pass,Pass,Pass
+48,Pass,Pass,Pass,"Fail: Failed: [Expected: 7.0, Got: np.float64(nan)]"
+49,Pass,Pass,Pass,Pass

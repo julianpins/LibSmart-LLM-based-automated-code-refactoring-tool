@@ -1,0 +1,51 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality,functions_retrieved,functions_with_context
+0,Pass,Pass,Pass,Pass,1,1
+1,Pass,Pass,Pass,Pass,1,1
+2,Pass,Pass,Pass,Pass,1,1
+3,Pass,Pass,Pass,Pass,1,1
+4,Pass,Pass,Pass,Pass,1,1
+5,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: cannot access local variable 'os' where it is not associated with a value",Fail: Skipped,0,0
+6,Pass,Pass,Pass,Pass,1,1
+7,Pass,Pass,Pass,"Fail: Failed: [Expected: '[1.23 6.79]', Got: '[1.23]']",0,0
+8,Pass,Pass,Pass,Pass,1,1
+9,Pass,Pass,Pass,Pass,0,0
+10,Pass,Pass,Pass,Pass,0,0
+11,Pass,Pass,Pass,Pass,1,1
+12,Pass,Pass,Pass,Pass,1,1
+13,Pass,Pass,Pass,Pass,1,1
+14,Pass,Pass,Pass,Pass,1,1
+15,Pass,Pass,Pass,Pass,1,1
+16,Pass,Pass,Pass,Pass,1,1
+17,Pass,Pass,Pass,Pass,1,1
+18,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'ndincr',0,0
+19,Pass,Pass,Pass,Pass,1,1
+20,Pass,Pass,Pass,Pass,1,1
+21,Pass,Pass,Pass,Pass,1,1
+22,Pass,Pass,Pass,Pass,1,1
+23,Pass,Pass,Pass,Pass,1,1
+24,Pass,Pass,Pass,Pass,1,1
+25,Pass,Pass,Pass,Pass,1,1
+26,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: Field elements must be 2- or 3-tuples, got '<class 'numpy.int16'>'",Fail: Skipped,1,1
+27,Pass,Pass,Pass,Pass,1,1
+28,Pass,Pass,Pass,Pass,1,1
+29,Pass,Pass,Pass,Pass,1,1
+30,Pass,Pass,Pass,Pass,1,1
+31,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped,1,1
+32,Pass,Pass,Pass,Pass,2,2
+33,Pass,Pass,Pass,Pass,3,3
+34,Pass,Pass,Pass,Pass,2,2
+35,Pass,Pass,Pass,Pass,4,4
+36,Pass,Pass,Pass,Pass,2,2
+37,Pass,Pass,Pass,Pass,2,2
+38,Pass,Pass,Pass,"Fail: Failed: [Expected: (True, True), Got: (np.True_, array([ True, False]))]",2,2
+39,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'MaskedArray' object has no attribute 'mini',1,1
+40,Pass,Pass,Pass,Pass,2,2
+41,Pass,Pass,Pass,Pass,3,3
+42,Pass,Pass,Pass,Pass,2,2
+43,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.cfloat` was removed in the NumPy 2.0 release. Use `np.complex128` instead.,1,1
+44,Pass,Pass,Pass,Pass,1,1
+45,Pass,Pass,Pass,Pass,1,1
+46,Pass,Pass,Pass,Pass,0,0
+47,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: casting must be one of 'no', 'equiv', 'safe', 'same_kind', or 'unsafe' (got 'same')",Fail: Skipped,1,1
+48,Pass,Pass,Pass,Pass,0,0
+49,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped,0,0

@@ -1,0 +1,53 @@
+sample_index,compiles,correct_indentation,no_deprecations,correct_functionality
+0,Pass,Pass,Pass,Pass
+1,Pass,Pass,Pass,Pass
+2,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+3,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: histogram() got an unexpected keyword argument 'normed'",Fail: Skipped
+4,Pass,Pass,Pass,Pass
+5,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'memmap' object has no attribute 'sync'
+6,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+7,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute '_format'
+8,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+9,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+10,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+11,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: use 0 instead of None for minlength",Fail: Skipped
+12,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+13,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: unravel_index() got an unexpected keyword argument 'dims'",Fail: Skipped
+14,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+15,Pass,Pass,"Fail: Error during execution, most likely due to deprecation: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.",Fail: Skipped
+16,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute 'tostring'
+17,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+18,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.nditer' object has no attribute 'ndincr'
+19,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.fastCopyAndTranspose` was removed in the NumPy 2.0 release. Use `arr.T.copy()` instead.
+20,Pass,Pass,Pass,"Fail: Failed: [Expected: array([[2, 1],
+       [3, 4]]), Got: array([[1, 3],
+       [2, 4]])]"
+21,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+22,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+23,Pass,Pass,Pass,Pass
+24,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+25,Pass,Pass,Pass,Pass
+26,Pass,Pass,Pass,"Fail: Error during execution of Test Case 1: `np.find_common_type` was removed in the NumPy 2.0 release. Use `numpy.promote_types` or `numpy.result_type` instead. To achieve semantics for the `scalar_types` argument, use `numpy.result_type` and pass the Python values `0`, `0.0`, or `0j`."
+27,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.safe_eval` was removed in the NumPy 2.0 release. Use `ast.literal_eval` instead.
+28,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+29,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+30,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+31,"Fail: SyntaxError: invalid syntax (<string>, line 6)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+32,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'numpy.ndarray' object has no attribute 'tostring'
+33,"Fail: SyntaxError: invalid syntax (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+34,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+35,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+36,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: `np.sometrue` was removed in the NumPy 2.0 release. Use `np.any` instead.
+37,"Fail: SyntaxError: unexpected indent (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+38,"Fail: SyntaxError: unexpected indent (<string>, line 5)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+39,Pass,Pass,Pass,Fail: Error during execution of Test Case 1: 'MaskedArray' object has no attribute 'mini'
+40,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+41,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+42,Pass,Pass,Pass,Pass
+43,"Fail: SyntaxError: unexpected indent (<string>, line 7)",Fail: Skipped,Fail: Skipped,Fail: Skipped
+44,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+45,Pass,Pass,Fail: Output contained deprecated features,Fail: Skipped
+46,Pass,Pass,Pass,Pass
+47,Pass,Pass,Pass,Pass
+48,Pass,Pass,Pass,Pass
+49,"Fail: SyntaxError: invalid syntax (<string>, line 7)",Fail: Skipped,Fail: Skipped,Fail: Skipped
