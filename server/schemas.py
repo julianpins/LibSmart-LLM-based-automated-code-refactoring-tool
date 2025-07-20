@@ -16,7 +16,7 @@ class FunctionInfo(BaseModel):
 class CodeAnalysisResponse(BaseModel):
     modernized_code: str
     retrieved_context: Dict[str, List[str]] = Field(default_factory=dict)
-    changes: List[str] = Field(default_factory=list)
+    explanation: str
     raw_output: Optional[str] = None
     error: Optional[str] = None
 

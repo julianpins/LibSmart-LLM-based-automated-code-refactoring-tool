@@ -11,59 +11,51 @@ from model_service import ModelService
 
 logger = logging.getLogger(__name__)
 
+NUMPY_ALIASES = ['np', 'numpy', 'npf', 'numpy_financial']
+METHODS = ['mean', 'std', 'sum', 'min', 'max', 'var', 'cumprod', 'cumsum', 
+                                  'argsort', 'sort', 'tostring', 'tofile', 'astype', 'reshape',
+                                  'flatten', 'ravel', 'transpose', 'swapaxes', 'squeeze']
+
+
 class NumpyFunctionExtractor(ast.NodeVisitor):
 
     def __init__(self):
-
         self.funcs: List[FunctionInfo] = []
         self.imports: Dict[str, str] = {}
         self.star_imports: Set[str] = set()
         
     def visit_Import(self, node):
-
         for alias in node.names:
             if 'numpy' in alias.name or alias.name == 'numpy_financial':
                 self.imports[alias.asname or alias.name] = alias.name
         self.generic_visit(node)
         
     def visit_ImportFrom(self, node):
-
         if node.module and ('numpy' in node.module or node.module == 'numpy_financial'):
-
             if any(alias.name == '*' for alias in node.names):
                 self.star_imports.add(node.module)
-
             else:
-
                 for alias in node.names:
                     name = alias.asname or alias.name
                     self.imports[name] = f"{node.module}.{alias.name}"
-
         self.generic_visit(node)
     
     def visit_Call(self, node):
-
         func_str = self._extract_call(node)
-
         if func_str:
             self.funcs.append(FunctionInfo(
                 name=func_str,
                 line=node.lineno,
                 call=ast.unparse(node) if hasattr(ast, 'unparse') else str(node)
             ))
-
         self.generic_visit(node)
     
     def visit_Attribute(self, node):
-
-        if isinstance(node.value, ast.Name) and node.value.id in ['np', 'numpy', 'npf', 'numpy_financial']:
+        if isinstance(node.value, ast.Name) and node.value.id in NUMPY_ALIASES:
             return
-        
         chain = self._get_chain(node)
 
-        if chain and any(part in ['mean', 'std', 'sum', 'min', 'max', 'var', 'cumprod', 'cumsum', 
-                                  'argsort', 'sort', 'tostring', 'tofile', 'astype', 'reshape',
-                                  'flatten', 'ravel', 'transpose', 'swapaxes', 'squeeze'] for part in chain):
+        if chain and any(part in METHODS for part in chain):
             self.funcs.append(FunctionInfo(
                 name = chain[-1],
                 line = node.lineno,
@@ -74,7 +66,6 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
     def _extract_call(self, node):
 
         if isinstance(node.func, ast.Name):
-
             name = node.func.id
             if name in self.imports:
                 return self.imports[name]
@@ -82,9 +73,7 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
                 return name
             
         elif isinstance(node.func, ast.Attribute):
-
             chain = self._get_chain(node.func)
-
             if chain:
                 root = chain[0]
                 if root in self.imports:
@@ -106,10 +95,8 @@ class NumpyFunctionExtractor(ast.NodeVisitor):
         while isinstance(node, ast.Attribute):
             parts.append(node.attr)
             node = node.value
-
         if isinstance(node, ast.Name):
             parts.append(node.id)
-
         return list(reversed(parts))
 
 class RAGService:
@@ -117,18 +104,14 @@ class RAGService:
     def __init__(self, model_name: str | None = None):
         self.collection: Any = None
         self._init_chroma()
-        
         if model_name:
             self.model = ModelService(model_name)
         else:
             raise ValueError("Model name is required")
         
     def _init_chroma(self) -> None:
-
         try:
-
             from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
-            
             embed_fn = SentenceTransformerEmbeddingFunction(
                 model_name="BAAI/bge-base-en-v1.5",
                 device="mps" if torch.backends.mps.is_available() else "cpu"
@@ -138,7 +121,6 @@ class RAGService:
                 path=CHROMA_DB_DIR,
                 settings=Settings(anonymized_telemetry=False)
             )
-            
             try:
                 self.collection = client.get_collection(COLLECTION_NAME, embedding_function=embed_fn)  # type: ignore
                 logger.info(f"Connected to collection: {COLLECTION_NAME}")
@@ -148,43 +130,31 @@ class RAGService:
                     embedding_function=embed_fn,  # type: ignore
                     metadata={"hnsw:space": "cosine"}
                 )
-
                 logger.info(f"Created collection: {COLLECTION_NAME}")
 
         except Exception as e:
-
             logger.error(f"ChromaDB init failed: {e}")
     
     def extract_funcs(self, code: str) -> List[FunctionInfo]:
 
         try:
-
             tree = ast.parse(code)
             extractor = NumpyFunctionExtractor()
             extractor.visit(tree)
-
             return extractor.funcs
-        
         except Exception as e:
-
             logger.error(f"Function extraction failed: {e}")
-
             return []
     
     def _func_matches_content(self, func: str, content: str) -> bool:
-
         func_parts = func.replace('np.', '').replace('numpy.', '').split('.')
         content_lower = content.lower()
-
         return any(part.lower() in content_lower for part in func_parts if len(part) > 2)
     
     def query_db(self, func: str, version: str) -> List[Dict[str, Any]]:
-
         if not self.collection:
             return []
-        
         try:
-
             base_func = func.split('.')[-1]
             variations = [base_func, func, f"numpy.{base_func}", f"np.{base_func}"]
             seen_content = set()
@@ -192,13 +162,11 @@ class RAGService:
             
             for variant in variations:
                 query = f"{variant} numpy {version} deprecated"
-                
                 res = self.collection.query(
                     query_texts = [query],
                     n_results = 3,
                     include = ["documents", "metadatas", "distances"]
                 )
-                
                 if res['documents'] and res['documents'][0]:
 
                     for i, doc in enumerate(res['documents'][0]):
@@ -223,11 +191,10 @@ class RAGService:
             return unique_chunks[:3]
             
         except Exception as e:
-
             logger.error(f"DB query failed for {func}: {e}")
             return []
     
-    def extract_changes(self, output: str, original_code: str = "", context: Dict[str, List[Dict[str, Any]]] | None = None) -> tuple[str, List[str]]:
+    def extract_changes(self, output: str, original_code: str = "", context: Dict[str, List[Dict[str, Any]]] | None = None) -> tuple[str, str]:
         # Parse output based on the expected format from fine-tuned models
         modernized_code = ""
         explanation = ""
@@ -236,10 +203,10 @@ class RAGService:
             # Extract code section
             parts = output.split("### Refactored Code")
             if len(parts) > 1:
-                code_section = parts[1].split("### Deprecation Context")[0].strip()
+                code_section = parts[1].split("### Deprecation Context")[0]
                 # Extract code from markdown block
                 if "```python" in code_section:
-                    code_lines = code_section.split("```python")[1].split("```")[0].strip()
+                    code_lines = code_section.split("```python")[1].split("```")[0].lstrip('\n')
                     modernized_code = code_lines
                 else:
                     modernized_code = code_section
@@ -258,18 +225,18 @@ class RAGService:
                         explanation = explanation.split("### INPUT CODE:")[0].strip()
         else:
             # Fallback: use the entire output as code
-            modernized_code = output.strip()
+            modernized_code = output
             explanation = "Code was modernized to replace deprecated NumPy functionality"
         
         if not modernized_code or modernized_code == original_code:
             modernized_code = original_code
             explanation = "No deprecated functionality found"
         
-        return modernized_code, [explanation]
+        return modernized_code, explanation
     
-    def _generate_explanation(self, original: str, modernized: str, context: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
+    '''def _generate_explanation(self, original: str, modernized: str, context: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
         if not modernized or modernized == original:
-            return "No changes needed"
+            return "No deprecated functionality found"
         
         # Use context to generate specific explanations
         if context:
@@ -285,59 +252,61 @@ class RAGService:
             if explanations:
                 return '; '.join(explanations)
         
-        return "Modernized deprecated NumPy functionality"
+        return "Modernized deprecated NumPy functionality"'''
     
     def analyze_code(self, code: str, version: str) -> CodeAnalysisResponse:
-
         logger.info(f"Analyzing code with NumPy {version}")
-        
         funcs = self.extract_funcs(code)
         unique_funcs = list({f.name for f in funcs})
-        
         logger.info(f"Found {len(unique_funcs)} unique NumPy functions: {unique_funcs}")
-        
         ctx: Dict[str, List[Dict[str, Any]]] = {}
-
         for fn in unique_funcs:
             ctx[fn] = self.query_db(fn, version)
         
         retrieved_context = {}
-
         for fn, chunks in ctx.items():
             if chunks:
                 retrieved_context[fn] = [chunks[0]['content']]
         
-        if self.model.is_available():
-
-            try:
-
-                output = self.model.call_model(code, version, unique_funcs, ctx)
-                modernized_code, changes = self.extract_changes(output, code, ctx)
-
-                return CodeAnalysisResponse(
-                    modernized_code = modernized_code,
-                    retrieved_context = retrieved_context,
-                    changes = changes,
-                    raw_output = output
+        #When DB is coomplete, this is a suitable early exit
+        '''if retrieved_context == {}:
+            return CodeAnalysisResponse(
+                    modernized_code = "",
+                    explanation = "",
                 )
+        '''
+        if self.model.is_available():
+            try:
+                output = self.model.call_model(code, version, unique_funcs, ctx)
+                modernized_code, explanation= self.extract_changes(output, code, ctx)
+                if explanation != "" and explanation!="This code chunk does not contain deprecated functions." and explanation!="No deprecated functionality found":
+                    return CodeAnalysisResponse(
+                        modernized_code = modernized_code,
+                        retrieved_context = retrieved_context,
+                        explanation = explanation,
+                        raw_output = output
+                    )
+                else:
+                    return CodeAnalysisResponse(
+                        modernized_code = "",
+                        retrieved_context = retrieved_context,
+                        explanation = "",
+                    )
             
             except Exception as e:
-
                 logger.error(f"Model call failed: {e}")
-
                 return CodeAnalysisResponse(
                     modernized_code = "",
                     retrieved_context = retrieved_context,
-                    changes = [],
+                    explanation = "",
                     error = str(e)
                 )
             
         else:
-            
             return CodeAnalysisResponse(
                 modernized_code = "",
                 retrieved_context = retrieved_context,
-                changes = [],
+                explanation = "",
                 error = "Model service unavailable"
             )
     

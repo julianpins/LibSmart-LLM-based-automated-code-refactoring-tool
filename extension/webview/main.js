@@ -9,8 +9,7 @@ function getMockResponse(code) {
         setTimeout(function() {
             var response = {
                 modernized_code: "arr.tobytes()",
-                retrieved_context: "tostring() is deprecated since numpy 1.25.0",
-                changes: ["Replaced `tostring()` with `tobytes()` because it's newer."],
+                changes: "Replaced `tostring()` with `tobytes()` because it's newer.",
                 error: null
             };
             resolve(response);
@@ -56,6 +55,7 @@ function runAnalysis(code) {
     apiPromise.then(function(result) {
         document.getElementById('loader').style.display = 'none';
         document.getElementById('result').style.display = 'block';
+        document.getElementById('changes-found').style.display = 'none';
 
         var noChangesDiv = document.getElementById('no-changes');
         var changesFoundDiv = document.getElementById('changes-found');
@@ -66,22 +66,18 @@ function runAnalysis(code) {
             changesFoundDiv.style.display = 'none';
             return;
         }
-        if (result.changes && result.changes.length > 0) {
+        if (result.explanation != "") {
             noChangesDiv.style.display = 'none';
             changesFoundDiv.style.display = 'block';
 
-            const codeBlockRegex = /^```(?:python)?\n?([\s\S]*?)\n?```$/;
-            const match = result.modernized_code.match(codeBlockRegex);
-            const cleanedModernizedCode = match ? match[1].trim() : result.modernized_code.trim();
-
-            document.getElementById('modernized-code').textContent = cleanedModernizedCode;
-            document.getElementById('explanation').innerHTML = '<p>' + result.changes.join('</p><p>') + '</p>';
+            document.getElementById('modernized-code').textContent = result.modernized_code;
+            document.getElementById('explanation').innerHTML = result.explanation;
 
             // set up the button click
             document.getElementById('replace-btn').onclick = function() {
                 vscode.postMessage({
                     command: 'replaceCode',
-                    text: cleanedModernizedCode
+                    text: result.modernized_code
                 });
             };
         } else {

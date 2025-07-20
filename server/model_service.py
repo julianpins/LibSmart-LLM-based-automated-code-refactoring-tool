@@ -41,12 +41,11 @@ class ModelService:
 
     def _create_system_prompt(self, context: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
         base_prompt = (
-            "You are a concise Python code refactoring tool for NumPy. Replace only deprecated functions with modern equivalents.\n"
-            "Be concise. Use the provided context if relevant, ignore if not.\n"
-            "Structure your response with two sections:\n"
-            "1. '### Refactored Code' - Updated Python code only\n"
-            "2. '### Deprecation Context' - Brief explanation\n"
-            "Do not repeat the input code. If no changes needed, return original code."
+            "You are a Python code refactoring tool for NumPy. Your task is to replace only the deprecated functions in the given code snippet with their modern equivalents.\n"
+            "Your response must be structured with two markdown sections:\n"
+            "1. A '### Refactored Code' section containing ONLY the updated Python code block. Do not change the code's logic. Do not add imports. Do not add comments.\n"
+            "2. A '### Deprecation Context' section containing a brief explanation of the deprecation.\n"
+            " If no functions are deprecated, return the original code and state that no changes were needed in the context section."
         )
         
         if context:
@@ -99,7 +98,6 @@ class ModelService:
 
     def call_model(self, code: str, version: str, funcs: List[str], ctx: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
         logger.info(f"Calling model for {len(funcs)} functions")
-        
         try:
             return self._generate_gguf(code, ctx)
         except Exception as e:
