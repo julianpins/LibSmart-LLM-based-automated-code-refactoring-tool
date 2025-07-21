@@ -164,7 +164,7 @@ typing_extensions==4.14.0
 tzdata==2025.2
 urllib3==2.4.0
 uvicorn==0.34.3
-uvloop==0.21.0
+#uvloop==0.21.0     #not windows compatible
 watchfiles==1.1.0
 wcwidth==0.2.13
 websocket-client==1.8.0
