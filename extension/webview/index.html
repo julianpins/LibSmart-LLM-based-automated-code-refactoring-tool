@@ -3,6 +3,7 @@
 <head>
     <title>LibSmart</title>
     <link href="{{stylesUri}}" rel="stylesheet">
+    <link href="{{hljsStylesUri}}" rel="stylesheet">
 </head>
 <body>
     <h1>LibSmart</h1>
@@ -13,12 +14,13 @@
         </div>
         <div id="changes-found">
             <h3>Suggested Change:</h3>
-            <pre><code id="modernized-code"></code></pre>
+            <pre><code id="modernized-code" class=""language-python></code></pre>
             <button id="replace-btn">Accept Change</button>
             <h3>Context:</h3>
             <div id="explanation"></div>
         </div>
     </div>
+    <script src="{{hljsScriptUri}}"></script>
     <script src="{{scriptUri}}"></script>
 </body>
 </html>

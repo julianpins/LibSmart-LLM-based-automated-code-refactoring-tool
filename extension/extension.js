@@ -11,7 +11,7 @@ function activate(context) {
             vscode.window.showInformationMessage("No code selected!!");
             return;
         }
-
+        
         // create webview panel
         const panel = vscode.window.createWebviewPanel(
             'libsmart',
@@ -51,9 +51,13 @@ function getHTML(extensionUri, webview) {
 
     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'webview', 'main.js'));
     const stylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'webview', 'styles.css'));
+    const hljsScriptUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'webview', 'highlight.min.js'));
+    const hljsStylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'webview', 'vs2015.min.css'));
 
     return html.replace(/{{stylesUri}}/g, stylesUri)
                .replace(/{{scriptUri}}/g, scriptUri)
+               .replace(/{{hljsStylesUri}}/g, hljsStylesUri)
+               .replace(/{{hljsScriptUri}}/g, hljsScriptUri);
 }
 
 module.exports = {

@@ -9,7 +9,7 @@ function getMockResponse(code) {
         setTimeout(function() {
             var response = {
                 modernized_code: "arr.tobytes()",
-                changes: "Replaced `tostring()` with `tobytes()` because it's newer.",
+                explanation: "Replaced `tostring()` with `tobytes()` because it's newer.",
                 error: null
             };
             resolve(response);
@@ -72,7 +72,7 @@ function runAnalysis(code) {
 
             document.getElementById('modernized-code').textContent = result.modernized_code;
             document.getElementById('explanation').innerHTML = result.explanation;
-
+            hljs.highlightAll();
             // set up the button click
             document.getElementById('replace-btn').onclick = function() {
                 vscode.postMessage({
