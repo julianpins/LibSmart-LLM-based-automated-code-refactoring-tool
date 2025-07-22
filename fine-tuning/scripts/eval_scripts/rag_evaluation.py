@@ -12,7 +12,7 @@ import numpy_financial as npf
 import requests
 from pathlib import Path
 
-VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent.parent / "data" / "datasets" / "validation_data.json")
+VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent / "data" / "datasets" / "validation_data.json")
 DETAILED_RESULTS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_detailed.csv")
 SUMMARY_METRICS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_summary.csv")
 
@@ -116,7 +116,7 @@ def call_rag_api(code, version):
         response = requests.post(
             "http://localhost:8000/analyze",
             json={"code": code, "numpy_version": version},
-            timeout=30
+            timeout=60
         )
         if response.status_code == 200:
             return response.json()
@@ -131,7 +131,7 @@ def main():
     
     # Check if API is available
     try:
-        health_response = requests.get("http://localhost:8000/health", timeout=5)
+        health_response = requests.get("http://localhost:8000/health", timeout=60)
         if health_response.status_code != 200:
             print("RAG API is not available! Please start the server first.")
             return
@@ -159,12 +159,9 @@ def main():
         print(f"\nProcessing sample {i+1}/{total_samples}:")
 
         # Send only dedented input to RAG like original script
-        try:
-            # Dedent the input once (remove function-level indentation)
-            dedented_input = textwrap.dedent(sample['input']).strip()
-            
+        try:            
             # Send just the dedented input to RAG API
-            api_result = call_rag_api(dedented_input, sample['version'])
+            api_result = call_rag_api(sample['input'], sample['version'])
             
             if api_result.get('error'):
                 print(f"RAG API failed: {api_result['error']}")
@@ -196,7 +193,7 @@ def main():
             continue
 
         # Use modernized_code directly - this should be the dedented replacement for our input
-        generated_code = modernized_code.strip()
+        generated_code = modernized_code
         print(f"Processing sample {i+1}/{total_samples}")
         
         if not generated_code:
@@ -215,10 +212,10 @@ def main():
             continue
 
         # EXACT same processing as original script  
-        dedented_code = textwrap.dedent(generated_code).strip()
+        dedented_code = textwrap.dedent(generated_code)
         indented_code = textwrap.indent(dedented_code, "    ")
         full_code = sample['code_before'] + indented_code + sample['code_after']
-
+        full_code_ni = sample['code_before'] + generated_code + sample['code_after']
         function_name = sample['code_before'].split('def ')[1].split('(')[0].strip()
         
         # Calculate metrics from retrieved context
@@ -228,7 +225,7 @@ def main():
         #COMPILATION CHECK
         compiles, compiles_msg, compiled_function = check_compiles(function_name, full_code)
         #INDENTATION CHECK  
-        indentation, indentation_msg = (check_indentation(function_name, full_code) if compiles else (False, "Skipped"))
+        indentation, indentation_msg = (check_indentation(function_name, full_code_ni) if compiles else (False, "Skipped"))
         #DEPRECATION CHECK
         test_input = eval(sample['test_cases'][0]['input'], EVAL_GLOBALS)
         no_deprecations, no_deprecations_msg = (check_no_deprecations(compiled_function, test_input) if compiles else (False, "Skipped"))

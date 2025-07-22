@@ -1,0 +1,2 @@
+total_samples,compiles,correct_indentation,no_deprecations,correct_functionality,avg_functions_retrieved,avg_functions_with_context,summary_score
+50,50,50,45,40,1.12,1.12,265/300

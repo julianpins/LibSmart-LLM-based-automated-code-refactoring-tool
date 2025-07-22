@@ -4,6 +4,7 @@ from typing import List, Dict, Set, Any
 import chromadb
 import torch
 from chromadb.config import Settings
+import textwrap
 
 from config import CHROMA_DB_DIR, COLLECTION_NAME, NUMPY_ALIASES
 from schemas import FunctionInfo, CodeAnalysisResponse
@@ -256,7 +257,8 @@ class RAGService:
     
     def analyze_code(self, code: str, version: str) -> CodeAnalysisResponse:
         logger.info(f"Analyzing code with NumPy {version}")
-        funcs = self.extract_funcs(code)
+        dedented_code = textwrap.dedent(code)
+        funcs = self.extract_funcs(dedented_code)
         unique_funcs = list({f.name for f in funcs})
         logger.info(f"Found {len(unique_funcs)} unique NumPy functions: {unique_funcs}")
         ctx: Dict[str, List[Dict[str, Any]]] = {}
