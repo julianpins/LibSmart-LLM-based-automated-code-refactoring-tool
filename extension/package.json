@@ -12,7 +12,7 @@
     "commands": [
       {
         "command": "libsmart.modernize",
-        "title": "Find and Replace Deprecated Functions"
+        "title": "Modernize NumPy Code"
       }
     ],
     "menus": {
