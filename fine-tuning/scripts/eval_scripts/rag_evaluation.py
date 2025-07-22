@@ -12,7 +12,7 @@ import numpy_financial as npf
 import requests
 from pathlib import Path
 
-VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent / "data" / "datasets" / "validation_data.json")
+VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent.parent / "data" / "datasets" / "validation_data.json")
 DETAILED_RESULTS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_detailed.csv")
 SUMMARY_METRICS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_summary.csv")
 
@@ -194,8 +194,7 @@ def main():
 
         # Use modernized_code directly - this should be the dedented replacement for our input
         generated_code = modernized_code
-        print(f"Processing sample {i+1}/{total_samples}")
-        
+        print(generated_code)        
         if not generated_code:
             print("RAG did not generate code. Skipping.")
             functions_retrieved = len(retrieved_context) if isinstance(retrieved_context, dict) else 0
