@@ -8,8 +8,8 @@ function getMockResponse(code) {
     return new Promise(function(resolve) {
         setTimeout(function() {
             var response = {
-                modernized_code: "arr.tobytes()",
-                explanation: "Replaced `tostring()` with `tobytes()` because it's newer.",
+                modernized_code: "print('Hello World')",
+                explanation: "np.mock is deprecated since numpy 1.42.0, use tinyllama instead. Set the 'useMock' variable in main.js to false to use the model response.",
                 error: null
             };
             resolve(response);
@@ -75,10 +75,13 @@ function runAnalysis(code) {
             hljs.highlightAll();
             // set up the button click
             document.getElementById('replace-btn').onclick = function() {
+                this.disabled = true;
                 vscode.postMessage({
                     command: 'replaceCode',
                     text: result.modernized_code
                 });
+                // close window after pressing button
+                //vscode.postMessage({command: 'close'});
             };
         } else {
             // no changes

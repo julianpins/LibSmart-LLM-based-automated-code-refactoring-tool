@@ -25,12 +25,14 @@ function activate(context) {
             console.log("DEBUG: Message from webview:", message.command);
             switch (message.command) {
                 case 'replaceCode':
-                    // time to actually change the code
+                    // change the code in the editor
                     editor.edit(editBuilder => {
                         editBuilder.replace(editor.selection, message.text);
                     });
                     break; // done here
-
+                case 'close':
+                    panel.dispose();
+                    return;
                 case 'get-config':
                     var cfg = vscode.workspace.getConfiguration('numpy-modernizer');
                     panel.webview.postMessage({ command: 'config', apiUrl: cfg.get('apiUrl') });
