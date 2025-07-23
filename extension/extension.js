@@ -16,7 +16,7 @@ function activate(context) {
         const panel = vscode.window.createWebviewPanel(
             'libsmart',
             'Libsmart - NumPy Modernizer', // new title
-            vscode.ViewColumn.Beside, {enableScripts: true}
+            vscode.ViewColumn.Beside, {enableScripts: true} 
         );
         panel.webview.html = getHTML(context.extensionUri, panel.webview);
 
