@@ -123,12 +123,12 @@ class RAGService:
                 settings=Settings(anonymized_telemetry=False)
             )
             try:
-                self.collection = client.get_collection(COLLECTION_NAME, embedding_function=embed_fn)  # type: ignore
+                self.collection = client.get_collection(COLLECTION_NAME, embedding_function=embed_fn)
                 logger.info(f"Connected to collection: {COLLECTION_NAME}")
             except:
                 self.collection = client.create_collection(
                     name=COLLECTION_NAME,
-                    embedding_function=embed_fn,  # type: ignore
+                    embedding_function=embed_fn,
                     metadata={"hnsw:space": "cosine"}
                 )
                 logger.info(f"Created collection: {COLLECTION_NAME}")
