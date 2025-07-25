@@ -13,8 +13,9 @@ import requests
 from pathlib import Path
 
 VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent.parent / "data" / "datasets" / "validation_data.json")
-DETAILED_RESULTS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_detailed.csv")
-SUMMARY_METRICS_CSV = str(Path(__file__).parent.parent / "evaluations" / "gemma2b" / "gemma2b_finetuned_evaluation_rag_summary.csv")
+RESULTS_PATH = str(Path(__file__).parent.parent.parent / "evaluation_results")
+DETAILED_RESULTS_CSV = RESULTS_PATH + "/evaluation_detailed.csv"
+SUMMARY_METRICS_CSV = RESULTS_PATH + "/evaluation_summary.csv"
 
 EVAL_GLOBALS = {
     'np': np,
@@ -109,9 +110,6 @@ def parse_model_output2(raw_output):
     return code
 
 def call_rag_api(code, version):
-    """
-    Call the RAG API with complete function code
-    """
     try:
         response = requests.post(
             "http://localhost:8000/analyze",
@@ -127,7 +125,7 @@ def call_rag_api(code, version):
 
 #evaluation
 def main():
-    print("Starting RAG evaluation script...")
+    print("Starting RAG evaluation script")
     
     # Check if API is available
     try:
@@ -246,8 +244,6 @@ def main():
     detailed_df = pd.DataFrame(results_list)
     os.makedirs(os.path.dirname(DETAILED_RESULTS_CSV), exist_ok=True)
     detailed_df.to_csv(DETAILED_RESULTS_CSV, index=False)
-    print("Detailed Results Table:")
-    print(detailed_df.to_string())
 
     metrics = {}
     metrics['total_samples'] = total_samples
@@ -272,6 +268,8 @@ def main():
     summary_df.to_csv(SUMMARY_METRICS_CSV, index=False)
     print("\nSummary Metrics:")
     print(summary_df.to_string())
+    print(f"Results saved to {RESULTS_PATH}")
+
 
 if __name__ == "__main__":
     main()
