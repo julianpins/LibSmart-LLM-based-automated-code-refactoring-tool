@@ -31,7 +31,7 @@ app.add_middleware(
 rag = None
 
 def get_available_models():
-    models_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
+    models_dir = Path(__file__).parent.parent / "finetuning" / "models"
     models = []
     if models_dir.exists():
         for item in models_dir.iterdir():
