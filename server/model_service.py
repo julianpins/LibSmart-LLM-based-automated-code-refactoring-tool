@@ -18,7 +18,7 @@ class ModelService:
 
     def _load_gguf_model(self):
         try:
-            models_base_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
+            models_base_dir = Path(__file__).parent.parent / "finetuning" / "models"
             direct_gguf_path = models_base_dir / f"{self.model_name}.gguf"
             
             if not direct_gguf_path.exists():
