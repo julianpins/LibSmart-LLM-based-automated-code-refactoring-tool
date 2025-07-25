@@ -5,7 +5,7 @@ import logging
 import sys
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).parent))
+MODELS_DIR = Path(__file__).parent.parent / "fine-tuning" / "models"
 
 from config import API_TITLE, API_VERSION, API_HOST, API_PORT
 from schemas import CodeAnalysisRequest, CodeAnalysisResponse, HealthResponse
@@ -17,7 +17,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
 app = FastAPI(title=API_TITLE, version=API_VERSION)
 
 app.add_middleware(
@@ -31,10 +30,9 @@ app.add_middleware(
 rag = None
 
 def get_available_models():
-    models_dir = Path(__file__).parent.parent / "fine-tuning" / "models"
     models = []
-    if models_dir.exists():
-        for item in models_dir.iterdir():
+    if MODELS_DIR.exists():
+        for item in MODELS_DIR.iterdir():
             if item.is_dir() and any(item.glob("*.gguf")):
                 models.append(item.name)
             elif item.is_file() and item.suffix == ".gguf":
@@ -42,26 +40,17 @@ def get_available_models():
     return models
 
 def select_model():
-
     models = get_available_models()
-
     if not models:
-        print("No fine-tuned models found. Using Ollama fallback.")
-        return None
-    
+        raise Exception(f"No models found in {MODELS_DIR}")
     print("\nAvailable models:")
-
     for i, model in enumerate(models, 1):
         print(f"{i}. {model}")
-
-    print(f"{len(models) + 1}. Use Ollama (deepseek-coder)")
     
     while True:
         try:
             choice = input("\nSelect model (number): ")
             idx = int(choice) - 1
-            if idx == len(models):
-                return None
             if 0 <= idx < len(models):
                 return models[idx]
         except:
@@ -81,17 +70,13 @@ async def analyze(req: CodeAnalysisRequest) -> CodeAnalysisResponse:
     
     if not rag.is_connected():
         raise HTTPException(status_code=503, detail="Vector database unavailable")
-    
     try:
         result = rag.analyze_code(req.code, req.numpy_version)
-        
         if result.error:
             logger.error(f"Analysis error: {result.error}")
         else:
             logger.info(f"Analysis successful: {len(result.retrieved_context)} functions analyzed")
-        
         return result
-        
     except Exception as e:
         logger.exception("Analysis failed")
         raise HTTPException(status_code=500, detail=str(e))
@@ -105,7 +90,6 @@ async def startup() -> None:
     except Exception as e:
         logger.error(f"Failed to initialize RAG service: {e}")
         raise
-    
     logger.info(f"Starting {API_TITLE} v{API_VERSION}")
     logger.info(f"Model: {selected_model}")
     logger.info(f"ChromaDB: {'connected' if rag.is_connected() else 'disconnected'}")

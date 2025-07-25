@@ -15,7 +15,7 @@ function activate(context) {
         // create webview panel
         const panel = vscode.window.createWebviewPanel(
             'libsmart',
-            'Libsmart - NumPy Modernizer', // new title
+            'Libsmart - NumPy Modernizer',
             vscode.ViewColumn.Beside, {enableScripts: true} 
         );
         panel.webview.html = getHTML(context.extensionUri, panel.webview);
@@ -29,7 +29,7 @@ function activate(context) {
                     editor.edit(editBuilder => {
                         editBuilder.replace(editor.selection, message.text);
                     });
-                    break; // done here
+                    break;
                 case 'close':
                     panel.dispose();
                     return;

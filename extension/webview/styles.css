@@ -2,8 +2,6 @@ body {
     font-family: sans-serif;
     padding: 20px;
 }
-
-/* loading message */
 #loader {
     font-weight: bold;
     font-size: 18px;
@@ -16,8 +14,6 @@ h3 {
     margin-top: 25px;
 }
 
-
-/* The box that shows the code */
 pre {
     background-color: lightgrey;
     padding: 1px;
@@ -27,7 +23,6 @@ pre {
     word-wrap: break-word;
 }
 
-/* button */
 button {
     background-color: rgb(9, 89, 181); 
     color: white;

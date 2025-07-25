@@ -116,7 +116,7 @@ class RAGService:
             embed_fn = SentenceTransformerEmbeddingFunction(
                 model_name="BAAI/bge-base-en-v1.5",
                 device="mps" if torch.backends.mps.is_available() else "cpu"
-            )  # type: ignore
+            )
             
             client = chromadb.PersistentClient(
                 path=CHROMA_DB_DIR,
@@ -219,9 +219,7 @@ class RAGService:
                     import re
                     explanation = re.sub(r'```python.*?```', '', explanation, flags=re.DOTALL).strip()
                     explanation = re.sub(r'\[.*?\]\(.*?\)', '', explanation).strip()
-                    # Filter out additional sections like "### No Changes Needed"
                     explanation = re.sub(r'###.*', '', explanation).strip()
-                    # Filter out input code repetition
                     if "### INPUT CODE:" in explanation:
                         explanation = explanation.split("### INPUT CODE:")[0].strip()
         else:
@@ -234,26 +232,6 @@ class RAGService:
             explanation = "No deprecated functionality found"
         
         return modernized_code, explanation
-    
-    '''def _generate_explanation(self, original: str, modernized: str, context: Dict[str, List[Dict[str, Any]]] | None = None) -> str:
-        if not modernized or modernized == original:
-            return "No deprecated functionality found"
-        
-        # Use context to generate specific explanations
-        if context:
-            explanations = []
-            for func, chunks in context.items():
-                if chunks and func in original:
-                    # Extract key info from context
-                    content = chunks[0]['content']
-                    if 'deprecated' in content.lower():
-                        if 'replacement' in content.lower() or 'use' in content.lower():
-                            explanations.append(f"Updated {func} to modern equivalent")
-            
-            if explanations:
-                return '; '.join(explanations)
-        
-        return "Modernized deprecated NumPy functionality"'''
     
     def analyze_code(self, code: str, version: str) -> CodeAnalysisResponse:
         logger.info(f"Analyzing code with NumPy {version}")

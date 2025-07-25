@@ -10,12 +10,6 @@ DOCS_DIR = DATA_DIR / "docs"
 CHROMA_DB_DIR = str(DOCS_DIR / "chroma_db")
 COLLECTION_NAME = "numpy_docs"
 
-# Model
-OLLAMA_MODEL = "deepseek-coder:6.7b"
-OLLAMA_BASE_URL = "http://localhost:11434"
-MODEL_TEMPERATURE = 0.2
-MODEL_MAX_TOKENS = 2048
-
 # RAG
 TOP_K_RESULTS = 3
 CHUNK_SIZE = 500

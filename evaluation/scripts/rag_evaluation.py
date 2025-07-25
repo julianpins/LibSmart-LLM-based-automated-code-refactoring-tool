@@ -12,8 +12,8 @@ import numpy_financial as npf
 import requests
 from pathlib import Path
 
-VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent.parent / "data" / "datasets" / "validation_data.json")
-RESULTS_PATH = str(Path(__file__).parent.parent.parent / "evaluation_results")
+VALIDATION_DATA_PATH = str(Path(__file__).parent.parent.parent / "data" / "datasets" / "validation_data.json")
+RESULTS_PATH = str(Path(__file__).parent.parent)
 DETAILED_RESULTS_CSV = RESULTS_PATH + "/evaluation_detailed.csv"
 SUMMARY_METRICS_CSV = RESULTS_PATH + "/evaluation_summary.csv"
 
@@ -155,12 +155,8 @@ def main():
 
     for i, sample in enumerate(validation_data):
         print(f"\nProcessing sample {i+1}/{total_samples}:")
-
-        # Send only dedented input to RAG like original script
         try:            
-            # Send just the dedented input to RAG API
-            api_result = call_rag_api(sample['input'], sample['version'])
-            
+            api_result = call_rag_api(sample['input'], sample['version'])            
             if api_result.get('error'):
                 print(f"RAG API failed: {api_result['error']}")
                 results_list.append({
@@ -190,7 +186,6 @@ def main():
             })
             continue
 
-        # Use modernized_code directly - this should be the dedented replacement for our input
         generated_code = modernized_code
         print(generated_code)        
         if not generated_code:
@@ -208,14 +203,12 @@ def main():
             })
             continue
 
-        # EXACT same processing as original script  
         dedented_code = textwrap.dedent(generated_code)
         indented_code = textwrap.indent(dedented_code, "    ")
         full_code = sample['code_before'] + indented_code + sample['code_after']
         full_code_ni = sample['code_before'] + generated_code + sample['code_after']
         function_name = sample['code_before'].split('def ')[1].split('(')[0].strip()
         
-        # Calculate metrics from retrieved context
         functions_retrieved = len(retrieved_context) if isinstance(retrieved_context, dict) else 0
         functions_with_context = sum(1 for v in retrieved_context.values() if v) if isinstance(retrieved_context, dict) else 0
         
@@ -252,7 +245,6 @@ def main():
     metrics['no_deprecations'] = detailed_df['no_deprecations'].str.startswith('Pass').sum()
     metrics['correct_functionality'] = detailed_df['correct_functionality'].str.startswith('Pass').sum()
     
-    # Add RAG-specific metrics
     metrics['avg_functions_retrieved'] = detailed_df['functions_retrieved'].mean()
     metrics['avg_functions_with_context'] = detailed_df['functions_with_context'].mean()
 

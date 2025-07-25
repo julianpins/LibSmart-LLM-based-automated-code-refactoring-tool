@@ -37,7 +37,6 @@ function runAnalysis(code) {
     if (useMock) {
         apiPromise = getMockResponse(code);
     } else {
-        // api call
         var fullUrl = 'http://127.0.0.1:8000/analyze'
         console.log('Send request to:', fullUrl);
         apiPromise = fetch(fullUrl, {

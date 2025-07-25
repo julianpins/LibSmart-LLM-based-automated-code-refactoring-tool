@@ -47,10 +47,8 @@ function_counter = Counter()
 
 MAX_DATA_PER_FUNCTION = 5
 
-#focus on numpys first
 TARGET_LIBRARIES = ["numpy", "np."]
 
-#a few large repos with many commits of that sort
 REPOS = [
     "https://github.com/CALFEM/calfem-python.git"
     "https://github.com/inkstitch/colormath.git"
@@ -69,7 +67,7 @@ REPOS = [
 def is_relevant_diff(diff_text):
     return any(lib in diff_text for lib in TARGET_LIBRARIES)
 
-#checks if relevant function is contained in input_code
+#checks if relevant function contained in input_code
 def contains_func(diff_text):
     found_funcs = [func for func in TARGET_FUNCTIONS if func in diff_text]
     if not found_funcs:
