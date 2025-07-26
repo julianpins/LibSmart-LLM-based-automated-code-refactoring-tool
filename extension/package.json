@@ -23,6 +23,14 @@
           "group": "1_modification"
         }
       ]
-    }
+    },
+    "keybindings": [
+      {
+        "command": "libsmart.modernize",
+        "key": "ctrl+m",
+        "mac": "cmd+m",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ]
   }
 }
