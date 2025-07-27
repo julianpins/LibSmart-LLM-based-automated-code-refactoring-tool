@@ -201,7 +201,6 @@ class RAGService:
         explanation = ""
         
         if "### Refactored Code" in output:
-            # Extract code section
             parts = output.split("### Refactored Code")
             if len(parts) > 1:
                 code_section = parts[1].split("### Deprecation Context")[0]
@@ -215,7 +214,6 @@ class RAGService:
                 # Extract explanation from Deprecation Context section only
                 if "### Deprecation Context" in output:
                     explanation = output.split("### Deprecation Context")[1].strip()
-                    # Filter out markdown code blocks and links
                     import re
                     explanation = re.sub(r'```python.*?```', '', explanation, flags=re.DOTALL).strip()
                     explanation = re.sub(r'\[.*?\]\(.*?\)', '', explanation).strip()

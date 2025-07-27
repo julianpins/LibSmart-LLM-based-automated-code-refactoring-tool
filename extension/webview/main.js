@@ -1,6 +1,7 @@
 var vscode = acquireVsCodeApi();
 
-const useMock = false; // set to false to use the real api
+// set to false to use the real api
+const useMock = false; 
 var apiUrl = 'http://127.0.0.1:8000';
 
 // for testing
@@ -80,7 +81,7 @@ function runAnalysis(code) {
                     text: result.modernized_code
                 });
                 // close window after pressing button
-                //vscode.postMessage({command: 'close'});
+                // vscode.postMessage({command: 'close'});
             };
         } else {
             // no changes

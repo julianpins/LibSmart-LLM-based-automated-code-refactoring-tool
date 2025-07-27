@@ -7,14 +7,14 @@
 ## Repository Structure
 ```
 .
-├── data/                  Training and evaluation data, ChromaDB setup and scraping scripts
-├── evaluation/            Evaluation scripts, detailed results and summary
-├── extension/             VS Code extension source code (frontend)
-├── fine-tuning/           Fine-tuned models and training scripts
-├── presentation_report/   Final project report and presentation
-├── server/                Backend server (FastAPI, RAG pipeline)
-├── demo.py                Standalone demo script for testing
-└── requirements.txt       Python dependencies
+├── data/                      Training and evaluation datasets, ChromaDB setup and scraping scripts
+├── evaluation/                Evaluation scripts, detailed results and summary
+├── extension/                 VS Code extension source code (frontend)
+├── fine-tuning/               Fine-tuned models and training scripts
+├── presentation_and_report/   Final project report and presentation
+├── server/                    Backend server (FastAPI, RAG pipeline)
+├── demo.py                    Standalone demo script for testing
+└── requirements.txt           Python dependencies
 ```
 
 ---
